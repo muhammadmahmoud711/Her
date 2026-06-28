@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Her — Your Cycle, Your Way</title>
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600&family=Google+Sans+Display:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pink-50: #FCE4EC; --pink-100: #F8BBD9; --pink-200: #F48FB1;
+    --pink-400: #EC407A; --pink-600: #C2185B; --pink-800: #880E4F;
+    --mauve-100: #E1BEE7; --mauve-200: #CE93D8; --mauve-400: #AB47BC;
+    --mauve-600: #7B1FA2;
+    --surface-bg: #0D0D10; --surface-card: #16151A;
+    --surface-elevated: #1E1C24; --surface-modal: #24222D;
+    --text-primary: #F5EDF0; --text-secondary: #B8A8B5;
+    --text-muted: #7A6B78; --border: rgba(244,143,177,0.12);
+    --border-strong: rgba(244,143,177,0.25);
+    --radius-sm: 12px; --radius-md: 16px; --radius-lg: 24px;
+    --radius-xl: 28px;
+    font-family: 'Google Sans', system-ui, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--surface-bg);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* ── TOP APP BAR ── */
+  .top-bar {
+    width: 100%; max-width: 480px;
+    padding: 16px 20px 8px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .logo { display: flex; align-items: center; gap: 10px; }
+  .logo-icon {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--pink-200), var(--mauve-200));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+  }
+  .logo-name {
+    font-family: 'Google Sans Display', sans-serif;
+    font-size: 22px; font-weight: 600;
+    background: linear-gradient(135deg, var(--pink-200), var(--mauve-200));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .settings-btn {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: transparent; border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text-secondary); font-size: 20px;
+    transition: background 0.2s;
+  }
+  .settings-btn:hover { background: var(--surface-elevated); }
+
+  /* ── SCREENS ── */
+  .screen { display: none; width: 100%; max-width: 480px; padding: 8px 20px 32px; }
+  .screen.active { display: flex; flex-direction: column; gap: 16px; }
+
+  /* ── ONBOARDING ── */
+  .onboarding-hero {
+    text-align: center; padding: 24px 0 8px;
+  }
+  .hero-ring {
+    width: 120px; height: 120px; margin: 0 auto 20px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 40% 40%, #2A1A2E, #1A0E20);
+    border: 2px solid var(--border-strong);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 56px;
+    box-shadow: 0 0 40px rgba(244,143,177,0.15);
+  }
+  .hero-title {
+    font-family: 'Google Sans Display', sans-serif;
+    font-size: 28px; font-weight: 600; color: var(--text-primary);
+    margin-bottom: 8px;
+  }
+  .hero-sub { font-size: 15px; color: var(--text-secondary); line-height: 1.5; }
+
+  /* ── CARDS ── */
+  .card {
+    background: var(--surface-card);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: 20px;
+  }
+  .card-title {
+    font-size: 12px; font-weight: 500; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--text-muted);
+    margin-bottom: 16px;
+  }
+
+  /* ── INPUT GROUP ── */
+  .input-group { display: flex; flex-direction: column; gap: 12px; }
+  .input-label {
+    font-size: 13px; color: var(--text-secondary);
+    margin-bottom: 4px; display: block;
+  }
+  .input-row { display: flex; flex-direction: column; gap: 4px; }
+  input[type="email"], input[type="date"], input[type="number"] {
+    width: 100%; padding: 14px 16px;
+    background: var(--surface-elevated);
+    border: 0.5px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary); font-size: 15px;
+    font-family: 'Google Sans', sans-serif;
+    outline: none; transition: border-color 0.2s;
+  }
+  input:focus { border-color: var(--pink-200); }
+  input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(0.8); cursor: pointer; }
+
+  /* ── BUTTONS ── */
+  .btn-primary {
+    width: 100%; padding: 16px;
+    background: linear-gradient(135deg, var(--pink-400), var(--mauve-400));
+    border: none; border-radius: var(--radius-lg);
+    color: #fff; font-size: 15px; font-weight: 500;
+    font-family: 'Google Sans', sans-serif;
+    cursor: pointer; transition: opacity 0.2s, transform 0.1s;
+    letter-spacing: 0.02em;
+  }
+  .btn-primary:hover { opacity: 0.92; }
+  .btn-primary:active { transform: scale(0.98); }
+  .btn-secondary {
+    width: 100%; padding: 14px;
+    background: transparent;
+    border: 0.5px solid var(--border-strong);
+    border-radius: var(--radius-lg);
+    color: var(--text-secondary); font-size: 14px;
+    font-family: 'Google Sans', sans-serif;
+    cursor: pointer; transition: background 0.2s;
+  }
+  .btn-secondary:hover { background: var(--surface-elevated); }
+
+  /* ── COUNTDOWN RING ── */
+  .ring-wrap {
+    display: flex; flex-direction: column; align-items: center;
+    padding: 8px 0;
+  }
+  .ring-svg { filter: drop-shadow(0 0 16px rgba(244,143,177,0.2)); }
+  .ring-center {
+    text-align: center; margin-top: -8px;
+  }
+  .ring-days {
+    font-family: 'Google Sans Display', sans-serif;
+    font-size: 52px; font-weight: 600;
+    background: linear-gradient(135deg, var(--pink-200), var(--mauve-200));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text; line-height: 1;
+  }
+  .ring-label { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
+
+  /* ── STAT CHIPS ── */
+  .stat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .stat-chip {
+    background: var(--surface-elevated);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 14px 16px;
+  }
+  .stat-chip-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; }
+  .stat-chip-value { font-size: 18px; font-weight: 500; color: var(--text-primary); margin-top: 4px; }
+  .stat-chip-sub { font-size: 12px; color: var(--text-secondary); margin-top: 2px; }
+
+  /* ── PHASE PILL ── */
+  .phase-pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 6px 14px; border-radius: 999px;
+    font-size: 13px; font-weight: 500;
+    background: rgba(244,143,177,0.12);
+    color: var(--pink-200); border: 0.5px solid rgba(244,143,177,0.25);
+  }
+  .phase-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--pink-200); }
+
+  /* ── QUOTE CARD ── */
+  .quote-card {
+    background: linear-gradient(135deg, rgba(244,143,177,0.08), rgba(206,147,216,0.06));
+    border: 0.5px solid var(--border-strong);
+    border-radius: var(--radius-xl);
+    padding: 20px;
+  }
+  .quote-text {
+    font-size: 15px; line-height: 1.65; color: var(--text-secondary);
+    font-style: italic;
+  }
+  .quote-author { font-size: 12px; color: var(--text-muted); margin-top: 10px; }
+
+  /* ── HISTORY LIST ── */
+  .history-item {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 0.5px solid var(--border);
+  }
+  .history-item:last-child { border-bottom: none; }
+  .history-date { font-size: 14px; color: var(--text-primary); }
+  .history-dur { font-size: 13px; color: var(--text-muted); }
+  .history-badge {
+    font-size: 11px; padding: 3px 10px; border-radius: 999px;
+    background: rgba(244,143,177,0.1); color: var(--pink-200);
+  }
+
+  /* ── STATUS TAG ── */
+  .status-active {
+    display: inline-flex; gap: 6px; align-items: center;
+    padding: 4px 12px; border-radius: 999px; font-size: 12px;
+    background: rgba(244,143,177,0.1); color: var(--pink-200);
+    border: 0.5px solid rgba(244,143,177,0.2);
+  }
+
+  /* ── SETTINGS SCREEN ── */
+  .settings-row {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 0; border-bottom: 0.5px solid var(--border);
+  }
+  .settings-row:last-child { border-bottom: none; }
+  .settings-key { font-size: 14px; color: var(--text-primary); }
+  .settings-val { font-size: 14px; color: var(--text-secondary); }
+  .settings-edit {
+    font-size: 13px; color: var(--pink-200); cursor: pointer;
+    background: none; border: none; font-family: 'Google Sans', sans-serif;
+  }
+
+  /* ── TOAST ── */
+  #toast {
+    position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(80px);
+    background: var(--surface-modal); border: 0.5px solid var(--border-strong);
+    border-radius: var(--radius-md); padding: 12px 20px;
+    font-size: 14px; color: var(--text-primary);
+    transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+    white-space: nowrap; z-index: 999;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  }
+  #toast.show { transform: translateX(-50%) translateY(0); }
+
+  /* ── NAV TABS ── */
+  .nav-tabs {
+    width: 100%; max-width: 480px;
+    display: flex; background: var(--surface-card);
+    border-top: 0.5px solid var(--border);
+    position: sticky; bottom: 0;
+  }
+  .nav-tab {
+    flex: 1; padding: 12px 8px 16px;
+    display: flex; flex-direction: column; align-items: center; gap: 4px;
+    background: none; border: none; cursor: pointer;
+    color: var(--text-muted); font-size: 10px;
+    font-family: 'Google Sans', sans-serif; letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .nav-tab.active { color: var(--pink-200); }
+  .nav-tab svg { width: 22px; height: 22px; }
+
+  /* ── PERIOD ACTIVE BANNER ── */
+  .period-active-banner {
+    background: linear-gradient(135deg, rgba(244,143,177,0.15), rgba(206,147,216,0.1));
+    border: 0.5px solid rgba(244,143,177,0.3);
+    border-radius: var(--radius-xl);
+    padding: 16px 20px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .period-active-icon { font-size: 28px; }
+  .period-active-text h3 { font-size: 15px; font-weight: 500; color: var(--text-primary); }
+  .period-active-text p { font-size: 13px; color: var(--text-secondary); margin-top: 3px; }
+
+  /* EmailJS badge */
+  .email-badge {
+    display: flex; align-items: center; gap: 8px;
+    background: rgba(206,147,216,0.08);
+    border: 0.5px solid rgba(206,147,216,0.2);
+    border-radius: var(--radius-sm); padding: 10px 14px;
+    font-size: 13px; color: var(--text-secondary);
+  }
+  .email-badge svg { width: 16px; height: 16px; color: var(--mauve-200); flex-shrink: 0; }
+
+  .section-heading {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--text-muted); font-weight: 500; padding: 0 4px;
+  }
+
+  .divider { height: 0.5px; background: var(--border); margin: 4px 0; }
+</style>
+</head>
+<body>
+
+<!-- TOP APP BAR -->
+<div class="top-bar">
+  <div class="logo">
+    <div class="logo-icon">🌸</div>
+    <span class="logo-name">Her</span>
+  </div>
+  <button class="settings-btn" onclick="goTab('settings')" aria-label="Settings">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="22" height="22">
+      <circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+    </svg>
+  </button>
+</div>
+
+<!-- ══════════════════ ONBOARDING SCREEN ══════════════════ -->
+<div id="screen-onboarding" class="screen active">
+  <div class="onboarding-hero">
+    <div class="hero-ring">🌸</div>
+    <h1 class="hero-title">Welcome to Her</h1>
+    <p class="hero-sub">Track your cycle, get gentle reminders,<br>and understand your body better.</p>
+  </div>
+
+  <div class="card">
+    <p class="card-title">Your email</p>
+    <div class="input-group">
+      <div class="input-row">
+        <label class="input-label" for="ob-email">Email address for reminders</label>
+        <input type="email" id="ob-email" placeholder="you@example.com" autocomplete="email">
+      </div>
+    </div>
+    <div class="email-badge" style="margin-top:12px">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      You'll receive a reminder the day before and on the day your period is expected.
+    </div>
+  </div>
+
+  <div class="card">
+    <p class="card-title">Your last period</p>
+    <div class="input-group">
+      <div class="input-row">
+        <label class="input-label" for="ob-start">When did it start?</label>
+        <input type="date" id="ob-start">
+      </div>
+      <div class="input-row">
+        <label class="input-label" for="ob-end">When did it end?</label>
+        <input type="date" id="ob-end">
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <p class="card-title">Your cycle</p>
+    <div class="input-group">
+      <div class="input-row">
+        <label class="input-label" for="ob-cycle">Average cycle length (days)</label>
+        <input type="number" id="ob-cycle" value="28" min="20" max="45">
+      </div>
+      <div class="input-row">
+        <label class="input-label" for="ob-duration">Average period duration (days)</label>
+        <input type="number" id="ob-duration" value="5" min="2" max="10">
+      </div>
+    </div>
+  </div>
+
+  <button class="btn-primary" onclick="saveOnboarding()">Get started →</button>
+</div>
+
+<!-- ══════════════════ HOME SCREEN ══════════════════ -->
+<div id="screen-home" class="screen">
+  <!-- Countdown ring -->
+  <div class="card" style="padding: 24px 20px 20px;">
+    <div class="ring-wrap">
+      <svg class="ring-svg" width="200" height="200" viewBox="0 0 200 200">
+        <circle cx="100" cy="100" r="82" fill="none" stroke="rgba(244,143,177,0.08)" stroke-width="12"/>
+        <circle id="ring-progress" cx="100" cy="100" r="82" fill="none"
+          stroke="url(#ringGrad)" stroke-width="12" stroke-linecap="round"
+          stroke-dasharray="515" stroke-dashoffset="515"
+          transform="rotate(-90 100 100)"/>
+        <defs>
+          <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#F48FB1"/>
+            <stop offset="100%" stop-color="#CE93D8"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <div class="ring-center" style="margin-top:-130px; margin-bottom: 90px;">
+        <div class="ring-days" id="ring-days">—</div>
+        <div class="ring-label" id="ring-label">days until period</div>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top: 8px;">
+      <span class="phase-pill"><span class="phase-dot"></span><span id="phase-text">Loading...</span></span>
+    </div>
+  </div>
+
+  <!-- Period active banner (hidden by default) -->
+  <div class="period-active-banner" id="active-banner" style="display:none">
+    <div class="period-active-icon">🌸</div>
+    <div class="period-active-text">
+      <h3>Your period is here</h3>
+      <p id="active-banner-text">Take it easy today 💕</p>
+    </div>
+  </div>
+
+  <!-- Stat chips -->
+  <div class="stat-row">
+    <div class="stat-chip">
+      <div class="stat-chip-label">Next period</div>
+      <div class="stat-chip-value" id="stat-next-date">—</div>
+      <div class="stat-chip-sub" id="stat-next-end">ends —</div>
+    </div>
+    <div class="stat-chip">
+      <div class="stat-chip-label">Cycle length</div>
+      <div class="stat-chip-value" id="stat-cycle">28 days</div>
+      <div class="stat-chip-sub" id="stat-duration">5 day period</div>
+    </div>
+  </div>
+
+  <div class="stat-row">
+    <div class="stat-chip">
+      <div class="stat-chip-label">Ovulation</div>
+      <div class="stat-chip-value" id="stat-ovulation">—</div>
+      <div class="stat-chip-sub">fertile window</div>
+    </div>
+    <div class="stat-chip">
+      <div class="stat-chip-label">Last period</div>
+      <div class="stat-chip-value" id="stat-last-start">—</div>
+      <div class="stat-chip-sub" id="stat-last-end">ended —</div>
+    </div>
+  </div>
+
+  <!-- Daily quote -->
+  <div class="quote-card">
+    <p class="quote-text" id="daily-quote">Loading your daily affirmation...</p>
+    <p class="quote-author" id="quote-author">— Her</p>
+  </div>
+</div>
+
+<!-- ══════════════════ LOG SCREEN ══════════════════ -->
+<div id="screen-log" class="screen">
+  <p class="section-heading">Log a period</p>
+  <div class="card">
+    <p class="card-title">New entry</p>
+    <div class="input-group">
+      <div class="input-row">
+        <label class="input-label" for="log-start">Start date</label>
+        <input type="date" id="log-start">
+      </div>
+      <div class="input-row">
+        <label class="input-label" for="log-end">End date</label>
+        <input type="date" id="log-end">
+      </div>
+    </div>
+    <button class="btn-primary" style="margin-top:16px" onclick="logPeriod()">Save period</button>
+  </div>
+
+  <div class="divider"></div>
+  <p class="section-heading">History</p>
+
+  <div class="card" id="history-list">
+    <p style="color:var(--text-muted); font-size:14px; text-align:center; padding: 12px 0;">No periods logged yet</p>
+  </div>
+</div>
+
+<!-- ══════════════════ SETTINGS SCREEN ══════════════════ -->
+<div id="screen-settings" class="screen">
+  <p class="section-heading">Account</p>
+  <div class="card">
+    <div class="settings-row">
+      <span class="settings-key">Email</span>
+      <div style="display:flex;align-items:center;gap:12px">
+        <span class="settings-val" id="set-email">—</span>
+        <button class="settings-edit" onclick="editField('email')">Edit</button>
+      </div>
+    </div>
+  </div>
+
+  <p class="section-heading">Cycle settings</p>
+  <div class="card">
+    <div class="settings-row">
+      <span class="settings-key">Cycle length</span>
+      <div style="display:flex;align-items:center;gap:12px">
+        <span class="settings-val" id="set-cycle">28 days</span>
+        <button class="settings-edit" onclick="editField('cycle')">Edit</button>
+      </div>
+    </div>
+    <div class="settings-row">
+      <span class="settings-key">Period duration</span>
+      <div style="display:flex;align-items:center;gap:12px">
+        <span class="settings-val" id="set-duration">5 days</span>
+        <button class="settings-edit" onclick="editField('duration')">Edit</button>
+      </div>
+    </div>
+  </div>
+
+  <p class="section-heading">Reminders</p>
+  <div class="card">
+    <div class="settings-row" style="border-bottom:none">
+      <div>
+        <div class="settings-key">Email reminders</div>
+        <div style="font-size:12px; color:var(--text-muted); margin-top:3px">Sent via EmailJS — free</div>
+      </div>
+      <span class="status-active"><span style="width:6px;height:6px;border-radius:50%;background:var(--pink-200);display:inline-block"></span>On</span>
+    </div>
+  </div>
+
+  <p class="section-heading">EmailJS setup</p>
+  <div class="card">
+    <p style="font-size:13px; color:var(--text-secondary); line-height:1.6; margin-bottom:14px">
+      To enable real email reminders, add your EmailJS credentials below. 
+      <a href="https://www.emailjs.com" target="_blank" style="color:var(--pink-200)">Sign up free at emailjs.com</a>
+    </p>
+    <div class="input-group">
+      <div class="input-row">
+        <label class="input-label" for="ejs-pubkey">Public Key</label>
+        <input type="text" id="ejs-pubkey" placeholder="your_public_key" style="font-size:13px">
+      </div>
+      <div class="input-row">
+        <label class="input-label" for="ejs-service">Service ID</label>
+        <input type="text" id="ejs-service" placeholder="service_xxxxxxx" style="font-size:13px">
+      </div>
+      <div class="input-row">
+        <label class="input-label" for="ejs-template">Template ID</label>
+        <input type="text" id="ejs-template" placeholder="template_xxxxxxx" style="font-size:13px">
+      </div>
+    </div>
+    <button class="btn-primary" style="margin-top:14px" onclick="saveEmailJS()">Save EmailJS config</button>
+    <button class="btn-secondary" style="margin-top:8px" onclick="sendTestEmail()">Send test email</button>
+  </div>
+
+  <div class="card" style="margin-top:4px">
+    <button class="btn-secondary" onclick="resetApp()" style="color:#E57373; border-color:rgba(229,115,115,0.3)">Reset all data</button>
+  </div>
+</div>
+
+<!-- ══════════════════ BOTTOM NAV ══════════════════ -->
+<nav class="nav-tabs" id="bottom-nav" style="display:none">
+  <button class="nav-tab active" id="tab-home" onclick="goTab('home')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+    </svg>
+    Home
+  </button>
+  <button class="nav-tab" id="tab-log" onclick="goTab('log')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+      <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+    </svg>
+    Log
+  </button>
+  <button class="nav-tab" id="tab-settings" onclick="goTab('settings')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+      <circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+    </svg>
+    Settings
+  </button>
+</nav>
+
+<!-- TOAST -->
+<div id="toast"></div>
+
+<!-- EmailJS SDK -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<script>
+// ══════════════════════════════════
+//  DATA LAYER
+// ══════════════════════════════════
+function save(key, val) { localStorage.setItem('her_' + key, JSON.stringify(val)); }
+function load(key) { try { return JSON.parse(localStorage.getItem('her_' + key)); } catch { return null; } }
+
+const QUOTES = [
+  { text: "Your body is not a problem to be solved. It's a home to be loved.", author: "Her" },
+  { text: "Rest is not laziness. It's your body's way of asking for what it needs.", author: "Her" },
+  { text: "Every cycle is a reminder of how powerful you truly are.", author: "Her" },
+  { text: "Be gentle with yourself — you're doing better than you think.", author: "Her" },
+  { text: "Your feelings are valid. Your body is wise. You are enough.", author: "Her" },
+  { text: "Take up space. Feel deeply. Rest when you need to.", author: "Her" },
+  { text: "Healing isn't linear, and neither is a cycle. Both are natural.", author: "Her" },
+  { text: "Your sensitivity is your superpower — especially today.", author: "Her" },
+  { text: "You deserve warmth, chocolate, and all the softness in the world today.", author: "Her" },
+  { text: "Listen to your body — it's the wisest voice in the room.", author: "Her" },
+  { text: "A little self-compassion goes a long way on the harder days.", author: "Her" },
+  { text: "You are cyclical by nature. That's not a weakness. That's magic.", author: "Her" }
+];
+
+// ══════════════════════════════════
+//  CYCLE MATH
+// ══════════════════════════════════
+function daysBetween(a, b) {
+  return Math.round((b - a) / 86400000);
+}
+function addDays(date, n) {
+  const d = new Date(date); d.setDate(d.getDate() + n); return d;
+}
+function fmtDate(d) {
+  if (!d) return '—';
+  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+}
+function fmtDateFull(d) {
+  if (!d) return '—';
+  return d.toLocaleDateString('en-US', { weekday:'short', month: 'short', day: 'numeric' });
+}
+function toDateInput(d) {
+  if (!d) return '';
+  return d.toISOString().split('T')[0];
+}
+
+function computeNext(lastStart, cycleLen) {
+  const ls = new Date(lastStart);
+  const today = new Date(); today.setHours(0,0,0,0);
+  let next = new Date(ls);
+  while (next <= today) { next = addDays(next, cycleLen); }
+  return next;
+}
+
+function getPhase(daysUntil, cycleLen, periodDuration) {
+  if (daysUntil <= 0 && daysUntil > -periodDuration) return { phase: 'Menstrual phase', emoji: '🌸' };
+  if (daysUntil > 0 && daysUntil <= 5) return { phase: 'Premenstrual phase', emoji: '🌙' };
+  const ovDay = Math.round(cycleLen / 2);
+  if (daysUntil > 5 && daysUntil <= (cycleLen - ovDay + 5)) return { phase: 'Luteal phase', emoji: '🌕' };
+  if (daysUntil > (cycleLen - ovDay + 5)) return { phase: 'Follicular phase', emoji: '🌱' };
+  return { phase: 'Tracking…', emoji: '🔮' };
+}
+
+// ══════════════════════════════════
+//  ONBOARDING
+// ══════════════════════════════════
+function saveOnboarding() {
+  const email   = document.getElementById('ob-email').value.trim();
+  const start   = document.getElementById('ob-start').value;
+  const end     = document.getElementById('ob-end').value;
+  const cycle   = parseInt(document.getElementById('ob-cycle').value) || 28;
+  const dur     = parseInt(document.getElementById('ob-duration').value) || 5;
+
+  if (!email || !email.includes('@')) { showToast('Please enter a valid email 📧'); return; }
+  if (!start) { showToast('Please enter your last period start date'); return; }
+
+  save('email', email);
+  save('cycle', cycle);
+  save('duration', dur);
+
+  let history = load('history') || [];
+  history.unshift({ start, end: end || toDateInput(addDays(new Date(start), dur-1)) });
+  save('history', history);
+
+  checkAndScheduleReminders();
+  showMain();
+}
+
+// ══════════════════════════════════
+//  MAIN APP
+// ══════════════════════════════════
+function showMain() {
+  document.getElementById('screen-onboarding').classList.remove('active');
+  document.getElementById('bottom-nav').style.display = 'flex';
+  goTab('home');
+  renderHome();
+  renderLog();
+  renderSettings();
+}
+
+function goTab(tab) {
+  ['home','log','settings'].forEach(t => {
+    document.getElementById('screen-' + t).classList.remove('active');
+    const tabEl = document.getElementById('tab-' + t);
+    if (tabEl) tabEl.classList.remove('active');
+  });
+  document.getElementById('screen-' + tab).classList.add('active');
+  const active = document.getElementById('tab-' + tab);
+  if (active) active.classList.add('active');
+
+  if (tab === 'home') renderHome();
+  if (tab === 'log')  renderLog();
+  if (tab === 'settings') renderSettings();
+}
+
+// ══════════════════════════════════
+//  HOME RENDER
+// ══════════════════════════════════
+function renderHome() {
+  const history  = load('history') || [];
+  const cycleLen = load('cycle') || 28;
+  const duration = load('duration') || 5;
+  if (!history.length) return;
+
+  const lastEntry = history[0];
+  const today = new Date(); today.setHours(0,0,0,0);
+  const nextStart  = computeNext(lastEntry.start, cycleLen);
+  const nextEnd    = addDays(nextStart, duration - 1);
+  const daysUntil  = daysBetween(today, nextStart);
+
+  // Check if currently in period
+  const lastStart = new Date(lastEntry.start); lastStart.setHours(0,0,0,0);
+  const lastEnd   = lastEntry.end ? new Date(lastEntry.end) : addDays(lastStart, duration-1);
+  lastEnd.setHours(0,0,0,0);
+  const inPeriod  = today >= lastStart && today <= lastEnd;
+
+  // Ring
+  const progress = Math.max(0, Math.min(1, (cycleLen - daysUntil) / cycleLen));
+  const circumference = 2 * Math.PI * 82;
+  const offset = circumference * (1 - progress);
+  document.getElementById('ring-progress').style.strokeDashoffset = Math.round(offset);
+  document.getElementById('ring-progress').style.strokeDasharray = Math.round(circumference);
+
+  if (inPeriod) {
+    const dayNum = daysBetween(lastStart, today) + 1;
+    document.getElementById('ring-days').textContent = 'Day ' + dayNum;
+    document.getElementById('ring-label').textContent = 'of your period';
+    document.getElementById('active-banner').style.display = 'flex';
+    const remaining = daysBetween(today, lastEnd);
+    document.getElementById('active-banner-text').textContent =
+      remaining > 0 ? `About ${remaining} more day${remaining>1?'s':''} — take care of yourself 💕` : 'Last day — you're almost through 🌸';
+    document.getElementById('phase-text').textContent = '🌸 Menstrual phase';
+  } else {
+    document.getElementById('ring-days').textContent = Math.max(0, daysUntil);
+    document.getElementById('ring-label').textContent = 'days until period';
+    document.getElementById('active-banner').style.display = 'none';
+    const { phase, emoji } = getPhase(daysUntil, cycleLen, duration);
+    document.getElementById('phase-text').textContent = emoji + ' ' + phase;
+  }
+
+  // Stats
+  document.getElementById('stat-next-date').textContent = fmtDate(nextStart);
+  document.getElementById('stat-next-end').textContent  = 'ends ' + fmtDate(nextEnd);
+  document.getElementById('stat-cycle').textContent     = cycleLen + ' days';
+  document.getElementById('stat-duration').textContent  = duration + ' day period';
+  document.getElementById('stat-last-start').textContent = fmtDate(lastStart);
+  document.getElementById('stat-last-end').textContent   = 'ended ' + fmtDate(lastEnd);
+
+  // Ovulation
+  const ovulationDate = addDays(nextStart, -14);
+  document.getElementById('stat-ovulation').textContent = fmtDate(ovulationDate);
+
+  // Quote
+  const q = QUOTES[today.getDate() % QUOTES.length];
+  document.getElementById('daily-quote').textContent  = '" ' + q.text + ' "';
+  document.getElementById('quote-author').textContent = q.author;
+}
+
+// ══════════════════════════════════
+//  LOG RENDER
+// ══════════════════════════════════
+function renderLog() {
+  const history  = load('history') || [];
+  const container = document.getElementById('history-list');
+
+  // Set default dates
+  const today = new Date();
+  document.getElementById('log-start').value = toDateInput(today);
+  document.getElementById('log-end').value   = toDateInput(addDays(today, (load('duration')||5)-1));
+
+  if (!history.length) {
+    container.innerHTML = '<p style="color:var(--text-muted);font-size:14px;text-align:center;padding:12px 0">No periods logged yet</p>';
+    return;
+  }
+  container.innerHTML = '<p class="card-title">Past entries</p>' + history.slice(0, 12).map((entry, i) => {
+    const s = new Date(entry.start);
+    const e = entry.end ? new Date(entry.end) : null;
+    const dur = e ? daysBetween(s, e) + 1 : '?';
+    return `<div class="history-item">
+      <div>
+        <div class="history-date">${fmtDateFull(s)}</div>
+        <div class="history-dur">to ${e ? fmtDateFull(e) : '—'}</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <span class="history-badge">${dur} days</span>
+        <button onclick="deleteEntry(${i})" style="background:none;border:none;cursor:pointer;color:var(--text-muted);font-size:18px;padding:2px">×</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function logPeriod() {
+  const start = document.getElementById('log-start').value;
+  const end   = document.getElementById('log-end').value;
+  if (!start) { showToast('Please enter a start date'); return; }
+  let history = load('history') || [];
+  history.unshift({ start, end });
+  history.sort((a,b) => new Date(b.start) - new Date(a.start));
+  save('history', history);
+  checkAndScheduleReminders();
+  renderLog();
+  renderHome();
+  showToast('Period logged 🌸');
+}
+
+function deleteEntry(idx) {
+  let history = load('history') || [];
+  history.splice(idx, 1);
+  save('history', history);
+  renderLog();
+  renderHome();
+  showToast('Entry removed');
+}
+
+// ══════════════════════════════════
+//  SETTINGS RENDER
+// ══════════════════════════════════
+function renderSettings() {
+  document.getElementById('set-email').textContent    = load('email') || '—';
+  document.getElementById('set-cycle').textContent    = (load('cycle') || 28) + ' days';
+  document.getElementById('set-duration').textContent = (load('duration') || 5) + ' days';
+
+  const cfg = load('emailjs') || {};
+  if (cfg.pubKey)   document.getElementById('ejs-pubkey').value   = cfg.pubKey;
+  if (cfg.service)  document.getElementById('ejs-service').value  = cfg.service;
+  if (cfg.template) document.getElementById('ejs-template').value = cfg.template;
+}
+
+function editField(field) {
+  const map = { email: 'New email', cycle: 'Cycle length (days)', duration: 'Period duration (days)' };
+  const cur = field === 'email' ? load('email') : load(field);
+  const val = prompt(map[field], cur);
+  if (val === null) return;
+  if (field === 'email') {
+    if (!val.includes('@')) { showToast('Invalid email'); return; }
+    save('email', val);
+  } else {
+    const n = parseInt(val);
+    if (isNaN(n) || n < 1) { showToast('Invalid number'); return; }
+    save(field, n);
+  }
+  renderSettings();
+  renderHome();
+  showToast('Updated ✓');
+}
+
+function saveEmailJS() {
+  const pubKey   = document.getElementById('ejs-pubkey').value.trim();
+  const service  = document.getElementById('ejs-service').value.trim();
+  const template = document.getElementById('ejs-template').value.trim();
+  if (!pubKey || !service || !template) { showToast('Please fill all three fields'); return; }
+  save('emailjs', { pubKey, service, template });
+  showToast('EmailJS config saved ✓');
+}
+
+// ══════════════════════════════════
+//  EMAIL REMINDERS
+// ══════════════════════════════════
+function getEmailParams(daysUntil, nextStart, nextEnd) {
+  const dayLabel = daysUntil === 1
+    ? 'tomorrow (' + fmtDate(nextStart) + ')'
+    : 'today (' + fmtDate(nextStart) + ')';
+
+  const messages = daysUntil === 1
+    ? ['Stock up on your comfort essentials — tomorrow is a good day to be gentle with yourself.',
+       'A gentle heads-up: your period is expected tomorrow. Take it easy and prepare your cozy kit.',
+       'Tomorrow your cycle begins. You\'ve got this — take care of yourself. 💕']
+    : ['Your period has arrived. Be kind to yourself today — rest, warmth, and your favorite comfort food.',
+       'It\'s that time of the cycle. Your body is doing something remarkable. Honor it today. 🌸',
+       'Your period is here. Take it slow, drink warm things, and know you\'re doing great.'];
+
+  return {
+    to_email: load('email'),
+    subject:  daysUntil === 1 ? '🌸 Your period is expected tomorrow' : '🌸 Your period starts today',
+    message:  messages[Math.floor(Math.random() * messages.length)],
+    day_label: dayLabel,
+    end_date:  fmtDate(nextEnd)
+  };
+}
+
+function sendEmail(params) {
+  const cfg = load('emailjs');
+  if (!cfg || !cfg.pubKey) return;
+  try {
+    emailjs.init(cfg.pubKey);
+    emailjs.send(cfg.service, cfg.template, params);
+  } catch(e) { console.warn('EmailJS error:', e); }
+}
+
+function checkAndScheduleReminders() {
+  const history  = load('history') || [];
+  const cycleLen = load('cycle') || 28;
+  const duration = load('duration') || 5;
+  if (!history.length) return;
+
+  const today    = new Date(); today.setHours(0,0,0,0);
+  const nextStart = computeNext(history[0].start, cycleLen);
+  const nextEnd   = addDays(nextStart, duration - 1);
+  const daysUntil = daysBetween(today, nextStart);
+  const lastSent  = load('last_reminder_sent');
+  const todayStr  = toDateInput(today);
+
+  if (lastSent === todayStr) return;
+
+  if (daysUntil === 1 || daysUntil === 0) {
+    sendEmail(getEmailParams(daysUntil, nextStart, nextEnd));
+    save('last_reminder_sent', todayStr);
+  }
+}
+
+function sendTestEmail() {
+  const cfg = load('emailjs');
+  if (!cfg || !cfg.pubKey) { showToast('Save EmailJS config first'); return; }
+  const history  = load('history') || [];
+  const cycleLen = load('cycle') || 28;
+  const duration = load('duration') || 5;
+  if (!history.length) { showToast('Add a period first'); return; }
+  const nextStart = computeNext(history[0].start, cycleLen);
+  const nextEnd   = addDays(nextStart, duration - 1);
+  const params    = getEmailParams(1, nextStart, nextEnd);
+  params.subject  = '🌸 [Test] Her — Period reminder';
+  try {
+    emailjs.init(cfg.pubKey);
+    emailjs.send(cfg.service, cfg.template, params)
+      .then(() => showToast('Test email sent! Check your inbox 📧'))
+      .catch(() => showToast('Email failed — check your EmailJS config'));
+  } catch(e) { showToast('Error: ' + e.message); }
+}
+
+// ══════════════════════════════════
+//  UTILITIES
+// ══════════════════════════════════
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+function resetApp() {
+  if (!confirm('This will delete all your data. Are you sure?')) return;
+  ['email','cycle','duration','history','emailjs','last_reminder_sent']
+    .forEach(k => localStorage.removeItem('her_' + k));
+  location.reload();
+}
+
+// ══════════════════════════════════
+//  INIT
+// ══════════════════════════════════
+(function init() {
+  const email = load('email');
+  const history = load('history');
+  if (email && history && history.length) {
+    checkAndScheduleReminders();
+    showMain();
+  } else {
+    document.getElementById('screen-onboarding').classList.add('active');
+  }
+
+  // Set today's date as defaults in onboarding
+  const today = new Date();
+  document.getElementById('ob-start').max = toDateInput(today);
+  document.getElementById('ob-end').max   = toDateInput(today);
+})();
+</script>
+</body>
+</html>
