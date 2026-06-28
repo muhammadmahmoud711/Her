@@ -7,329 +7,170 @@
 <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600&family=Google+Sans+Display:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --pink-50: #FCE4EC; --pink-100: #F8BBD9; --pink-200: #F48FB1;
-    --pink-400: #EC407A; --pink-600: #C2185B; --pink-800: #880E4F;
-    --mauve-100: #E1BEE7; --mauve-200: #CE93D8; --mauve-400: #AB47BC;
-    --mauve-600: #7B1FA2;
+    --pink-200: #F48FB1; --pink-400: #EC407A; --pink-600: #C2185B;
+    --mauve-200: #CE93D8; --mauve-400: #AB47BC;
     --surface-bg: #0D0D10; --surface-card: #16151A;
     --surface-elevated: #1E1C24; --surface-modal: #24222D;
     --text-primary: #F5EDF0; --text-secondary: #B8A8B5;
     --text-muted: #7A6B78; --border: rgba(244,143,177,0.12);
     --border-strong: rgba(244,143,177,0.25);
-    --radius-sm: 12px; --radius-md: 16px; --radius-lg: 24px;
-    --radius-xl: 28px;
+    --radius-sm: 12px; --radius-md: 16px; --radius-lg: 24px; --radius-xl: 28px;
     --green: #81C784; --red: #E57373;
     font-family: 'Google Sans', system-ui, sans-serif;
   }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    background: var(--surface-bg); color: var(--text-primary);
-    min-height: 100vh; display: flex; flex-direction: column; align-items: center;
-    -webkit-text-size-adjust: 100%;
-  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--surface-bg);color:var(--text-primary);min-height:100vh;display:flex;flex-direction:column;align-items:center;-webkit-text-size-adjust:100%}
 
-  .top-bar {
-    width: 100%; max-width: 480px; padding: 16px 20px 8px;
-    display: flex; align-items: center; justify-content: space-between;
-  }
-  .logo { display: flex; align-items: center; gap: 10px; }
-  .logo-icon {
-    width: 36px; height: 36px; border-radius: 50%;
-    background: linear-gradient(135deg, var(--pink-200), var(--mauve-200));
-    display: flex; align-items: center; justify-content: center; font-size: 18px;
-  }
-  .logo-name {
-    font-family: 'Google Sans Display', sans-serif; font-size: 22px; font-weight: 600;
-    background: linear-gradient(135deg, var(--pink-200), var(--mauve-200));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-  }
-  .settings-btn {
-    width: 40px; height: 40px; border-radius: 50%; background: transparent;
-    border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;
-    color: var(--text-secondary); font-size: 20px; transition: background 0.2s;
-  }
-  .settings-btn:hover { background: var(--surface-elevated); }
+  .top-bar{width:100%;max-width:480px;padding:16px 20px 8px;display:flex;align-items:center;justify-content:space-between}
+  .logo{display:flex;align-items:center;gap:10px}
+  .logo-icon{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--pink-200),var(--mauve-200));display:flex;align-items:center;justify-content:center;font-size:18px}
+  .logo-name{font-family:'Google Sans Display',sans-serif;font-size:22px;font-weight:600;background:linear-gradient(135deg,var(--pink-200),var(--mauve-200));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .settings-btn{width:40px;height:40px;border-radius:50%;background:transparent;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text-secondary);font-size:20px;transition:background .2s}
+  .settings-btn:hover{background:var(--surface-elevated)}
 
-  .screen { display: none; width: 100%; max-width: 480px; padding: 8px 20px 32px; }
-  .screen.active { display: flex; flex-direction: column; gap: 16px; }
+  .screen{display:none;width:100%;max-width:480px;padding:8px 20px 32px}
+  .screen.active{display:flex;flex-direction:column;gap:16px}
 
-  .onboarding-hero { text-align: center; padding: 24px 0 8px; }
-  .hero-ring {
-    width: 120px; height: 120px; margin: 0 auto 20px; border-radius: 50%;
-    background: radial-gradient(circle at 40% 40%, #2A1A2E, #1A0E20);
-    border: 2px solid var(--border-strong);
-    display: flex; align-items: center; justify-content: center; font-size: 56px;
-    box-shadow: 0 0 40px rgba(244,143,177,0.15);
-  }
-  .hero-title {
-    font-family: 'Google Sans Display', sans-serif; font-size: 28px;
-    font-weight: 600; color: var(--text-primary); margin-bottom: 8px;
-  }
-  .hero-sub { font-size: 15px; color: var(--text-secondary); line-height: 1.5; }
+  .onboarding-hero{text-align:center;padding:24px 0 8px}
+  .hero-ring{width:120px;height:120px;margin:0 auto 20px;border-radius:50%;background:radial-gradient(circle at 40% 40%,#2A1A2E,#1A0E20);border:2px solid var(--border-strong);display:flex;align-items:center;justify-content:center;font-size:56px;box-shadow:0 0 40px rgba(244,143,177,0.15)}
+  .hero-title{font-family:'Google Sans Display',sans-serif;font-size:28px;font-weight:600;margin-bottom:8px}
+  .hero-sub{font-size:15px;color:var(--text-secondary);line-height:1.5}
 
-  .card {
-    background: var(--surface-card); border: 0.5px solid var(--border);
-    border-radius: var(--radius-xl); padding: 20px;
-  }
-  .card-title {
-    font-size: 12px; font-weight: 500; letter-spacing: 0.08em;
-    text-transform: uppercase; color: var(--text-muted); margin-bottom: 16px;
-  }
+  .card{background:var(--surface-card);border:.5px solid var(--border);border-radius:var(--radius-xl);padding:20px}
+  .card-title{font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:16px}
 
-  .input-group { display: flex; flex-direction: column; gap: 12px; }
-  .input-label { font-size: 13px; color: var(--text-secondary); margin-bottom: 4px; display: block; }
-  .input-row { display: flex; flex-direction: column; gap: 4px; }
+  .input-group{display:flex;flex-direction:column;gap:12px}
+  .input-label{font-size:13px;color:var(--text-secondary);margin-bottom:4px;display:block}
+  .input-row{display:flex;flex-direction:column;gap:4px}
+  input[type="email"],input[type="number"],input[type="text"]{width:100%;padding:14px 16px;background:var(--surface-elevated);border:.5px solid var(--border-strong);border-radius:var(--radius-sm);color:var(--text-primary);font-size:15px;font-family:'Google Sans',sans-serif;outline:none;transition:border-color .2s;-webkit-appearance:none;appearance:none}
+  input:focus{border-color:var(--pink-200)}
+  .date-input-wrap{position:relative;width:100%}
+  .date-input-wrap input[type="date"]{width:100%;padding:14px 50px 14px 16px;background:var(--surface-elevated);border:.5px solid var(--border-strong);border-radius:var(--radius-sm);color:var(--text-primary);font-size:15px;font-family:'Google Sans',sans-serif;outline:none;transition:border-color .2s;min-height:48px;-webkit-appearance:menulist-button;appearance:menulist-button;cursor:pointer}
+  .date-input-wrap input[type="date"]:focus{border-color:var(--pink-200)}
+  .date-input-wrap input[type="date"]::-webkit-calendar-picker-indicator{filter:invert(.75) sepia(.3) saturate(3) hue-rotate(290deg);cursor:pointer;opacity:1;width:36px;height:36px;margin-right:4px}
 
-  input[type="email"], input[type="number"], input[type="text"] {
-    width: 100%; padding: 14px 16px; background: var(--surface-elevated);
-    border: 0.5px solid var(--border-strong); border-radius: var(--radius-sm);
-    color: var(--text-primary); font-size: 15px; font-family: 'Google Sans', sans-serif;
-    outline: none; transition: border-color 0.2s; -webkit-appearance: none; appearance: none;
-  }
-  input:focus { border-color: var(--pink-200); }
+  .btn-primary{width:100%;padding:16px;background:linear-gradient(135deg,var(--pink-400),var(--mauve-400));border:none;border-radius:var(--radius-lg);color:#fff;font-size:15px;font-weight:500;font-family:'Google Sans',sans-serif;cursor:pointer;transition:opacity .2s,transform .1s;letter-spacing:.02em;-webkit-tap-highlight-color:transparent}
+  .btn-primary:hover{opacity:.92}
+  .btn-primary:active{transform:scale(.98)}
+  .btn-secondary{width:100%;padding:14px;background:transparent;border:.5px solid var(--border-strong);border-radius:var(--radius-lg);color:var(--text-secondary);font-size:14px;font-family:'Google Sans',sans-serif;cursor:pointer;transition:background .2s;-webkit-tap-highlight-color:transparent}
+  .btn-secondary:hover{background:var(--surface-elevated)}
 
-  .date-input-wrap { position: relative; width: 100%; }
-  .date-input-wrap input[type="date"] {
-    width: 100%; padding: 14px 50px 14px 16px; background: var(--surface-elevated);
-    border: 0.5px solid var(--border-strong); border-radius: var(--radius-sm);
-    color: var(--text-primary); font-size: 15px; font-family: 'Google Sans', sans-serif;
-    outline: none; transition: border-color 0.2s; min-height: 48px;
-    -webkit-appearance: menulist-button; appearance: menulist-button; cursor: pointer;
-  }
-  .date-input-wrap input[type="date"]:focus { border-color: var(--pink-200); }
-  .date-input-wrap input[type="date"]::-webkit-calendar-picker-indicator {
-    filter: invert(0.75) sepia(0.3) saturate(3) hue-rotate(290deg);
-    cursor: pointer; opacity: 1; width: 36px; height: 36px; margin-right: 4px;
-  }
+  .ring-wrap{display:flex;flex-direction:column;align-items:center;padding:8px 0}
+  .ring-svg{filter:drop-shadow(0 0 16px rgba(244,143,177,0.2))}
+  .ring-center{text-align:center;margin-top:-8px}
+  .ring-days{font-family:'Google Sans Display',sans-serif;font-size:52px;font-weight:600;background:linear-gradient(135deg,var(--pink-200),var(--mauve-200));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1}
+  .ring-label{font-size:13px;color:var(--text-muted);margin-top:4px}
 
-  .btn-primary {
-    width: 100%; padding: 16px;
-    background: linear-gradient(135deg, var(--pink-400), var(--mauve-400));
-    border: none; border-radius: var(--radius-lg); color: #fff;
-    font-size: 15px; font-weight: 500; font-family: 'Google Sans', sans-serif;
-    cursor: pointer; transition: opacity 0.2s, transform 0.1s;
-    letter-spacing: 0.02em; -webkit-tap-highlight-color: transparent;
-  }
-  .btn-primary:hover { opacity: 0.92; }
-  .btn-primary:active { transform: scale(0.98); }
-  .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
-  .btn-secondary {
-    width: 100%; padding: 14px; background: transparent;
-    border: 0.5px solid var(--border-strong); border-radius: var(--radius-lg);
-    color: var(--text-secondary); font-size: 14px; font-family: 'Google Sans', sans-serif;
-    cursor: pointer; transition: background 0.2s; -webkit-tap-highlight-color: transparent;
-  }
-  .btn-secondary:hover { background: var(--surface-elevated); }
+  .stat-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .stat-chip{background:var(--surface-elevated);border:.5px solid var(--border);border-radius:var(--radius-md);padding:14px 16px}
+  .stat-chip-label{font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em}
+  .stat-chip-value{font-size:18px;font-weight:500;margin-top:4px}
+  .stat-chip-sub{font-size:12px;color:var(--text-secondary);margin-top:2px}
 
-  .ring-wrap { display: flex; flex-direction: column; align-items: center; padding: 8px 0; }
-  .ring-svg { filter: drop-shadow(0 0 16px rgba(244,143,177,0.2)); }
-  .ring-center { text-align: center; margin-top: -8px; }
-  .ring-days {
-    font-family: 'Google Sans Display', sans-serif; font-size: 52px; font-weight: 600;
-    background: linear-gradient(135deg, var(--pink-200), var(--mauve-200));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1;
-  }
-  .ring-label { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
+  .phase-pill{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:999px;font-size:13px;font-weight:500;background:rgba(244,143,177,0.12);color:var(--pink-200);border:.5px solid rgba(244,143,177,0.25)}
+  .phase-dot{width:6px;height:6px;border-radius:50%;background:var(--pink-200)}
 
-  .stat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  .stat-chip {
-    background: var(--surface-elevated); border: 0.5px solid var(--border);
-    border-radius: var(--radius-md); padding: 14px 16px;
-  }
-  .stat-chip-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; }
-  .stat-chip-value { font-size: 18px; font-weight: 500; color: var(--text-primary); margin-top: 4px; }
-  .stat-chip-sub { font-size: 12px; color: var(--text-secondary); margin-top: 2px; }
+  .quote-card{background:linear-gradient(135deg,rgba(244,143,177,0.08),rgba(206,147,216,0.06));border:.5px solid var(--border-strong);border-radius:var(--radius-xl);padding:20px}
+  .quote-text{font-size:15px;line-height:1.65;color:var(--text-secondary);font-style:italic}
+  .quote-author{font-size:12px;color:var(--text-muted);margin-top:10px}
 
-  .phase-pill {
-    display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px;
-    border-radius: 999px; font-size: 13px; font-weight: 500;
-    background: rgba(244,143,177,0.12); color: var(--pink-200);
-    border: 0.5px solid rgba(244,143,177,0.25);
-  }
-  .phase-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--pink-200); }
+  .history-item{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:.5px solid var(--border)}
+  .history-item:last-child{border-bottom:none}
+  .history-date{font-size:14px}
+  .history-dur{font-size:13px;color:var(--text-muted)}
+  .history-badge{font-size:11px;padding:3px 10px;border-radius:999px;background:rgba(244,143,177,0.1);color:var(--pink-200)}
 
-  .quote-card {
-    background: linear-gradient(135deg, rgba(244,143,177,0.08), rgba(206,147,216,0.06));
-    border: 0.5px solid var(--border-strong); border-radius: var(--radius-xl); padding: 20px;
-  }
-  .quote-text { font-size: 15px; line-height: 1.65; color: var(--text-secondary); font-style: italic; }
-  .quote-author { font-size: 12px; color: var(--text-muted); margin-top: 10px; }
+  .settings-row{display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:.5px solid var(--border)}
+  .settings-row:last-child{border-bottom:none}
+  .settings-key{font-size:14px}
+  .settings-val{font-size:14px;color:var(--text-secondary)}
+  .settings-edit{font-size:13px;color:var(--pink-200);cursor:pointer;background:none;border:none;font-family:'Google Sans',sans-serif;-webkit-tap-highlight-color:transparent}
 
-  .history-item {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 12px 0; border-bottom: 0.5px solid var(--border);
-  }
-  .history-item:last-child { border-bottom: none; }
-  .history-date { font-size: 14px; color: var(--text-primary); }
-  .history-dur { font-size: 13px; color: var(--text-muted); }
-  .history-badge {
-    font-size: 11px; padding: 3px 10px; border-radius: 999px;
-    background: rgba(244,143,177,0.1); color: var(--pink-200);
-  }
+  .section-heading{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--text-muted);font-weight:500;padding:0 4px}
+  .divider{height:.5px;background:var(--border);margin:4px 0}
 
-  .settings-row {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 14px 0; border-bottom: 0.5px solid var(--border);
-  }
-  .settings-row:last-child { border-bottom: none; }
-  .settings-key { font-size: 14px; color: var(--text-primary); }
-  .settings-val { font-size: 14px; color: var(--text-secondary); }
-  .settings-edit {
-    font-size: 13px; color: var(--pink-200); cursor: pointer;
-    background: none; border: none; font-family: 'Google Sans', sans-serif;
-    -webkit-tap-highlight-color: transparent;
-  }
+  /* ── Status card on home ── */
+  .status-card{border-radius:var(--radius-xl);padding:16px 18px;display:flex;align-items:center;gap:14px}
+  .status-card.done{background:linear-gradient(135deg,rgba(129,199,132,0.1),rgba(129,199,132,0.05));border:.5px solid rgba(129,199,132,0.2)}
+  .status-card.pending{background:linear-gradient(135deg,rgba(244,143,177,0.1),rgba(206,147,216,0.07));border:.5px solid rgba(244,143,177,0.2)}
+  .status-card.waiting{background:var(--surface-card);border:.5px solid var(--border);opacity:.55}
+  .status-icon{font-size:26px;flex-shrink:0}
+  .status-body{flex:1;min-width:0}
+  .status-title{font-size:14px;font-weight:500}
+  .status-sub{font-size:12px;color:var(--text-secondary);margin-top:3px;line-height:1.4}
 
-  #toast {
-    position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(80px);
-    background: var(--surface-modal); border: 0.5px solid var(--border-strong);
-    border-radius: var(--radius-md); padding: 12px 20px; font-size: 14px;
-    color: var(--text-primary); transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
-    white-space: normal; text-align: center; z-index: 999; max-width: 90vw;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
-  }
-  #toast.show { transform: translateX(-50%) translateY(0); }
+  /* ── IN-APP NOTIFICATION MODAL ── */
+  .notif-modal{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;padding:24px}
+  .notif-modal-overlay{position:absolute;inset:0;background:rgba(0,0,0,0.7);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+  .notif-modal-card{position:relative;background:var(--surface-card);border:.5px solid var(--border-strong);border-radius:var(--radius-xl);padding:32px 28px 28px;max-width:380px;width:100%;text-align:center;animation:notifIn .5s cubic-bezier(.34,1.56,.64,1)}
+  @keyframes notifIn{from{opacity:0;transform:scale(.9) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}}
+  .notif-modal-emoji{font-size:64px;margin-bottom:16px;line-height:1}
+  .notif-modal-title{font-family:'Google Sans Display',sans-serif;font-size:20px;font-weight:600;margin-bottom:12px;line-height:1.3}
+  .notif-modal-body{font-size:15px;color:var(--text-secondary);line-height:1.65;margin-bottom:24px}
+  .notif-modal-btn{width:100%;padding:16px;background:linear-gradient(135deg,var(--pink-400),var(--mauve-400));border:none;border-radius:var(--radius-lg);color:#fff;font-size:15px;font-weight:500;font-family:'Google Sans',sans-serif;cursor:pointer;-webkit-tap-highlight-color:transparent}
+  .notif-modal-hint{font-size:11px;color:var(--text-muted);margin-top:14px}
+  .notif-modal-push-badge{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:999px;font-size:11px;margin-top:10px}
+  .notif-modal-push-badge.ok{background:rgba(129,199,132,0.1);color:var(--green);border:.5px solid rgba(129,199,132,0.2)}
+  .notif-modal-push-badge.skip{background:rgba(244,143,177,0.08);color:var(--text-muted);border:.5px solid var(--border)}
 
-  .nav-tabs {
-    width: 100%; max-width: 480px; display: flex; background: var(--surface-card);
-    border-top: 0.5px solid var(--border); position: sticky; bottom: 0;
-  }
-  .nav-tab {
-    flex: 1; padding: 12px 8px 16px; display: flex; flex-direction: column;
-    align-items: center; gap: 4px; background: none; border: none; cursor: pointer;
-    color: var(--text-muted); font-size: 10px; font-family: 'Google Sans', sans-serif;
-    letter-spacing: 0.04em; transition: color 0.2s; -webkit-tap-highlight-color: transparent;
-  }
-  .nav-tab.active { color: var(--pink-200); }
-  .nav-tab svg { width: 22px; height: 22px; }
+  /* ── Period active banner ── */
+  .period-active-banner{background:linear-gradient(135deg,rgba(244,143,177,0.15),rgba(206,147,216,0.1));border:.5px solid rgba(244,143,177,0.3);border-radius:var(--radius-xl);padding:16px 20px;display:flex;align-items:center;gap:12px}
+  .period-active-icon{font-size:28px}
+  .period-active-text h3{font-size:15px;font-weight:500}
+  .period-active-text p{font-size:13px;color:var(--text-secondary);margin-top:3px}
 
-  .period-active-banner {
-    background: linear-gradient(135deg, rgba(244,143,177,0.15), rgba(206,147,216,0.1));
-    border: 0.5px solid rgba(244,143,177,0.3); border-radius: var(--radius-xl);
-    padding: 16px 20px; display: flex; align-items: center; gap: 12px;
-  }
-  .period-active-icon { font-size: 28px; }
-  .period-active-text h3 { font-size: 15px; font-weight: 500; color: var(--text-primary); }
-  .period-active-text p { font-size: 13px; color: var(--text-secondary); margin-top: 3px; }
+  /* ── Notification log in settings ── */
+  .nlog-item{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:.5px solid var(--border);font-size:13px}
+  .nlog-item:last-child{border-bottom:none}
+  .nlog-emoji{font-size:18px;flex-shrink:0;margin-top:1px}
+  .nlog-text{color:var(--text-secondary);line-height:1.4;flex:1}
+  .nlog-time{color:var(--text-muted);font-size:11px;flex-shrink:0;margin-top:2px}
 
-  .section-heading {
-    font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em;
-    color: var(--text-muted); font-weight: 500; padding: 0 4px;
-  }
-  .divider { height: 0.5px; background: var(--border); margin: 4px 0; }
+  /* ── Toggle ── */
+  .toggle{position:relative;width:48px;height:28px;border-radius:14px;background:rgba(255,255,255,0.1);border:none;cursor:pointer;transition:background .3s;-webkit-tap-highlight-color:transparent;flex-shrink:0}
+  .toggle.on{background:var(--pink-400)}
+  .toggle::after{content:'';position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;transition:transform .3s}
+  .toggle.on::after{transform:translateX(20px)}
 
-  /* ── Notification Card on Home ── */
-  .notif-card {
-    border-radius: var(--radius-xl); padding: 16px 18px;
-    display: flex; align-items: center; gap: 14px;
-    transition: opacity 0.3s;
-  }
-  .notif-card.active-notif {
-    background: linear-gradient(135deg, rgba(129,199,132,0.1), rgba(129,199,132,0.05));
-    border: 0.5px solid rgba(129,199,132,0.2);
-  }
-  .notif-card.pending-notif {
-    background: linear-gradient(135deg, rgba(244,143,177,0.1), rgba(206,147,216,0.07));
-    border: 0.5px solid rgba(244,143,177,0.2);
-  }
-  .notif-card.off-notif {
-    background: var(--surface-card); border: 0.5px solid var(--border); opacity: 0.55;
-  }
-  .notif-card-icon { font-size: 26px; flex-shrink: 0; }
-  .notif-card-body { flex: 1; min-width: 0; }
-  .notif-card-title { font-size: 14px; font-weight: 500; color: var(--text-primary); }
-  .notif-card-sub { font-size: 12px; color: var(--text-secondary); margin-top: 3px; line-height: 1.4; }
-  .notif-test-btn {
-    flex-shrink: 0; padding: 8px 14px;
-    background: rgba(244,143,177,0.15); border: 0.5px solid rgba(244,143,177,0.3);
-    border-radius: var(--radius-sm); color: var(--pink-200);
-    font-size: 12px; font-weight: 500; font-family: 'Google Sans', sans-serif;
-    cursor: pointer; transition: background 0.2s; white-space: nowrap;
-    -webkit-tap-highlight-color: transparent;
-  }
-  .notif-test-btn:hover { background: rgba(244,143,177,0.28); }
-  .notif-sent-badge {
-    flex-shrink: 0; padding: 6px 12px;
-    background: rgba(129,199,132,0.12); border: 0.5px solid rgba(129,199,132,0.25);
-    border-radius: var(--radius-sm); color: var(--green); font-size: 12px; font-weight: 500;
-    white-space: nowrap;
-  }
+  #toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--surface-modal);border:.5px solid var(--border-strong);border-radius:var(--radius-md);padding:12px 20px;font-size:14px;color:var(--text-primary);transition:transform .3s cubic-bezier(.34,1.56,.64,1);white-space:normal;text-align:center;z-index:999;max-width:90vw;box-shadow:0 8px 32px rgba(0,0,0,0.4)}
+  #toast.show{transform:translateX(-50%) translateY(0)}
 
-  /* ── Onboarding notification permission ── */
-  .perm-card {
-    background: linear-gradient(135deg, rgba(244,143,177,0.12), rgba(206,147,216,0.08));
-    border: 0.5px solid rgba(244,143,177,0.25); border-radius: var(--radius-xl);
-    padding: 18px 20px; display: flex; align-items: center; gap: 14px;
-  }
-  .perm-card-icon { font-size: 32px; flex-shrink: 0; }
-  .perm-card-body { flex: 1; }
-  .perm-card-title { font-size: 14px; font-weight: 500; color: var(--text-primary); }
-  .perm-card-sub { font-size: 12px; color: var(--text-secondary); margin-top: 4px; line-height: 1.5; }
-  .perm-btn {
-    flex-shrink: 0; padding: 10px 18px;
-    background: linear-gradient(135deg, var(--pink-400), var(--mauve-400));
-    border: none; border-radius: var(--radius-sm); color: #fff;
-    font-size: 13px; font-weight: 500; font-family: 'Google Sans', sans-serif;
-    cursor: pointer; -webkit-tap-highlight-color: transparent;
-  }
-  .perm-granted {
-    flex-shrink: 0; padding: 8px 14px;
-    background: rgba(129,199,132,0.12); border: 0.5px solid rgba(129,199,132,0.25);
-    border-radius: var(--radius-sm); color: var(--green); font-size: 13px; font-weight: 500;
-  }
+  .nav-tabs{width:100%;max-width:480px;display:flex;background:var(--surface-card);border-top:.5px solid var(--border);position:sticky;bottom:0}
+  .nav-tab{flex:1;padding:12px 8px 16px;display:flex;flex-direction:column;align-items:center;gap:4px;background:none;border:none;cursor:pointer;color:var(--text-muted);font-size:10px;font-family:'Google Sans',sans-serif;letter-spacing:.04em;transition:color .2s;-webkit-tap-highlight-color:transparent}
+  .nav-tab.active{color:var(--pink-200)}
+  .nav-tab svg{width:22px;height:22px}
 
-  /* ── Settings notification section ── */
-  .toggle-wrap {
-    display: flex; align-items: center; gap: 12px;
-  }
-  .toggle {
-    position: relative; width: 48px; height: 28px; border-radius: 14px;
-    background: rgba(255,255,255,0.1); border: none; cursor: pointer;
-    transition: background 0.3s; -webkit-tap-highlight-color: transparent;
-    flex-shrink: 0;
-  }
-  .toggle.on { background: var(--pink-400); }
-  .toggle::after {
-    content: ''; position: absolute; top: 3px; left: 3px;
-    width: 22px; height: 22px; border-radius: 50%; background: #fff;
-    transition: transform 0.3s;
-  }
-  .toggle.on::after { transform: translateX(20px); }
-
-  .notif-log-item {
-    display: flex; align-items: flex-start; gap: 12px; padding: 10px 0;
-    border-bottom: 0.5px solid var(--border); font-size: 13px;
-  }
-  .notif-log-item:last-child { border-bottom: none; }
-  .notif-log-emoji { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
-  .notif-log-text { color: var(--text-secondary); line-height: 1.4; flex: 1; }
-  .notif-log-time { color: var(--text-muted); font-size: 11px; flex-shrink: 0; margin-top: 2px; }
-
-  button, a, input { -webkit-tap-highlight-color: transparent; }
+  button,a,input{-webkit-tap-highlight-color:transparent}
 </style>
 </head>
 <body>
 
 <div class="top-bar">
-  <div class="logo">
-    <div class="logo-icon">🌸</div>
-    <span class="logo-name">Her</span>
-  </div>
+  <div class="logo"><div class="logo-icon">🌸</div><span class="logo-name">Her</span></div>
   <button class="settings-btn" id="top-settings-btn" aria-label="Settings">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="22" height="22">
-      <circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-    </svg>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="22" height="22"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
   </button>
 </div>
 
-<!-- ══════════════════ ONBOARDING ══════════════════ -->
+<!-- ═══ IN-APP NOTIFICATION MODAL ═══ -->
+<div class="notif-modal" id="notif-modal" style="display:none">
+  <div class="notif-modal-overlay" id="notif-modal-overlay"></div>
+  <div class="notif-modal-card">
+    <div class="notif-modal-emoji" id="nm-emoji">🌸</div>
+    <h2 class="notif-modal-title" id="nm-title"></h2>
+    <p class="notif-modal-body" id="nm-body"></p>
+    <button class="notif-modal-btn" id="nm-btn">Got it 💕</button>
+    <div id="nm-push-badge"></div>
+  </div>
+</div>
+
+<!-- ═══ ONBOARDING ═══ -->
 <div id="screen-onboarding" class="screen active">
   <div class="onboarding-hero">
     <div class="hero-ring">🌸</div>
     <h1 class="hero-title">Welcome to Her</h1>
-    <p class="hero-sub">Track your cycle & get gentle reminders<br>right on your phone.</p>
+    <p class="hero-sub">Track your cycle & get gentle reminders<br>every time you open the app.</p>
   </div>
-
   <div class="card">
     <p class="card-title">Your last period</p>
     <div class="input-group">
@@ -343,7 +184,6 @@
       </div>
     </div>
   </div>
-
   <div class="card">
     <p class="card-title">Your cycle</p>
     <div class="input-group">
@@ -357,54 +197,34 @@
       </div>
     </div>
   </div>
-
-  <!-- Notification permission card -->
-  <div class="perm-card" id="perm-card">
-    <div class="perm-card-icon">🔔</div>
-    <div class="perm-card-body">
-      <div class="perm-card-title">Turn on notifications</div>
-      <div class="perm-card-sub">Get a reminder 2 days before your period + daily motivation during your period — right on your phone.</div>
-    </div>
-    <button class="perm-btn" id="perm-btn">Allow</button>
-  </div>
-
   <button class="btn-primary" id="get-started-btn">Get started →</button>
 </div>
 
-<!-- ══════════════════ HOME ══════════════════ -->
+<!-- ═══ HOME ═══ -->
 <div id="screen-home" class="screen">
-  <div class="card" style="padding: 24px 20px 20px;">
+  <div class="card" style="padding:24px 20px 20px">
     <div class="ring-wrap">
       <svg class="ring-svg" width="200" height="200" viewBox="0 0 200 200">
         <circle cx="100" cy="100" r="82" fill="none" stroke="rgba(244,143,177,0.08)" stroke-width="12"/>
-        <circle id="ring-progress" cx="100" cy="100" r="82" fill="none"
-          stroke="url(#ringGrad)" stroke-width="12" stroke-linecap="round"
-          stroke-dasharray="515" stroke-dashoffset="515" transform="rotate(-90 100 100)"/>
-        <defs>
-          <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#F48FB1"/><stop offset="100%" stop-color="#CE93D8"/>
-          </linearGradient>
-        </defs>
+        <circle id="ring-progress" cx="100" cy="100" r="82" fill="none" stroke="url(#ringGrad)" stroke-width="12" stroke-linecap="round" stroke-dasharray="515" stroke-dashoffset="515" transform="rotate(-90 100 100)"/>
+        <defs><linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#F48FB1"/><stop offset="100%" stop-color="#CE93D8"/></linearGradient></defs>
       </svg>
-      <div class="ring-center" style="margin-top:-130px; margin-bottom: 90px;">
+      <div class="ring-center" style="margin-top:-130px;margin-bottom:90px">
         <div class="ring-days" id="ring-days">—</div>
         <div class="ring-label" id="ring-label">days until period</div>
       </div>
     </div>
-    <div style="text-align:center; margin-top: 8px;">
+    <div style="text-align:center;margin-top:8px">
       <span class="phase-pill"><span class="phase-dot"></span><span id="phase-text">Loading...</span></span>
     </div>
   </div>
 
-  <!-- Notification status card -->
-  <div class="notif-card" id="notif-card">
-    <div class="notif-card-icon" id="notif-icon">📬</div>
-    <div class="notif-card-body">
-      <div class="notif-card-title" id="notif-title">Checking...</div>
-      <div class="notif-card-sub" id="notif-sub">Please wait</div>
+  <div class="status-card" id="status-card">
+    <div class="status-icon" id="status-icon">📬</div>
+    <div class="status-body">
+      <div class="status-title" id="status-title">Checking...</div>
+      <div class="status-sub" id="status-sub">Please wait</div>
     </div>
-    <button class="notif-test-btn" id="notif-test-btn" style="display:none">Test</button>
-    <span class="notif-sent-badge" id="notif-sent-badge" style="display:none">Sent ✓</span>
   </div>
 
   <div class="period-active-banner" id="active-banner" style="display:none">
@@ -416,77 +236,46 @@
   </div>
 
   <div class="stat-row">
-    <div class="stat-chip">
-      <div class="stat-chip-label">Next period</div>
-      <div class="stat-chip-value" id="stat-next-date">—</div>
-      <div class="stat-chip-sub" id="stat-next-end">ends —</div>
-    </div>
-    <div class="stat-chip">
-      <div class="stat-chip-label">Cycle length</div>
-      <div class="stat-chip-value" id="stat-cycle">28 days</div>
-      <div class="stat-chip-sub" id="stat-duration">5 day period</div>
-    </div>
+    <div class="stat-chip"><div class="stat-chip-label">Next period</div><div class="stat-chip-value" id="stat-next-date">—</div><div class="stat-chip-sub" id="stat-next-end">ends —</div></div>
+    <div class="stat-chip"><div class="stat-chip-label">Cycle length</div><div class="stat-chip-value" id="stat-cycle">28 days</div><div class="stat-chip-sub" id="stat-duration">5 day period</div></div>
   </div>
   <div class="stat-row">
-    <div class="stat-chip">
-      <div class="stat-chip-label">Ovulation</div>
-      <div class="stat-chip-value" id="stat-ovulation">—</div>
-      <div class="stat-chip-sub">fertile window</div>
-    </div>
-    <div class="stat-chip">
-      <div class="stat-chip-label">Last period</div>
-      <div class="stat-chip-value" id="stat-last-start">—</div>
-      <div class="stat-chip-sub" id="stat-last-end">ended —</div>
-    </div>
+    <div class="stat-chip"><div class="stat-chip-label">Ovulation</div><div class="stat-chip-value" id="stat-ovulation">—</div><div class="stat-chip-sub">fertile window</div></div>
+    <div class="stat-chip"><div class="stat-chip-label">Last period</div><div class="stat-chip-value" id="stat-last-start">—</div><div class="stat-chip-sub" id="stat-last-end">ended —</div></div>
   </div>
-
   <div class="quote-card">
-    <p class="quote-text" id="daily-quote">Loading your daily affirmation...</p>
+    <p class="quote-text" id="daily-quote">Loading...</p>
     <p class="quote-author" id="quote-author">— Her</p>
   </div>
 </div>
 
-<!-- ══════════════════ LOG ══════════════════ -->
+<!-- ═══ LOG ═══ -->
 <div id="screen-log" class="screen">
   <p class="section-heading">Log a period</p>
   <div class="card">
     <p class="card-title">New entry</p>
     <div class="input-group">
-      <div class="input-row">
-        <label class="input-label" for="log-start">Start date</label>
-        <div class="date-input-wrap"><input type="date" id="log-start"></div>
-      </div>
-      <div class="input-row">
-        <label class="input-label" for="log-end">End date</label>
-        <div class="date-input-wrap"><input type="date" id="log-end"></div>
-      </div>
+      <div class="input-row"><label class="input-label" for="log-start">Start date</label><div class="date-input-wrap"><input type="date" id="log-start"></div></div>
+      <div class="input-row"><label class="input-label" for="log-end">End date</label><div class="date-input-wrap"><input type="date" id="log-end"></div></div>
     </div>
     <button class="btn-primary" style="margin-top:16px" id="log-period-btn">Save period</button>
   </div>
   <div class="divider"></div>
   <p class="section-heading">History</p>
-  <div class="card" id="history-list">
-    <p style="color:var(--text-muted);font-size:14px;text-align:center;padding:12px 0">No periods logged yet</p>
-  </div>
+  <div class="card" id="history-list"><p style="color:var(--text-muted);font-size:14px;text-align:center;padding:12px 0">No periods logged yet</p></div>
 </div>
 
-<!-- ══════════════════ SETTINGS ══════════════════ -->
+<!-- ═══ SETTINGS ═══ -->
 <div id="screen-settings" class="screen">
   <p class="section-heading">Cycle settings</p>
   <div class="card">
     <div class="settings-row">
       <span class="settings-key">Cycle length</span>
-      <div style="display:flex;align-items:center;gap:12px">
-        <span class="settings-val" id="set-cycle">28 days</span>
-        <button class="settings-edit" id="edit-cycle-btn">Edit</button>
-      </div>
+      <div style="display:flex;align-items:center;gap:12px"><span class="settings-val" id="set-cycle">28 days</span><button class="settings-edit" id="edit-cycle-btn">Edit</button></div>
     </div>
     <div class="settings-row">
       <span class="settings-key">Period duration</span>
-      <div style="display:flex;align-items:center;gap:12px">
-        <span class="settings-val" id="set-duration">5 days</span>
-        <button class="settings-edit" id="edit-duration-btn">Edit</button>
-      </div>
+      <div style="display:flex;align-items:center;gap:12px"><span class="settings-val" id="set-duration">5 days</span><button class="settings-edit" id="edit-duration-btn">Edit</button></div>
     </div>
   </div>
 
@@ -494,51 +283,31 @@
   <div class="card">
     <div class="settings-row">
       <div>
-        <div class="settings-key">Push notifications</div>
-        <div style="font-size:12px;color:var(--text-muted);margin-top:3px">2 days before + daily during period</div>
+        <div class="settings-key">Reminders</div>
+        <div style="font-size:12px;color:var(--text-muted);margin-top:3px">In-app alerts: 2 days before + daily during period</div>
       </div>
-      <div class="toggle-wrap">
-        <button class="toggle" id="notif-toggle"></button>
-      </div>
-    </div>
-    <div class="settings-row" style="border-bottom:none">
-      <span class="settings-key" style="font-size:13px;color:var(--text-muted)">Permission status</span>
-      <span id="perm-status" style="font-size:13px;color:var(--text-secondary)">—</span>
+      <button class="toggle on" id="notif-toggle"></button>
     </div>
   </div>
 
   <div class="card">
     <p class="card-title">Notification log</p>
-    <div id="notif-log">
-      <p style="color:var(--text-muted);font-size:13px;text-align:center;padding:8px 0">No notifications sent yet</p>
-    </div>
+    <div id="notif-log"><p style="color:var(--text-muted);font-size:13px;text-align:center;padding:8px 0">No notifications yet</p></div>
   </div>
 
   <div class="card">
-    <button class="btn-secondary" id="test-notif-btn">Send a test notification</button>
+    <button class="btn-secondary" id="test-notif-btn">Preview a notification</button>
   </div>
 
   <div class="card" style="margin-top:4px">
-    <button class="btn-secondary" id="reset-app-btn" style="color:#E57373; border-color:rgba(229,115,115,0.3)">Reset all data</button>
+    <button class="btn-secondary" id="reset-app-btn" style="color:#E57373;border-color:rgba(229,115,115,0.3)">Reset all data</button>
   </div>
 </div>
 
 <nav class="nav-tabs" id="bottom-nav" style="display:none">
-  <button class="nav-tab active" id="tab-home">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
-    </svg>Home
-  </button>
-  <button class="nav-tab" id="tab-log">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-      <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
-    </svg>Log
-  </button>
-  <button class="nav-tab" id="tab-settings">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-      <circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-    </svg>Settings
-  </button>
+  <button class="nav-tab active" id="tab-home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home</button>
+  <button class="nav-tab" id="tab-log"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Log</button>
+  <button class="nav-tab" id="tab-settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>Settings</button>
 </nav>
 
 <div id="toast"></div>
@@ -547,18 +316,14 @@
 // ══════════════════════════════════
 //  DATA
 // ══════════════════════════════════
-function save(k, v) { try { localStorage.setItem('her_' + k, JSON.stringify(v)); return true; } catch(e) { return false; } }
-function load(k) { try { return JSON.parse(localStorage.getItem('her_' + k)); } catch(e) { return null; } }
-
-function toDateInput(d) {
-  if (!d) return '';
-  return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
-}
+function save(k,v){try{localStorage.setItem('her_'+k,JSON.stringify(v));return true}catch(e){return false}}
+function load(k){try{return JSON.parse(localStorage.getItem('her_'+k))}catch(e){return null}}
+function toDateInput(d){if(!d)return'';return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
 
 // ══════════════════════════════════
 //  QUOTES
 // ══════════════════════════════════
-var QUOTES = [
+var QUOTES=[
   "Your body is not a problem to be solved. It's a home to be loved.",
   "Rest is not laziness. It's your body's way of asking for what it needs.",
   "Every cycle is a reminder of how powerful you truly are.",
@@ -576,608 +341,368 @@ var QUOTES = [
 // ══════════════════════════════════
 //  NOTIFICATION MESSAGES
 // ══════════════════════════════════
-var PRE_MESSAGES = [
-  { title: "🌸 Period in 2 days", body: "Time to prep your comfort kit — warm drinks, cozy blanket, and whatever makes you feel good. Take it easy!" },
-  { title: "🌸 Heads up!", body: "Your period is expected in 2 days. Cancel what you can, say no to what drains you, and say yes to rest." },
-  { title: "🌸 Friendly reminder", body: "In 2 days your cycle begins. Stock up on snacks, get your comfy clothes ready. You know yourself best." }
+var PRE_MSGS=[
+  {emoji:"🔔",title:"Period in 2 days",body:"Time to prep your comfort kit — warm drinks, cozy blanket, and whatever makes you feel good. Take it easy these next couple of days. You know yourself best. 💕"},
+  {emoji:"🔔",title:"Heads up!",body:"Your period is expected in 2 days. Cancel what you can, say no to what drains you, and say yes to rest. You've been through this before and you always handle it beautifully. 🌸"},
+  {emoji:"🔔",title:"Friendly reminder",body:"In 2 days your cycle begins. Stock up on your favorite snacks, get your comfy clothes ready, and give yourself permission to slow down. This isn't laziness — this is wisdom. ✨"}
 ];
 
-var PERIOD_MESSAGES = {
-  1: [
-    { title: "🌸 Day 1 — Your period is here", body: "Today is all about rest and kindness to yourself. Warm drinks, cozy blanket, zero guilt about doing nothing. 💕" },
-    { title: "🌸 Day 1", body: "Your body is working hard right now — shedding, renewing, resetting. Cancel whatever you can. The world can wait. 🌸" }
-  ],
-  2: [
-    { title: "🌸 Day 2 — You're doing great", body: "Day 2 can be the toughest, but you made it through day 1. Keep resting, keep sipping warm things. 💪" },
-    { title: "🌸 Day 2", body: "If today feels heavy, that's okay. Let it be heavy. You don't have to fight it — just flow with it. 🌊" }
-  ],
-  3: [
-    { title: "🌸 Day 3 — Halfway there", body: "Energy might start creeping back. Take it at your own pace — no rush, no pressure. 🌱" },
-    { title: "🌸 Day 3", body: "Halfway through! Listen to what your body wants today and honor it — no questions asked. 🌿" }
-  ],
-  4: [
-    { title: "🌸 Day 4 — Almost there", body: "You're so close to the finish line! Think about what self-care felt best this cycle. Save it for next time. ✨" },
-    { title: "🌸 Day 4", body: "Almost there! Be proud of how you've taken care of yourself. You're learning your body's language. 🌸" }
-  ],
-  5: [
-    { title: "🌸 Day 5 — You made it!", body: "You showed up for yourself every single day this cycle. That's everything. Rest tonight knowing you did beautifully. 💕" },
-    { title: "🌸 Day 5 — Final stretch", body: "Through the cramps, fatigue, emotions — you showed up. You're incredible. Never forget that. ✨" }
-  ]
+var PERIOD_MSGS={
+  1:[{emoji:"🌸",title:"Day 1 — Your period is here",body:"Today is all about rest and kindness to yourself. Warm drinks, a cozy blanket, and zero guilt about doing nothing. You've earned this rest. 💕"},{emoji:"🌸",title:"Day 1",body:"Your body is working hard right now — shedding, renewing, resetting. Honor that with warmth, rest, and absolutely zero guilt. Cancel whatever you can. The world can wait. 🌸"}],
+  2:[{emoji:"🌷",title:"Day 2 — You're doing great",body:"Day 2 can be the toughest, but you made it through day 1. Keep resting, keep sipping warm things, keep being gentle. If today feels heavier, that's normal. Let it be heavy. 💪"},{emoji:"🌷",title:"Day 2",body:"If today feels heavy, that's okay. Let it be heavy. You don't have to fight it — just flow with it like water. Your strength isn't in pushing through. It's in knowing when to rest. 🌊"}],
+  3:[{emoji:"🌱",title:"Day 3 — Halfway there",body:"Energy might start creeping back. Take it at your own pace — no rush, no pressure. Just you, moving at your speed. If you feel like doing something light, great. If not, that's great too. 🌱"},{emoji:"🌱",title:"Day 3",body:"Halfway through! Day 3 is a turning point for many. Listen to what your body wants today and honor it — no questions asked. Your body has been communicating with you this whole time. 🌿"}],
+  4:[{emoji:"✨",title:"Day 4 — Almost there",body:"You're so close to the finish line! If you've been resting well, you might start feeling lighter. Think about what self-care rituals felt best this cycle — save them for next time. ✨"},{emoji:"✨",title:"Day 4",body:"Almost there! Be proud of how you've taken care of yourself this cycle. Not everyone does. You're learning your body's language and that's powerful. 🌸"}],
+  5:[{emoji:"💖",title:"Day 5 — You made it!",body:"Through the cramps, the fatigue, the emotions — you showed up for yourself every single day. That takes more strength than anyone talks about. Rest tonight knowing you did beautifully. 💕"},{emoji:"💖",title:"Day 5 — Final stretch",body:"Last stretch! Your period is nearly over. You showed up for yourself every single day this cycle. That's everything. Take a moment to appreciate your body's wisdom. ✨"}]
 };
 
-var PERIOD_DEFAULT = [
-  { title: "🌸 Still in your period", body: "Every body is different. Keep being gentle with yourself today. Rest, warmth, and zero guilt. 💕" },
-  { title: "🌸 Keep going", body: "Your body is taking its time, and that's fine. No rush. Rest, nourish yourself, trust the process. 🌸" }
-];
+var PERIOD_DEFAULT=[{emoji:"🌸",title:"Still in your period",body:"Every body is different, every cycle is different. Keep being gentle with yourself today. Rest, warmth, and zero guilt. If this is unusual for you, consider checking with your doctor. 💕"},{emoji:"🌸",title:"Keep going",body:"Your body is taking its time, and that's fine. There's no rush. Rest, nourish yourself, and trust the process. Your body knows what it's doing even when it doesn't feel like it. 🌸"}];
 
-function pickMsg(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+function pickMsg(a){return a[Math.floor(Math.random()*a.length)]}
 
 // ══════════════════════════════════
-//  NOTIFICATION SYSTEM
+//  IN-APP NOTIFICATION MODAL
+// ══════════════════════════════════
+function showInAppNotif(emoji, title, body, pushOk) {
+  document.getElementById('nm-emoji').textContent = emoji;
+  document.getElementById('nm-title').textContent = title;
+  document.getElementById('nm-body').textContent = body;
+
+  var badge = document.getElementById('nm-push-badge');
+  if (pushOk) {
+    badge.innerHTML = '<span class="notif-modal-push-badge ok">📱 Push notification sent</span>';
+  } else {
+    badge.innerHTML = '<span class="notif-modal-push-badge skip">📱 Shown in-app (push not available on this device)</span>';
+  }
+
+  document.getElementById('notif-modal').style.display = 'flex';
+
+  // Vibrate on supported devices
+  try { if (navigator.vibrate) navigator.vibrate([100, 50, 100]); } catch(e) {}
+}
+
+function hideInAppNotif() {
+  document.getElementById('notif-modal').style.display = 'none';
+}
+
+// ══════════════════════════════════
+//  NOTIFICATION DELIVERY
+//  Always shows in-app. Push is bonus.
 // ══════════════════════════════════
 function notifEnabled() {
-  var s = load('notif_enabled');
-  return s === true || s === 'true';
+  var v = load('notif_enabled');
+  return v !== false && v !== 'false'; // enabled by default
 }
 
-function notifPermission() {
-  if (!('Notification' in window)) return 'unsupported';
-  return Notification.permission;
+function logNotif(emoji, title, body, type) {
+  var log = load('notif_log') || [];
+  log.unshift({ emoji: emoji, title: title, body: body, type: type, time: new Date().toISOString() });
+  if (log.length > 30) log = log.slice(0, 30);
+  save('notif_log', log);
 }
 
-function requestNotifPermission() {
-  if (!('Notification' in window)) {
-    showToast('Notifications not supported in this browser');
-    return Promise.resolve('unsupported');
-  }
-  if (Notification.permission === 'granted') return Promise.resolve('granted');
-  if (Notification.permission === 'denied') return Promise.resolve('denied');
-  return Notification.requestPermission();
-}
-
-function sendNotif(title, body, logType) {
-  if (!notifEnabled()) return false;
-  if (notifPermission() !== 'granted') return false;
-
+function tryPushNotif(title, body) {
+  // Try native push — may fail on many mobile browsers, that's OK
   try {
-    var n = new Notification(title, {
-      body: body,
-      icon: 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23EC407A"/><text x="50" y="65" text-anchor="middle" font-size="45">🌸</text></svg>'),
-      tag: 'her-' + todayStr(),
-      renotify: true
-    });
-
-    // Log it
-    var log = load('notif_log') || [];
-    log.unshift({
-      type: logType || 'info',
-      title: title,
-      body: body,
-      time: new Date().toISOString()
-    });
-    if (log.length > 30) log = log.slice(0, 30);
-    save('notif_log', log);
-
+    if (!('Notification' in window)) return false;
+    if (Notification.permission !== 'granted') return false;
+    // Minimal options — no icon (data URIs crash on mobile), no tag, no renotify
+    var n = new Notification(title, { body: body });
     return true;
   } catch(e) {
-    console.error('Notification error:', e);
     return false;
   }
+}
+
+function deliverNotif(emoji, title, body, logType) {
+  // Always log
+  logNotif(emoji, title, body, logType);
+
+  // Try push (bonus, may fail)
+  var pushOk = tryPushNotif(title, body);
+
+  // Always show in-app
+  showInAppNotif(emoji, title, body, pushOk);
+
+  return true; // Always succeeds because in-app always works
 }
 
 // ══════════════════════════════════
 //  CYCLE MATH
 // ══════════════════════════════════
-function daysBetween(a, b) { return Math.round((b - a) / 86400000); }
-function addDays(d, n) { var r = new Date(d); r.setDate(r.getDate() + n); return r; }
-function fmtDate(d) { return d ? d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : '—'; }
-function fmtDateFull(d) { return d ? d.toLocaleDateString('en-US', { weekday:'short', month:'short', day:'numeric' }) : '—'; }
-function todayStr() { return toDateInput(new Date()); }
-function todayDate() { var t = new Date(); t.setHours(0,0,0,0); return t; }
+function daysBetween(a,b){return Math.round((b-a)/86400000)}
+function addDays(d,n){var r=new Date(d);r.setDate(r.getDate()+n);return r}
+function fmtDate(d){return d?d.toLocaleDateString('en-US',{month:'short',day:'numeric'}):'—'}
+function fmtDateFull(d){return d?d.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'}):'—'}
+function todayStr(){return toDateInput(new Date())}
+function todayDate(){var t=new Date();t.setHours(0,0,0,0);return t}
 
-function computeNext(lastStart, cycleLen) {
-  var next = new Date(lastStart);
-  var s = 200;
-  while (next <= todayDate() && s > 0) { next = addDays(next, cycleLen); s--; }
-  return next;
-}
+function computeNext(ls,cl){var n=new Date(ls),s=200;while(n<=todayDate()&&s>0){n=addDays(n,cl);s--}return n}
 
-function getStatus() {
-  var history = load('history') || [];
-  var cycleLen = load('cycle') || 28;
-  var duration = load('duration') || 5;
-  if (!history.length) return null;
+function getStatus(){
+  var h=load('history')||[],cl=load('cycle')||28,dur=load('duration')||5;
+  if(!h.length)return null;
+  var td=todayDate(),ls=new Date(h[0].start);ls.setHours(0,0,0,0);
+  var le=h[0].end?new Date(h[0].end):addDays(ls,dur-1);le.setHours(0,0,0,0);
+  var ns=addDays(ls,cl);ns.setHours(0,0,0,0);
+  var ne=addDays(ns,dur-1);var du=daysBetween(td,ns);
 
-  var today = todayDate();
-  var ls = new Date(history[0].start); ls.setHours(0,0,0,0);
-  var le = history[0].end ? new Date(history[0].end) : addDays(ls, duration - 1);
-  le.setHours(0,0,0,0);
-  var ns = addDays(ls, cycleLen); ns.setHours(0,0,0,0);
-  var ne = addDays(ns, duration - 1);
-  var du = daysBetween(today, ns);
-
-  if (today >= ls && today <= le) {
-    return { status: 'in_period', day: daysBetween(ls, today) + 1, periodEnd: le, periodStart: ls, nextStart: ns, nextEnd: ne, daysUntil: du };
-  }
-  if (du <= 0) {
-    return { status: 'in_period', day: Math.abs(du) + 1, periodEnd: ne, periodStart: ns, nextStart: addDays(ns, cycleLen), nextEnd: addDays(ns, cycleLen + duration - 1), daysUntil: du, predicted: true };
-  }
-  if (du === 2) {
-    return { status: 'pre_2days', daysUntil: 2, nextStart: ns, nextEnd: ne };
-  }
-  return { status: 'normal', daysUntil: du, nextStart: ns, nextEnd: ne };
+  if(td>=ls&&td<=le)return{status:'in_period',day:daysBetween(ls,td)+1,periodEnd:le,periodStart:ls,nextStart:ns,nextEnd:ne,daysUntil:du};
+  if(du<=0)return{status:'in_period',day:Math.abs(du)+1,periodEnd:ne,periodStart:ns,nextStart:addDays(ns,cl),nextEnd:addDays(ns,cl+dur-1),daysUntil:du,predicted:true};
+  if(du===2)return{status:'pre_2days',daysUntil:2,nextStart:ns,nextEnd:ne};
+  return{status:'normal',daysUntil:du,nextStart:ns,nextEnd:ne};
 }
 
 // ══════════════════════════════════
-//  AUTO CHECK (runs every time app opens)
+//  AUTO CHECK (every app open)
 // ══════════════════════════════════
 function checkAndNotify() {
   if (!notifEnabled()) return;
-  if (notifPermission() !== 'granted') return;
-
   var s = getStatus();
   if (!s) return;
 
   var today = todayStr();
   var sent = load('notif_sent') || {};
-  if (sent[today]) return; // Already sent today
+  if (sent[today]) return;
 
   var msg;
 
   if (s.status === 'pre_2days') {
-    msg = pickMsg(PRE_MESSAGES);
-    if (sendNotif(msg.title, msg.body, 'pre_2days')) {
-      sent[today] = 'pre_2days';
-      save('notif_sent', sent);
-      renderNotifCard();
-    }
+    msg = pickMsg(PRE_MSGS);
+    deliverNotif(msg.emoji, msg.title, msg.body, 'pre_2days');
+    sent[today] = 'pre_2days';
+    save('notif_sent', sent);
   } else if (s.status === 'in_period') {
-    var pool = PERIOD_MESSAGES[s.day] || PERIOD_DEFAULT;
+    var pool = PERIOD_MSGS[s.day] || PERIOD_DEFAULT;
     msg = pickMsg(pool);
-    if (sendNotif(msg.title, msg.body, 'period_day_' + s.day)) {
-      sent[today] = 'period_day_' + s.day;
-      save('notif_sent', sent);
-      renderNotifCard();
-    }
+    deliverNotif(msg.emoji, msg.title, msg.body, 'period_day_' + s.day);
+    sent[today] = 'period_day_' + s.day;
+    save('notif_sent', sent);
   }
 }
 
 // ══════════════════════════════════
 //  ONBOARDING
 // ══════════════════════════════════
-var permGranted = false;
-
-function saveOnboarding() {
-  var start = document.getElementById('ob-start').value;
-  var end   = document.getElementById('ob-end').value;
-  var cycle = parseInt(document.getElementById('ob-cycle').value) || 28;
-  var dur   = parseInt(document.getElementById('ob-duration').value) || 5;
-
-  if (!start) { showToast('Please select your last period start date'); return; }
-
-  save('cycle', cycle);
-  save('duration', dur);
-  var history = load('history') || [];
-  history.unshift({ start: start, end: end || toDateInput(addDays(new Date(start), dur - 1)) });
-  save('history', history);
-  save('notif_sent', {});
-  save('notif_enabled', permGranted);
-  save('notif_log', []);
-
+function saveOnboarding(){
+  var start=document.getElementById('ob-start').value;
+  var end=document.getElementById('ob-end').value;
+  var cycle=parseInt(document.getElementById('ob-cycle').value)||28;
+  var dur=parseInt(document.getElementById('ob-duration').value)||5;
+  if(!start){showToast('Please select your last period start date');return}
+  save('cycle',cycle);save('duration',dur);
+  var h=load('history')||[];
+  h.unshift({start:start,end:end||toDateInput(addDays(new Date(start),dur-1))});
+  save('history',h);save('notif_sent',{});save('notif_log',[]);
   showMain();
-  setTimeout(checkAndNotify, 500);
+  setTimeout(checkAndNotify,500);
 }
 
 // ══════════════════════════════════
 //  NAVIGATION
 // ══════════════════════════════════
-function showMain() {
+function showMain(){
   document.getElementById('screen-onboarding').classList.remove('active');
-  document.getElementById('bottom-nav').style.display = 'flex';
+  document.getElementById('bottom-nav').style.display='flex';
   goTab('home');
 }
-
-function goTab(tab) {
-  ['home','log','settings'].forEach(function(t) {
-    document.getElementById('screen-' + t).classList.remove('active');
-    document.getElementById('tab-' + t).classList.remove('active');
+function goTab(tab){
+  ['home','log','settings'].forEach(function(t){
+    document.getElementById('screen-'+t).classList.remove('active');
+    document.getElementById('tab-'+t).classList.remove('active');
   });
-  document.getElementById('screen-' + tab).classList.add('active');
-  document.getElementById('tab-' + tab).classList.add('active');
-  if (tab === 'home') renderHome();
-  if (tab === 'log') renderLog();
-  if (tab === 'settings') renderSettings();
+  document.getElementById('screen-'+tab).classList.add('active');
+  document.getElementById('tab-'+tab).classList.add('active');
+  if(tab==='home')renderHome();
+  if(tab==='log')renderLog();
+  if(tab==='settings')renderSettings();
 }
 
 // ══════════════════════════════════
-//  NOTIFICATION CARD (Home)
+//  STATUS CARD (Home)
 // ══════════════════════════════════
-function renderNotifCard() {
-  var card = document.getElementById('notif-card');
-  var icon = document.getElementById('notif-icon');
-  var title = document.getElementById('notif-title');
-  var sub = document.getElementById('notif-sub');
-  var testBtn = document.getElementById('notif-test-btn');
-  var sentBadge = document.getElementById('notif-sent-badge');
+function renderStatusCard(){
+  var card=document.getElementById('status-card');
+  var icon=document.getElementById('status-icon');
+  var title=document.getElementById('status-title');
+  var sub=document.getElementById('status-sub');
+  card.className='status-card';
 
-  testBtn.style.display = 'none';
-  sentBadge.style.display = 'none';
-  card.className = 'notif-card';
-
-  if (!notifEnabled()) {
-    icon.textContent = '🔕'; title.textContent = 'Notifications off';
-    sub.textContent = 'Turn on in Settings to get reminders';
-    card.classList.add('off-notif');
-    return;
+  if(!notifEnabled()){
+    icon.textContent='🔕';title.textContent='Reminders off';
+    sub.textContent='Turn on in Settings to get notifications';
+    card.classList.add('waiting');return;
   }
 
-  if (notifPermission() !== 'granted') {
-    icon.textContent = '⚠️'; title.textContent = 'Notifications blocked';
-    sub.textContent = 'Go to Settings → enable notifications';
-    card.classList.add('off-notif');
-    return;
-  }
+  var s=getStatus();
+  if(!s)return;
+  var today=todayStr();
+  var sent=load('notif_sent')||{};
+  var done=!!sent[today];
 
-  var s = getStatus();
-  if (!s) return;
-
-  var today = todayStr();
-  var sent = load('notif_sent') || {};
-  var alreadySent = !!sent[today];
-
-  if (s.status === 'pre_2days') {
-    icon.textContent = '🔔';
-    card.classList.add('pending-notif');
-    if (alreadySent) {
-      title.textContent = '2-day warning sent!';
-      sub.textContent = 'Your period is expected ' + fmtDate(s.nextStart);
-      sentBadge.style.display = 'inline-block';
-    } else {
-      title.textContent = 'Period in 2 days';
-      sub.textContent = 'Expected ' + fmtDate(s.nextStart) + ' — tap Test to preview';
-      testBtn.style.display = 'inline-block';
-    }
-  } else if (s.status === 'in_period') {
-    var rem = daysBetween(todayDate(), s.periodEnd);
-    icon.textContent = '🌸';
-    card.classList.add(alreadySent ? 'active-notif' : 'pending-notif');
-    if (alreadySent) {
-      title.textContent = 'Day ' + s.day + ' motivation sent!';
-      sub.textContent = rem > 0 ? (rem + ' day' + (rem > 1 ? 's' : '') + ' remaining') : 'Last day';
-      sentBadge.style.display = 'inline-block';
-    } else {
-      title.textContent = 'Day ' + s.day + ' of your period';
-      sub.textContent = rem > 0 ? (rem + ' day' + (rem > 1 ? 's' : '') + ' remaining') : 'Last day';
-      testBtn.style.display = 'inline-block';
-    }
-  } else {
-    var daysTo = s.daysUntil - 2;
-    icon.textContent = '📬';
-    card.classList.add('off-notif');
-    if (daysTo > 0) {
-      title.textContent = 'Next notification in ' + daysTo + ' day' + (daysTo > 1 ? 's' : '');
-      sub.textContent = '2-day warning before ' + fmtDate(s.nextStart);
-    } else {
-      title.textContent = 'No notification due';
-      sub.textContent = 'Next period: ' + fmtDate(s.nextStart);
-    }
+  if(s.status==='pre_2days'){
+    icon.textContent='🔔';card.classList.add(done?'done':'pending');
+    if(done){title.textContent='2-day warning shown!';sub.textContent='Your period is expected '+fmtDate(s.nextStart)}
+    else{title.textContent='Period in 2 days';sub.textContent='Expected '+fmtDate(s.nextStart)+' — notification will appear when you open the app'}
+  }else if(s.status==='in_period'){
+    var rem=daysBetween(todayDate(),s.periodEnd);
+    icon.textContent='🌸';card.classList.add(done?'done':'pending');
+    if(done){title.textContent='Day '+s.day+' motivation shown!';sub.textContent=rem>0?(rem+' day'+(rem>1?'s':'')+' remaining'):'Last day'}
+    else{title.textContent='Day '+s.day+' of your period';sub.textContent=rem>0?(rem+' day'+(rem>1?'s':'')+' remaining — open the app daily for motivation'):'Last day'}
+  }else{
+    var dt=s.daysUntil-2;
+    icon.textContent='📬';card.classList.add('waiting');
+    if(dt>0){title.textContent='Next notification in '+dt+' day'+(dt>1?'s':'');sub.textContent='2-day warning before '+fmtDate(s.nextStart)}
+    else{title.textContent='No notification due';sub.textContent='Next period: '+fmtDate(s.nextStart)}
   }
 }
 
 // ══════════════════════════════════
 //  HOME RENDER
 // ══════════════════════════════════
-function renderHome() {
-  var s = getStatus();
-  if (!s) return;
+function renderHome(){
+  var s=getStatus();if(!s)return;
+  var h=load('history')||[],cl=load('cycle')||28,dur=load('duration')||5;
+  var td=todayDate(),ls=new Date(h[0].start);ls.setHours(0,0,0,0);
+  var le=h[0].end?new Date(h[0].end):addDays(ls,dur-1);le.setHours(0,0,0,0);
+  var inP=s.status==='in_period';
+  var progress,ds;
+  if(inP){progress=1;ds=s.day}else{progress=Math.max(0,Math.min(1,(cl-s.daysUntil)/cl));ds=Math.max(0,s.daysUntil)}
+  var circ=2*Math.PI*82;
+  document.getElementById('ring-progress').style.strokeDashoffset=Math.round(circ*(1-progress));
+  document.getElementById('ring-progress').style.strokeDasharray=Math.round(circ);
 
-  var history = load('history') || [];
-  var cycleLen = load('cycle') || 28;
-  var duration = load('duration') || 5;
-  var today = todayDate();
-  var ls = new Date(history[0].start); ls.setHours(0,0,0,0);
-  var le = history[0].end ? new Date(history[0].end) : addDays(ls, duration - 1);
-  le.setHours(0,0,0,0);
-
-  var inP = s.status === 'in_period';
-  var progress, daysShow;
-  if (inP) { progress = 1; daysShow = s.day; }
-  else { progress = Math.max(0, Math.min(1, (cycleLen - s.daysUntil) / cycleLen)); daysShow = Math.max(0, s.daysUntil); }
-
-  var circ = 2 * Math.PI * 82;
-  document.getElementById('ring-progress').style.strokeDashoffset = Math.round(circ * (1 - progress));
-  document.getElementById('ring-progress').style.strokeDasharray = Math.round(circ);
-
-  if (inP) {
-    document.getElementById('ring-days').textContent = 'Day ' + s.day;
-    document.getElementById('ring-label').textContent = 'of your period';
-    document.getElementById('active-banner').style.display = 'flex';
-    var rem = daysBetween(today, s.periodEnd);
-    document.getElementById('active-banner-text').textContent =
-      rem > 0 ? ('About ' + rem + ' more day' + (rem > 1 ? 's' : '') + ' — take care of yourself 💕') : 'Last day — you\'re almost through 🌸';
-    document.getElementById('phase-text').textContent = '🌸 Menstrual phase';
-  } else {
-    document.getElementById('ring-days').textContent = daysShow;
-    document.getElementById('ring-label').textContent = 'days until period';
-    document.getElementById('active-banner').style.display = 'none';
-    var pt = '🌱 Follicular phase';
-    if (s.daysUntil <= 5) pt = '🌙 Premenstrual phase';
-    else if (s.daysUntil <= cycleLen - 14 + 5) pt = '🌕 Luteal phase';
-    document.getElementById('phase-text').textContent = pt;
+  if(inP){
+    document.getElementById('ring-days').textContent='Day '+s.day;
+    document.getElementById('ring-label').textContent='of your period';
+    document.getElementById('active-banner').style.display='flex';
+    var rem=daysBetween(td,s.periodEnd);
+    document.getElementById('active-banner-text').textContent=rem>0?('About '+rem+' more day'+(rem>1?'s':'')+' — take care of yourself 💕'):'Last day — you\'re almost through 🌸';
+    document.getElementById('phase-text').textContent='🌸 Menstrual phase';
+  }else{
+    document.getElementById('ring-days').textContent=ds;
+    document.getElementById('ring-label').textContent='days until period';
+    document.getElementById('active-banner').style.display='none';
+    var pt='🌱 Follicular phase';
+    if(s.daysUntil<=5)pt='🌙 Premenstrual phase';
+    else if(s.daysUntil<=cl-14+5)pt='🌕 Luteal phase';
+    document.getElementById('phase-text').textContent=pt;
   }
 
-  document.getElementById('stat-next-date').textContent = fmtDate(s.nextStart);
-  document.getElementById('stat-next-end').textContent = 'ends ' + fmtDate(s.nextEnd);
-  document.getElementById('stat-cycle').textContent = cycleLen + ' days';
-  document.getElementById('stat-duration').textContent = duration + ' day period';
-  document.getElementById('stat-last-start').textContent = fmtDate(ls);
-  document.getElementById('stat-last-end').textContent = 'ended ' + fmtDate(le);
-  document.getElementById('stat-ovulation').textContent = fmtDate(addDays(s.nextStart, -14));
+  document.getElementById('stat-next-date').textContent=fmtDate(s.nextStart);
+  document.getElementById('stat-next-end').textContent='ends '+fmtDate(s.nextEnd);
+  document.getElementById('stat-cycle').textContent=cl+' days';
+  document.getElementById('stat-duration').textContent=dur+' day period';
+  document.getElementById('stat-last-start').textContent=fmtDate(ls);
+  document.getElementById('stat-last-end').textContent='ended '+fmtDate(le);
+  document.getElementById('stat-ovulation').textContent=fmtDate(addDays(s.nextStart,-14));
 
-  var q = QUOTES[today.getDate() % QUOTES.length];
-  document.getElementById('daily-quote').textContent = '"' + q + '"';
-  document.getElementById('quote-author').textContent = '— Her';
+  var q=QUOTES[td.getDate()%QUOTES.length];
+  document.getElementById('daily-quote').textContent='"'+q+'"';
+  document.getElementById('quote-author').textContent='— Her';
 
-  renderNotifCard();
+  renderStatusCard();
 }
 
 // ══════════════════════════════════
 //  LOG
 // ══════════════════════════════════
-function renderLog() {
-  var history = load('history') || [];
-  var c = document.getElementById('history-list');
-  var dur = load('duration') || 5;
-  document.getElementById('log-start').value = toDateInput(new Date());
-  document.getElementById('log-end').value = toDateInput(addDays(new Date(), dur - 1));
-
-  if (!history.length) { c.innerHTML = '<p style="color:var(--text-muted);font-size:14px;text-align:center;padding:12px 0">No periods logged yet</p>'; return; }
-
-  var h = '<p class="card-title">Past entries</p>';
-  history.slice(0, 12).forEach(function(e, i) {
-    var s = new Date(e.start), en = e.end ? new Date(e.end) : null;
-    var d = en ? daysBetween(s, en) + 1 : '?';
-    h += '<div class="history-item"><div><div class="history-date">' + fmtDateFull(s) + '</div><div class="history-dur">to ' + (en ? fmtDateFull(en) : '—') + '</div></div><div style="display:flex;align-items:center;gap:10px"><span class="history-badge">' + d + ' days</span><button class="del-btn" data-i="' + i + '" style="background:none;border:none;cursor:pointer;color:var(--text-muted);font-size:18px;padding:2px">×</button></div></div>';
+function renderLog(){
+  var h=load('history')||[],c=document.getElementById('history-list'),dur=load('duration')||5;
+  document.getElementById('log-start').value=toDateInput(new Date());
+  document.getElementById('log-end').value=toDateInput(addDays(new Date(),dur-1));
+  if(!h.length){c.innerHTML='<p style="color:var(--text-muted);font-size:14px;text-align:center;padding:12px 0">No periods logged yet</p>';return}
+  var html='<p class="card-title">Past entries</p>';
+  h.slice(0,12).forEach(function(e,i){
+    var s=new Date(e.start),en=e.end?new Date(e.end):null,d=en?daysBetween(s,en)+1:'?';
+    html+='<div class="history-item"><div><div class="history-date">'+fmtDateFull(s)+'</div><div class="history-dur">to '+(en?fmtDateFull(en):'—')+'</div></div><div style="display:flex;align-items:center;gap:10px"><span class="history-badge">'+d+' days</span><button class="del-btn" data-i="'+i+'" style="background:none;border:none;cursor:pointer;color:var(--text-muted);font-size:18px;padding:2px">×</button></div></div>';
   });
-  c.innerHTML = h;
-  c.querySelectorAll('.del-btn').forEach(function(b) {
-    b.addEventListener('click', function() { deleteEntry(parseInt(this.getAttribute('data-i'))); });
-  });
+  c.innerHTML=html;
+  c.querySelectorAll('.del-btn').forEach(function(b){b.addEventListener('click',function(){deleteEntry(parseInt(this.getAttribute('data-i')))})});
 }
-
-function logPeriod() {
-  var start = document.getElementById('log-start').value;
-  var end = document.getElementById('log-end').value;
-  if (!start) { showToast('Please select a start date'); return; }
-  var h = load('history') || [];
-  h.unshift({ start: start, end: end });
-  h.sort(function(a, b) { return new Date(b.start) - new Date(a.start); });
-  save('history', h);
-  save('notif_sent', {});
-  renderLog(); renderHome();
-  showToast('Period logged 🌸');
-  setTimeout(checkAndNotify, 300);
+function logPeriod(){
+  var start=document.getElementById('log-start').value,end=document.getElementById('log-end').value;
+  if(!start){showToast('Please select a start date');return}
+  var h=load('history')||[];h.unshift({start:start,end:end});
+  h.sort(function(a,b){return new Date(b.start)-new Date(a.start)});
+  save('history',h);save('notif_sent',{});
+  renderLog();renderHome();showToast('Period logged 🌸');
+  setTimeout(checkAndNotify,300);
 }
-
-function deleteEntry(i) {
-  var h = load('history') || [];
-  h.splice(i, 1);
-  save('history', h);
-  save('notif_sent', {});
-  renderLog(); renderHome();
-  showToast('Entry removed');
-}
+function deleteEntry(i){var h=load('history')||[];h.splice(i,1);save('history',h);save('notif_sent',{});renderLog();renderHome();showToast('Entry removed')}
 
 // ══════════════════════════════════
 //  SETTINGS
 // ══════════════════════════════════
-function renderSettings() {
-  document.getElementById('set-cycle').textContent = (load('cycle') || 28) + ' days';
-  document.getElementById('set-duration').textContent = (load('duration') || 5) + ' days';
+function renderSettings(){
+  document.getElementById('set-cycle').textContent=(load('cycle')||28)+' days';
+  document.getElementById('set-duration').textContent=(load('duration')||5)+' days';
+  var tog=document.getElementById('notif-toggle');
+  if(notifEnabled())tog.classList.add('on');else tog.classList.remove('on');
 
-  // Toggle
-  var tog = document.getElementById('notif-toggle');
-  if (notifEnabled()) tog.classList.add('on'); else tog.classList.remove('on');
-
-  // Permission status
-  var ps = document.getElementById('perm-status');
-  var p = notifPermission();
-  if (p === 'granted') { ps.textContent = '✅ Granted'; ps.style.color = 'var(--green)'; }
-  else if (p === 'denied') { ps.textContent = '❌ Blocked'; ps.style.color = 'var(--red)'; }
-  else if (p === 'unsupported') { ps.textContent = '⛔ Not supported'; ps.style.color = 'var(--red)'; }
-  else { ps.textContent = '⏳ Not yet asked'; ps.style.color = 'var(--text-muted)'; }
-
-  // Notification log
-  var log = load('notif_log') || [];
-  var logEl = document.getElementById('notif-log');
-  if (!log.length) {
-    logEl.innerHTML = '<p style="color:var(--text-muted);font-size:13px;text-align:center;padding:8px 0">No notifications sent yet</p>';
-  } else {
-    var html = '';
-    log.slice(0, 10).forEach(function(entry) {
-      var d = new Date(entry.time);
-      var timeStr = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) + ' ' + d.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
-      var emoji = entry.type === 'pre_2days' ? '🔔' : entry.type.startsWith('period') ? '🌸' : '📬';
-      html += '<div class="notif-log-item"><span class="notif-log-emoji">' + emoji + '</span><div class="notif-log-text"><strong>' + entry.title + '</strong><br>' + entry.body + '</div><span class="notif-log-time">' + timeStr + '</span></div>';
-    });
-    logEl.innerHTML = html;
-  }
-}
-
-function toggleNotif() {
-  if (notifEnabled()) {
-    save('notif_enabled', false);
-    renderSettings(); renderHome();
-    showToast('Notifications turned off');
-    return;
-  }
-
-  // Turning on — need permission first
-  requestNotifPermission().then(function(result) {
-    if (result === 'granted') {
-      save('notif_enabled', true);
-      renderSettings(); renderHome();
-      showToast('Notifications turned on! 🔔');
-      checkAndNotify();
-    } else if (result === 'denied') {
-      showToast('Notifications blocked — enable in browser settings');
-      renderSettings();
-    } else {
-      showToast('Could not request permission');
-    }
+  var log=load('notif_log')||[],el=document.getElementById('notif-log');
+  if(!log.length){el.innerHTML='<p style="color:var(--text-muted);font-size:13px;text-align:center;padding:8px 0">No notifications yet</p>';return}
+  var html='';
+  log.slice(0,10).forEach(function(e){
+    var d=new Date(e.time);
+    var ts=d.toLocaleDateString('en-US',{month:'short',day:'numeric'})+' '+d.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'});
+    html+='<div class="nlog-item"><span class="nlog-emoji">'+e.emoji+'</span><div class="nlog-text"><strong>'+e.title+'</strong><br>'+e.body.substring(0,80)+'...</div><span class="nlog-time">'+ts+'</span></div>';
   });
+  el.innerHTML=html;
 }
 
-function testNotif() {
-  if (notifPermission() !== 'granted') {
-    showToast('Please allow notifications first');
-    requestNotifPermission().then(function(r) {
-      if (r === 'granted') {
-        save('notif_enabled', true);
-        doTestNotif();
-        renderSettings(); renderHome();
-      } else {
-        showToast('Permission denied');
-      }
-    });
-    return;
-  }
-  doTestNotif();
+function toggleNotif(){
+  save('notif_enabled',!notifEnabled());
+  renderSettings();renderHome();
+  showToast(notifEnabled()?'Reminders on 🔔':'Reminders off');
 }
 
-function doTestNotif() {
-  var msg = pickMsg(PERIOD_MESSAGES[1]);
-  var ok = sendNotif('🌸 Test notification', 'If you see this, notifications are working perfectly! 💕', 'test');
-  if (ok) {
-    showToast('Test sent! Check your notifications 🔔');
-    renderSettings(); renderHome();
-  } else {
-    showToast('Failed to send notification');
-  }
+function testNotif(){
+  var msg=pickMsg(PERIOD_MSGS[1]);
+  deliverNotif(msg.emoji,msg.title,msg.body,'test');
 }
 
-function sendNotifFromHome() {
-  var s = getStatus();
-  if (!s) { showToast('No cycle data'); return; }
-  var today = todayStr();
-  var sent = load('notif_sent') || {};
-  if (sent[today]) { showToast('Already sent today — check your notifications 🔔'); return; }
-
-  var msg;
-  if (s.status === 'pre_2days') {
-    msg = pickMsg(PRE_MESSAGES);
-  } else if (s.status === 'in_period') {
-    var pool = PERIOD_MESSAGES[s.day] || PERIOD_DEFAULT;
-    msg = pickMsg(pool);
-  } else {
-    showToast('No notification due today');
-    return;
-  }
-
-  if (sendNotif(msg.title, msg.body, s.status === 'pre_2days' ? 'pre_2days' : 'period_day_' + s.day)) {
-    sent[today] = s.status === 'pre_2days' ? 'pre_2days' : 'period_day_' + s.day;
-    save('notif_sent', sent);
-    renderNotifCard();
-    showToast('Notification sent! 🔔');
-  } else {
-    showToast('Failed — check notification permission');
-  }
-}
-
-function editField(field) {
-  var map = { cycle: 'Cycle length (days)', duration: 'Period duration (days)' };
-  var cur = load(field);
-  var val = prompt(map[field], cur);
-  if (val === null) return;
-  var n = parseInt(val);
-  if (isNaN(n) || n < 1) { showToast('Invalid number'); return; }
-  save(field, n);
-  save('notif_sent', {});
-  renderSettings(); renderHome();
-  showToast('Updated ✓');
+function editField(field){
+  var map={cycle:'Cycle length (days)',duration:'Period duration (days)'};
+  var val=prompt(map[field],load(field));
+  if(val===null)return;
+  var n=parseInt(val);
+  if(isNaN(n)||n<1){showToast('Invalid number');return}
+  save(field,n);save('notif_sent',{});
+  renderSettings();renderHome();showToast('Updated ✓');
 }
 
 // ══════════════════════════════════
 //  UTILS
 // ══════════════════════════════════
-function showToast(msg) {
-  var t = document.getElementById('toast');
-  t.textContent = msg; t.classList.add('show');
-  clearTimeout(t._t);
-  t._t = setTimeout(function() { t.classList.remove('show'); }, 3200);
-}
-
-function resetApp() {
-  if (!confirm('Delete all data? Are you sure?')) return;
-  ['cycle','duration','history','notif_enabled','notif_sent','notif_log']
-    .forEach(function(k) { localStorage.removeItem('her_' + k); });
-  location.reload();
-}
+function showToast(msg){var t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(function(){t.classList.remove('show')},3200)}
+function resetApp(){if(!confirm('Delete all data?'))return;['cycle','duration','history','notif_enabled','notif_sent','notif_log'].forEach(function(k){localStorage.removeItem('her_'+k)});location.reload()}
 
 // ══════════════════════════════════
 //  EVENTS
 // ══════════════════════════════════
-document.addEventListener('DOMContentLoaded', function() {
-  document.getElementById('get-started-btn').addEventListener('click', function(e) { e.preventDefault(); saveOnboarding(); });
-  document.getElementById('tab-home').addEventListener('click', function(e) { e.preventDefault(); goTab('home'); });
-  document.getElementById('tab-log').addEventListener('click', function(e) { e.preventDefault(); goTab('log'); });
-  document.getElementById('tab-settings').addEventListener('click', function(e) { e.preventDefault(); goTab('settings'); });
-  document.getElementById('top-settings-btn').addEventListener('click', function(e) { e.preventDefault(); goTab('settings'); });
-  document.getElementById('log-period-btn').addEventListener('click', function(e) { e.preventDefault(); logPeriod(); });
-  document.getElementById('notif-toggle').addEventListener('click', function(e) { e.preventDefault(); toggleNotif(); });
-  document.getElementById('test-notif-btn').addEventListener('click', function(e) { e.preventDefault(); testNotif(); });
-  document.getElementById('notif-test-btn').addEventListener('click', function(e) { e.preventDefault(); sendNotifFromHome(); });
-  document.getElementById('edit-cycle-btn').addEventListener('click', function(e) { e.preventDefault(); editField('cycle'); });
-  document.getElementById('edit-duration-btn').addEventListener('click', function(e) { e.preventDefault(); editField('duration'); });
-  document.getElementById('reset-app-btn').addEventListener('click', function(e) { e.preventDefault(); resetApp(); });
-
-  // Permission button on onboarding
-  document.getElementById('perm-btn').addEventListener('click', function(e) {
-    e.preventDefault();
-    requestNotifPermission().then(function(result) {
-      if (result === 'granted') {
-        permGranted = true;
-        document.getElementById('perm-btn').style.display = 'none';
-        var badge = document.createElement('span');
-        badge.className = 'perm-granted';
-        badge.textContent = '✅ On';
-        document.getElementById('perm-card').appendChild(badge);
-        showToast('Notifications enabled! 🔔');
-      } else if (result === 'denied') {
-        showToast('Notifications blocked — you can enable later in Settings');
-        permGranted = false;
-      } else {
-        showToast('Permission not granted');
-      }
-    });
-  });
-
-  // Check if already granted on load
-  if (notifPermission() === 'granted') {
-    permGranted = true;
-    var btn = document.getElementById('perm-btn');
-    if (btn) btn.style.display = 'none';
-    var card = document.getElementById('perm-card');
-    if (card) {
-      var badge = document.createElement('span');
-      badge.className = 'perm-granted';
-      badge.textContent = '✅ On';
-      card.appendChild(badge);
-    }
-  }
+document.addEventListener('DOMContentLoaded',function(){
+  document.getElementById('get-started-btn').addEventListener('click',function(e){e.preventDefault();saveOnboarding()});
+  document.getElementById('tab-home').addEventListener('click',function(e){e.preventDefault();goTab('home')});
+  document.getElementById('tab-log').addEventListener('click',function(e){e.preventDefault();goTab('log')});
+  document.getElementById('tab-settings').addEventListener('click',function(e){e.preventDefault();goTab('settings')});
+  document.getElementById('top-settings-btn').addEventListener('click',function(e){e.preventDefault();goTab('settings')});
+  document.getElementById('log-period-btn').addEventListener('click',function(e){e.preventDefault();logPeriod()});
+  document.getElementById('notif-toggle').addEventListener('click',function(e){e.preventDefault();toggleNotif()});
+  document.getElementById('test-notif-btn').addEventListener('click',function(e){e.preventDefault();testNotif()});
+  document.getElementById('edit-cycle-btn').addEventListener('click',function(e){e.preventDefault();editField('cycle')});
+  document.getElementById('edit-duration-btn').addEventListener('click',function(e){e.preventDefault();editField('duration')});
+  document.getElementById('reset-app-btn').addEventListener('click',function(e){e.preventDefault();resetApp()});
+  document.getElementById('nm-btn').addEventListener('click',function(e){e.preventDefault();hideInAppNotif()});
+  document.getElementById('notif-modal-overlay').addEventListener('click',function(e){e.preventDefault();hideInAppNotif()});
 });
 
 // ══════════════════════════════════
 //  INIT
 // ══════════════════════════════════
-(function init() {
-  var history = load('history');
-  if (history && history.length) {
-    showMain();
-    setTimeout(checkAndNotify, 600);
-  } else {
-    document.getElementById('screen-onboarding').classList.add('active');
-  }
+(function(){
+  var h=load('history');
+  if(h&&h.length){showMain();setTimeout(checkAndNotify,600)}
+  else{document.getElementById('screen-onboarding').classList.add('active')}
 })();
 </script>
 </body>
