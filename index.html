@@ -626,15 +626,21 @@ function saveOnboarding() {
   if (!email || !email.includes('@')) { showToast('Please enter a valid email 📧'); return; }
   if (!start) { showToast('Please enter your last period start date'); return; }
 
-  save('email', email);
-  save('cycle', cycle);
-  save('duration', dur);
+  try {
+    save('email', email);
+    save('cycle', cycle);
+    save('duration', dur);
 
-  let history = load('history') || [];
-  history.unshift({ start, end: end || toDateInput(addDays(new Date(start), dur-1)) });
-  save('history', history);
+    let history = load('history') || [];
+    history.unshift({ start, end: end || toDateInput(addDays(new Date(start), dur-1)) });
+    save('history', history);
+  } catch(e) {
+    showToast('Could not save data. Is localStorage available?');
+    return;
+  }
 
-  checkAndScheduleReminders();
+  try { checkAndScheduleReminders(); } catch(e) { console.warn('Reminder check failed:', e); }
+
   showMain();
 }
 
@@ -642,12 +648,19 @@ function saveOnboarding() {
 //  MAIN APP
 // ══════════════════════════════════
 function showMain() {
-  document.getElementById('screen-onboarding').classList.remove('active');
-  document.getElementById('bottom-nav').style.display = 'flex';
-  goTab('home');
-  renderHome();
-  renderLog();
-  renderSettings();
+  try {
+    const onb = document.getElementById('screen-onboarding');
+    if (onb) onb.classList.remove('active');
+    const nav = document.getElementById('bottom-nav');
+    if (nav) nav.style.display = 'flex';
+    goTab('home');
+    try { renderHome(); } catch(e) { console.warn('renderHome error:', e); }
+    try { renderLog(); } catch(e) { console.warn('renderLog error:', e); }
+    try { renderSettings(); } catch(e) { console.warn('renderSettings error:', e); }
+  } catch(e) {
+    console.error('showMain error:', e);
+    showToast('Something went wrong loading the app.');
+  }
 }
 
 function goTab(tab) {
@@ -919,19 +932,26 @@ function resetApp() {
 //  INIT
 // ══════════════════════════════════
 (function init() {
-  const email = load('email');
-  const history = load('history');
-  if (email && history && history.length) {
-    checkAndScheduleReminders();
-    showMain();
-  } else {
+  try {
+    const email = load('email');
+    const history = load('history');
+    if (email && history && history.length) {
+      try { checkAndScheduleReminders(); } catch(e) { console.warn('Reminder check failed:', e); }
+      showMain();
+    } else {
+      document.getElementById('screen-onboarding').classList.add('active');
+    }
+  } catch(e) {
+    console.error('Init error:', e);
     document.getElementById('screen-onboarding').classList.add('active');
   }
 
   // Set today's date as defaults in onboarding
-  const today = new Date();
-  document.getElementById('ob-start').max = toDateInput(today);
-  document.getElementById('ob-end').max   = toDateInput(today);
+  try {
+    const today = new Date();
+    document.getElementById('ob-start').max = toDateInput(today);
+    document.getElementById('ob-end').max   = toDateInput(today);
+  } catch(e) {}
 })();
 </script>
 </body>
