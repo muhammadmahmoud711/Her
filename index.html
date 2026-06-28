@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Her — Your Cycle, Your Way</title>
 <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600&family=Google+Sans+Display:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -28,6 +28,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    -webkit-text-size-adjust: 100%;
   }
 
   .top-bar {
@@ -93,7 +94,13 @@
   .input-group { display: flex; flex-direction: column; gap: 12px; }
   .input-label { font-size: 13px; color: var(--text-secondary); margin-bottom: 4px; display: block; }
   .input-row { display: flex; flex-direction: column; gap: 4px; }
-  input[type="email"], input[type="date"], input[type="number"], input[type="text"] {
+
+  /* ══════════════════════════════════
+     FIXED DATE INPUT STYLING FOR MOBILE
+     ══════════════════════════════════ */
+  input[type="email"],
+  input[type="number"],
+  input[type="text"] {
     width: 100%; padding: 14px 16px;
     background: var(--surface-elevated);
     border: 0.5px solid var(--border-strong);
@@ -101,9 +108,61 @@
     color: var(--text-primary); font-size: 15px;
     font-family: 'Google Sans', sans-serif;
     outline: none; transition: border-color 0.2s;
+    -webkit-appearance: none;
+    appearance: none;
   }
-  input:focus { border-color: var(--pink-200); }
-  input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(0.8); cursor: pointer; }
+  input[type="email"]:focus,
+  input[type="number"]:focus,
+  input[type="text"]:focus {
+    border-color: var(--pink-200);
+  }
+
+  /* Date input — completely separate styling for mobile compatibility */
+  .date-input-wrap {
+    position: relative;
+    width: 100%;
+  }
+  .date-input-wrap input[type="date"] {
+    width: 100%;
+    padding: 14px 50px 14px 16px;
+    background: var(--surface-elevated);
+    border: 0.5px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    font-size: 15px;
+    font-family: 'Google Sans', sans-serif;
+    outline: none;
+    transition: border-color 0.2s;
+    min-height: 48px;
+    /* Critical for mobile: don't override native appearance */
+    -webkit-appearance: menulist-button;
+    appearance: menulist-button;
+    /* Ensure the calendar icon area is tappable */
+    cursor: pointer;
+  }
+  .date-input-wrap input[type="date"]:focus {
+    border-color: var(--pink-200);
+  }
+  /* Make sure the native calendar icon is visible on all platforms */
+  .date-input-wrap input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(0.75) sepia(0.3) saturate(3) hue-rotate(290deg);
+    cursor: pointer;
+    opacity: 1;
+    /* Make the tap target bigger on mobile */
+    width: 36px;
+    height: 36px;
+    margin-right: 4px;
+  }
+  /* Firefox date input */
+  .date-input-wrap input[type="date"]::-moz-calendar-picker-indicator {
+    filter: invert(0.75) sepia(0.3) saturate(3) hue-rotate(290deg);
+    cursor: pointer;
+    opacity: 1;
+    width: 36px;
+    height: 36px;
+  }
+
+  /* ═══ END DATE INPUT FIXES ═══ */
 
   .btn-primary {
     width: 100%; padding: 16px;
@@ -113,6 +172,7 @@
     font-family: 'Google Sans', sans-serif;
     cursor: pointer; transition: opacity 0.2s, transform 0.1s;
     letter-spacing: 0.02em;
+    -webkit-tap-highlight-color: transparent;
   }
   .btn-primary:hover { opacity: 0.92; }
   .btn-primary:active { transform: scale(0.98); }
@@ -124,6 +184,7 @@
     color: var(--text-secondary); font-size: 14px;
     font-family: 'Google Sans', sans-serif;
     cursor: pointer; transition: background 0.2s;
+    -webkit-tap-highlight-color: transparent;
   }
   .btn-secondary:hover { background: var(--surface-elevated); }
 
@@ -197,6 +258,7 @@
   .settings-edit {
     font-size: 13px; color: var(--pink-200); cursor: pointer;
     background: none; border: none; font-family: 'Google Sans', sans-serif;
+    -webkit-tap-highlight-color: transparent;
   }
 
   #toast {
@@ -205,9 +267,9 @@
     border-radius: var(--radius-md); padding: 12px 20px;
     font-size: 14px; color: var(--text-primary);
     transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
-    white-space: nowrap; z-index: 999;
+    white-space: normal; text-align: center;
+    z-index: 999; max-width: 90vw;
     box-shadow: 0 8px 32px rgba(0,0,0,0.4);
-    max-width: 90vw; white-space: normal; text-align: center;
   }
   #toast.show { transform: translateX(-50%) translateY(0); }
 
@@ -224,6 +286,7 @@
     color: var(--text-muted); font-size: 10px;
     font-family: 'Google Sans', sans-serif; letter-spacing: 0.04em;
     transition: color 0.2s;
+    -webkit-tap-highlight-color: transparent;
   }
   .nav-tab.active { color: var(--pink-200); }
   .nav-tab svg { width: 22px; height: 22px; }
@@ -254,7 +317,6 @@
   }
   .divider { height: 0.5px; background: var(--border); margin: 4px 0; }
 
-  /* ── REMINDER STATUS CARD ── */
   .reminder-card {
     background: linear-gradient(135deg, rgba(244,143,177,0.1), rgba(206,147,216,0.07));
     border: 0.5px solid rgba(244,143,177,0.2);
@@ -279,6 +341,7 @@
     font-family: 'Google Sans', sans-serif;
     cursor: pointer; transition: background 0.2s;
     white-space: nowrap;
+    -webkit-tap-highlight-color: transparent;
   }
   .reminder-send-btn:hover { background: rgba(244,143,177,0.28); }
   .reminder-sent-badge {
@@ -292,7 +355,6 @@
     white-space: nowrap;
   }
 
-  /* ── EMAILJS SETUP GUIDE ── */
   .setup-guide {
     background: var(--surface-elevated);
     border: 0.5px solid var(--border);
@@ -321,11 +383,10 @@
   .setup-check-dot.done { background: #81C784; }
   .setup-check-dot.missing { background: #E57373; }
 
-  @keyframes pulse-soft {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.6; }
+  /* Mobile tap highlight removal for all interactive elements */
+  button, a, input, .settings-edit, .reminder-send-btn {
+    -webkit-tap-highlight-color: transparent;
   }
-  .pulse { animation: pulse-soft 2s ease-in-out infinite; }
 </style>
 </head>
 <body>
@@ -369,11 +430,15 @@
     <div class="input-group">
       <div class="input-row">
         <label class="input-label" for="ob-start">When did it start?</label>
-        <input type="date" id="ob-start">
+        <div class="date-input-wrap">
+          <input type="date" id="ob-start">
+        </div>
       </div>
       <div class="input-row">
         <label class="input-label" for="ob-end">When did it end?</label>
-        <input type="date" id="ob-end">
+        <div class="date-input-wrap">
+          <input type="date" id="ob-end">
+        </div>
       </div>
     </div>
   </div>
@@ -422,7 +487,6 @@
     </div>
   </div>
 
-  <!-- Reminder Status Card -->
   <div class="reminder-card" id="reminder-card">
     <div class="reminder-card-icon" id="reminder-icon">📬</div>
     <div class="reminder-card-body">
@@ -481,11 +545,15 @@
     <div class="input-group">
       <div class="input-row">
         <label class="input-label" for="log-start">Start date</label>
-        <input type="date" id="log-start">
+        <div class="date-input-wrap">
+          <input type="date" id="log-start">
+        </div>
       </div>
       <div class="input-row">
         <label class="input-label" for="log-end">End date</label>
-        <input type="date" id="log-end">
+        <div class="date-input-wrap">
+          <input type="date" id="log-end">
+        </div>
       </div>
     </div>
     <button class="btn-primary" style="margin-top:16px" id="log-period-btn">Save period</button>
@@ -544,7 +612,6 @@
 
   <p class="section-heading">EmailJS setup</p>
   <div class="card">
-    <!-- Setup checklist -->
     <div class="setup-guide" id="setup-guide">
       <div class="setup-guide-title">Quick setup checklist</div>
       <div class="setup-check">
@@ -649,9 +716,22 @@ function load(key) {
 }
 
 // ══════════════════════════════════
+//  ★ FIXED: toDateInput using LOCAL time, not UTC
+//  This was the main bug — toISOString() converts to UTC
+//  which shifts the date for anyone not in GMT timezone
+// ══════════════════════════════════
+function toDateInput(d) {
+  if (!d) return '';
+  var year  = d.getFullYear();
+  var month = String(d.getMonth() + 1).padStart(2, '0');
+  var day   = String(d.getDate()).padStart(2, '0');
+  return year + '-' + month + '-' + day;
+}
+
+// ══════════════════════════════════
 //  QUOTES
 // ══════════════════════════════════
-const QUOTES = [
+var QUOTES = [
   { text: "Your body is not a problem to be solved. It's a home to be loved.", author: "Her" },
   { text: "Rest is not laziness. It's your body's way of asking for what it needs.", author: "Her" },
   { text: "Every cycle is a reminder of how powerful you truly are.", author: "Her" },
@@ -669,63 +749,63 @@ const QUOTES = [
 // ══════════════════════════════════
 //  REMINDER MESSAGES
 // ══════════════════════════════════
-const PRE_REMINDER_SUBJECT = '🌸 Heads up — your period is in 2 days';
-const PRE_REMINDER_MESSAGES = [
-  'Hey! Just a heads up — your period is expected in 2 days.\n\nTime to prep your comfort kit: warm drinks, cozy blankets, and whatever makes you feel good. You know yourself best.\n\nTake it easy these next couple of days. Your body is about to do something amazing, and it deserves all the care you can give it. 💕',
-  'Friendly reminder: your period is coming in about 2 days.\n\nStart taking it a little easier now — cancel what you can, say no to what drains you, and say yes to rest.\n\nYou\'ve been through this before and you always handle it beautifully. Trust yourself. 🌸',
-  'In 2 days, your cycle begins.\n\nStock up on what you need — your favorite snacks, pain relief if you use it, comfy clothes. Give yourself permission to slow down.\n\nThis isn\'t laziness. This is wisdom. You deserve it. ✨',
-  'Quick note: your period is expected in 2 days.\n\nThink about what helped you feel good last cycle. Was it a hot water bottle? A specific tea? A movie marathon? Get those things ready now.\n\nYour future self will thank you. 🌙'
+var PRE_REMINDER_SUBJECT = '🌸 Heads up — your period is in 2 days';
+var PRE_REMINDER_MESSAGES = [
+  'Hey! Just a heads up — your period is expected in 2 days.\n\nTime to prep your comfort kit: warm drinks, cozy blankets, and whatever makes you feel good.\n\nTake it easy these next couple of days. Your body is about to do something amazing. 💕',
+  'Friendly reminder: your period is coming in about 2 days.\n\nStart taking it a little easier now — cancel what you can, say no to what drains you, and say yes to rest.\n\nYou\'ve been through this before and you always handle it beautifully. 🌸',
+  'In 2 days, your cycle begins.\n\nStock up on what you need — your favorite snacks, pain relief if you use it, comfy clothes. Give yourself permission to slow down.\n\nThis isn\'t laziness. This is wisdom. ✨',
+  'Quick note: your period is expected in 2 days.\n\nThink about what helped you feel good last cycle. Hot water bottle? A specific tea? A movie marathon? Get those things ready now.\n\nYour future self will thank you. 🌙'
 ];
 
-const PERIOD_MESSAGES = {
+var PERIOD_MESSAGES = {
   1: {
     subject: '🌸 Day 1 — Your period is here',
     messages: [
-      'Your period has arrived.\n\nToday is all about rest and kindness to yourself. You don\'t need to be productive — you need to be gentle.\n\nWarm drinks, a cozy blanket, and zero guilt about doing nothing. That\'s the plan for today. You\'ve earned it. 💕',
-      'Day 1 of your period.\n\nYour body is working hard right now — shedding, renewing, resetting. Honor that with warmth, rest, and absolutely zero guilt.\n\nCancel whatever you can. The world can wait. You come first today. 🌸',
-      'Day 1 — the beginning of a new cycle.\n\nTake it slow, stay warm, and remember: resting IS doing something. It\'s doing the most important thing — taking care of you.\n\nYou\'re allowed to be soft today. ✨'
+      'Your period has arrived.\n\nToday is all about rest and kindness to yourself. Warm drinks, a cozy blanket, and zero guilt about doing nothing.\n\nYou\'ve earned this rest. 💕',
+      'Day 1 of your period.\n\nYour body is working hard right now — shedding, renewing, resetting. Honor that with warmth, rest, and absolutely zero guilt.\n\nCancel whatever you can. The world can wait. 🌸',
+      'Day 1 — the beginning of a new cycle.\n\nTake it slow, stay warm, and remember: resting IS doing something. It\'s doing the most important thing — taking care of you. ✨'
     ]
   },
   2: {
     subject: '🌸 Day 2 — You\'re doing great',
     messages: [
-      'Day 2 — often the toughest, but you\'ve got this.\n\nYou made it through day 1, and that\'s already a win. Keep resting, keep sipping warm things, keep being gentle.\n\nIf today feels heavier than yesterday, that\'s normal. Let it be heavy. You don\'t have to fight it. 💪',
+      'Day 2 — often the toughest, but you\'ve got this.\n\nYou made it through day 1, and that\'s already a win. Keep resting, keep sipping warm things, keep being gentle.\n\nIf today feels heavier, that\'s normal. Let it be heavy. 💪',
       'Day 2 of your period.\n\nIf today feels heavy, that\'s okay. Let it be heavy. You don\'t have to fight it — just flow with it like water.\n\nYour strength isn\'t in pushing through. It\'s in knowing when to rest. 🌊',
-      'Day 2 and you\'re still here, still showing up for yourself.\n\nThat takes more strength than you realize. Most people don\'t give themselves this kind of care. Be proud of that. 🌸'
+      'Day 2 and you\'re still here, still showing up for yourself.\n\nThat takes more strength than you realize. Be proud of that. 🌸'
     ]
   },
   3: {
     subject: '🌸 Day 3 — Halfway there',
     messages: [
-      'Day 3 — the midpoint.\n\nEnergy might start creeping back. Take it at your own pace — no rush, no pressure. Just you, moving at your speed.\n\nIf you feel like doing something light, great. If not, that\'s great too. No rules today. 🌱',
-      'Halfway through! Day 3 is a turning point for many.\n\nListen to what your body wants today and honor it — no questions asked. Your body has been communicating with you this whole time. It\'s time to listen. 🌿',
-      'Day 3. You\'re past the hardest part for most people.\n\nIf you can, take a gentle walk or do some light stretching — movement can help. But only if you want to. No shoulds, just coulds. 💫'
+      'Day 3 — the midpoint.\n\nEnergy might start creeping back. Take it at your own pace — no rush, no pressure.\n\nIf you feel like doing something light, great. If not, that\'s great too. 🌱',
+      'Halfway through! Day 3 is a turning point for many.\n\nListen to what your body wants today and honor it — no questions asked. Your body has been communicating with you. 🌿',
+      'Day 3. You\'re past the hardest part for most people.\n\nIf you can, take a gentle walk or do some light stretching — but only if you want to. No shoulds, just coulds. 💫'
     ]
   },
   4: {
     subject: '🌸 Day 4 — Almost there',
     messages: [
-      'Day 4 — you\'re so close to the finish line!\n\nIf you\'ve been resting well, you might start feeling lighter. Either way, you\'re doing incredible.\n\nThink about what self-care rituals felt best this cycle. Save them for next time — you\'re building your own personal care toolkit. ✨',
-      'Almost there! Day 4 and your body is already preparing to reset.\n\nBe proud of how you\'ve taken care of yourself this cycle. Not everyone does. You\'re learning your body\'s language and that\'s powerful. 🌸',
-      'Day 4. Notice how your body is starting to shift?\n\nThat\'s its wisdom at work. Trust the process — you\'re almost through. One more push of self-care and you\'ll be on the other side. 🌙'
+      'Day 4 — you\'re so close to the finish line!\n\nIf you\'ve been resting well, you might start feeling lighter. Either way, you\'re doing incredible.\n\nThink about what self-care rituals felt best this cycle. Save them for next time. ✨',
+      'Almost there! Day 4 and your body is already preparing to reset.\n\nBe proud of how you\'ve taken care of yourself this cycle. You\'re learning your body\'s language and that\'s powerful. 🌸',
+      'Day 4. Notice how your body is starting to shift?\n\nThat\'s its wisdom at work. Trust the process — you\'re almost through. 🌙'
     ]
   },
   5: {
     subject: '🌸 Day 5 — You made it!',
     messages: [
-      'Last stretch! Your period is nearly over.\n\nThink about what self-care rituals felt best this cycle — keep them close for next time. You know yourself well, and that knowledge is priceless.\n\nYou showed up for yourself every single day. That\'s everything. 💕',
-      'Final days of your period.\n\nSoon you\'ll enter a fresh cycle with new energy. Take a moment right now to appreciate your body\'s wisdom. It never stops working for you.\n\nYou\'re incredible. Never forget that. 🌸',
-      'Day 5 — you made it!\n\nThrough the cramps, the fatigue, the emotions — you showed up for yourself. That takes more strength than anyone talks about.\n\nRest tonight knowing you did beautifully. ✨'
+      'Last stretch! Your period is nearly over.\n\nThink about what self-care rituals felt best this cycle — keep them close for next time.\n\nYou showed up for yourself every single day. That\'s everything. 💕',
+      'Final days of your period.\n\nSoon you\'ll enter a fresh cycle with new energy. Take a moment to appreciate your body\'s wisdom.\n\nYou\'re incredible. Never forget that. 🌸',
+      'Day 5 — you made it!\n\nThrough the cramps, the fatigue, the emotions — you showed up for yourself.\n\nRest tonight knowing you did beautifully. ✨'
     ]
   }
 };
 
-const PERIOD_MSG_DEFAULT = {
+var PERIOD_MSG_DEFAULT = {
   subject: '🌸 Still in your period — keep going',
   messages: [
-    'Still in your period — and that\'s completely okay.\n\nEvery body is different, every cycle is different. Some are shorter, some longer. Keep being gentle with yourself.\n\nIf this is unusual for you, it might be worth mentioning to your doctor. But for now — rest and be kind. 💕',
-    'Your body is taking its time, and that\'s fine.\n\nThere\'s no rush. Rest, nourish yourself, and trust the process. Your body knows what it\'s doing even when it doesn\'t feel like it.\n\nKeep showing up for yourself. 🌸',
-    'Extended periods happen sometimes — it\'s more common than you think.\n\nKeep doing what you\'ve been doing: resting, staying warm, drinking water, being gentle. If this becomes a regular pattern, check in with your doctor.\n\nFor today though? Just rest. 🌙'
+    'Still in your period — and that\'s completely okay.\n\nEvery body is different, every cycle is different. Keep being gentle with yourself.\n\nIf this is unusual for you, it might be worth mentioning to your doctor. But for now — rest and be kind. 💕',
+    'Your body is taking its time, and that\'s fine.\n\nThere\'s no rush. Rest, nourish yourself, and trust the process.\n\nKeep showing up for yourself. 🌸',
+    'Extended periods happen sometimes — it\'s more common than you think.\n\nKeep doing what you\'ve been doing: resting, staying warm, drinking water, being gentle.\n\nFor today though? Just rest. 🌙'
   ]
 };
 
@@ -737,215 +817,157 @@ function pickRandom(arr) {
 //  CYCLE MATH
 // ══════════════════════════════════
 function daysBetween(a, b) { return Math.round((b - a) / 86400000); }
-function addDays(date, n) { const d = new Date(date); d.setDate(d.getDate() + n); return d; }
+function addDays(date, n) { var d = new Date(date); d.setDate(d.getDate() + n); return d; }
 function fmtDate(d) { return d ? d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : '—'; }
 function fmtDateFull(d) { return d ? d.toLocaleDateString('en-US', { weekday:'short', month: 'short', day: 'numeric' }) : '—'; }
-function toDateInput(d) { return d ? d.toISOString().split('T')[0] : ''; }
 function todayStr() { return toDateInput(new Date()); }
-function todayDate() { const t = new Date(); t.setHours(0,0,0,0); return t; }
+function todayDate() { var t = new Date(); t.setHours(0,0,0,0); return t; }
 
 function computeNext(lastStart, cycleLen) {
-  const ls = new Date(lastStart);
-  let next = new Date(ls);
-  let safety = 200;
+  var ls = new Date(lastStart);
+  var next = new Date(ls);
+  var safety = 200;
   while (next <= todayDate() && safety > 0) { next = addDays(next, cycleLen); safety--; }
   return next;
 }
 
 // ══════════════════════════════════
 //  CORE: GET TODAY'S STATUS
-//  This is the single source of truth
 // ══════════════════════════════════
 function getTodayStatus() {
-  const history  = load('history') || [];
-  const cycleLen = load('cycle') || 28;
-  const duration = load('duration') || 5;
+  var history  = load('history') || [];
+  var cycleLen = load('cycle') || 28;
+  var duration = load('duration') || 5;
   if (!history.length) return null;
 
-  const today     = todayDate();
-  const lastStart = new Date(history[0].start); lastStart.setHours(0,0,0,0);
-  const lastEnd   = history[0].end ? new Date(history[0].end) : addDays(lastStart, duration - 1);
+  var today     = todayDate();
+  var lastStart = new Date(history[0].start); lastStart.setHours(0,0,0,0);
+  var lastEnd   = history[0].end ? new Date(history[0].end) : addDays(lastStart, duration - 1);
   lastEnd.setHours(0,0,0,0);
-  const nextStart = addDays(lastStart, cycleLen);
+  var nextStart = addDays(lastStart, cycleLen);
   nextStart.setHours(0,0,0,0);
-  const nextEnd   = addDays(nextStart, duration - 1);
-  const daysUntil = daysBetween(today, nextStart);
+  var nextEnd   = addDays(nextStart, duration - 1);
+  var daysUntil = daysBetween(today, nextStart);
 
-  // Case 1: Currently in the last LOGGED period
   if (today >= lastStart && today <= lastEnd) {
-    const dayOfPeriod = daysBetween(lastStart, today) + 1;
+    var dayOfPeriod = daysBetween(lastStart, today) + 1;
     return {
-      status: 'in_period',
-      dayOfPeriod: dayOfPeriod,
-      periodEnd: lastEnd,
-      periodStart: lastStart,
-      nextStart: nextStart,
-      nextEnd: nextEnd,
-      daysUntil: daysUntil
+      status: 'in_period', dayOfPeriod: dayOfPeriod,
+      periodEnd: lastEnd, periodStart: lastStart,
+      nextStart: nextStart, nextEnd: nextEnd, daysUntil: daysUntil
     };
   }
 
-  // Case 2: The predicted next period has started but not yet logged
   if (daysUntil <= 0) {
-    const dayOfPeriod = Math.abs(daysUntil) + 1;
+    var dayOfPeriod2 = Math.abs(daysUntil) + 1;
     return {
-      status: 'in_period',
-      dayOfPeriod: dayOfPeriod,
-      periodEnd: nextEnd,
-      periodStart: nextStart,
+      status: 'in_period', dayOfPeriod: dayOfPeriod2,
+      periodEnd: nextEnd, periodStart: nextStart,
       nextStart: addDays(nextStart, cycleLen),
       nextEnd: addDays(nextStart, cycleLen + duration - 1),
-      daysUntil: daysUntil,
-      isPredicted: true
+      daysUntil: daysUntil, isPredicted: true
     };
   }
 
-  // Case 3: Exactly 2 days before next period
   if (daysUntil === 2) {
-    return {
-      status: 'pre_2days',
-      daysUntil: 2,
-      nextStart: nextStart,
-      nextEnd: nextEnd
-    };
+    return { status: 'pre_2days', daysUntil: 2, nextStart: nextStart, nextEnd: nextEnd };
   }
 
-  // Case 4: Normal days — no reminder due
-  return {
-    status: 'normal',
-    daysUntil: daysUntil,
-    nextStart: nextStart,
-    nextEnd: nextEnd
-  };
+  return { status: 'normal', daysUntil: daysUntil, nextStart: nextStart, nextEnd: nextEnd };
 }
 
 // ══════════════════════════════════
 //  EMAIL SENDING
 // ══════════════════════════════════
 function isEmailJSReady() {
-  const cfg = load('emailjs');
+  var cfg = load('emailjs');
   return cfg && cfg.pubKey && cfg.service && cfg.template;
 }
 
 function sendEmailRaw(params) {
-  const cfg = load('emailjs');
+  var cfg = load('emailjs');
   if (!cfg || !cfg.pubKey) return Promise.reject(new Error('EmailJS not configured'));
   try {
     emailjs.init(cfg.pubKey);
     return emailjs.send(cfg.service, cfg.template, params);
-  } catch(e) {
-    return Promise.reject(e);
-  }
+  } catch(e) { return Promise.reject(e); }
 }
 
 function sendPreReminder(isManual) {
-  const status = getTodayStatus();
-  const email = load('email');
+  var email = load('email');
   if (!email) return Promise.reject(new Error('No email saved'));
-
-  const params = {
+  return sendEmailRaw({
     to_email: email,
     subject: PRE_REMINDER_SUBJECT + (isManual ? ' [Test]' : ''),
     message: pickRandom(PRE_REMINDER_MESSAGES)
-  };
-
-  return sendEmailRaw(params);
+  });
 }
 
 function sendMotivation(dayOfPeriod, isManual) {
-  const email = load('email');
+  var email = load('email');
   if (!email) return Promise.reject(new Error('No email saved'));
-
-  const dayData = PERIOD_MESSAGES[dayOfPeriod] || PERIOD_MSG_DEFAULT;
-  const params = {
+  var dayData = PERIOD_MESSAGES[dayOfPeriod] || PERIOD_MSG_DEFAULT;
+  return sendEmailRaw({
     to_email: email,
     subject: dayData.subject + (isManual ? ' [Test]' : ''),
     message: pickRandom(dayData.messages)
-  };
-
-  return sendEmailRaw(params);
+  });
 }
 
 // ══════════════════════════════════
 //  AUTO REMINDER CHECK
-//  Called every time the app opens
 // ══════════════════════════════════
 function checkAndSendReminders() {
   if (!isEmailJSReady()) return;
-
-  const status = getTodayStatus();
+  var status = getTodayStatus();
   if (!status) return;
-
-  const today = todayStr();
-  const sent = load('reminders_sent') || {};
-  if (sent[today]) return; // Already sent today
+  var today = todayStr();
+  var sent = load('reminders_sent') || {};
+  if (sent[today]) return;
 
   if (status.status === 'pre_2days') {
-    sendPreReminder(false)
-      .then(function() {
-        sent[today] = 'pre_2days';
-        save('reminders_sent', sent);
-        renderReminderCard();
-        console.log('[Her] 2-day pre-reminder sent');
-      })
-      .catch(function(e) { console.warn('[Her] Pre-reminder failed:', e); });
-
+    sendPreReminder(false).then(function() {
+      sent[today] = 'pre_2days';
+      save('reminders_sent', sent);
+      renderReminderCard();
+    }).catch(function(e) { console.warn('[Her] Pre-reminder failed:', e); });
   } else if (status.status === 'in_period') {
-    sendMotivation(status.dayOfPeriod, false)
-      .then(function() {
-        sent[today] = 'period_day_' + status.dayOfPeriod;
-        save('reminders_sent', sent);
-        renderReminderCard();
-        console.log('[Her] Day ' + status.dayOfPeriod + ' motivation sent');
-      })
-      .catch(function(e) { console.warn('[Her] Motivation failed:', e); });
+    sendMotivation(status.dayOfPeriod, false).then(function() {
+      sent[today] = 'period_day_' + status.dayOfPeriod;
+      save('reminders_sent', sent);
+      renderReminderCard();
+    }).catch(function(e) { console.warn('[Her] Motivation failed:', e); });
   }
 }
 
-// ══════════════════════════════════
-//  MANUAL SEND (from Home card)
-// ══════════════════════════════════
 function sendReminderNow() {
-  if (!isEmailJSReady()) {
-    showToast('Set up EmailJS in Settings first ⚙️');
-    return;
-  }
+  if (!isEmailJSReady()) { showToast('Set up EmailJS in Settings first ⚙️'); return; }
+  var status = getTodayStatus();
+  if (!status) { showToast('No cycle data yet'); return; }
+  var today = todayStr();
+  var sent = load('reminders_sent') || {};
+  if (sent[today]) { showToast('Already sent today — check your inbox 📬'); return; }
 
-  const status = getTodayStatus();
-  if (!status) {
-    showToast('No cycle data yet');
-    return;
-  }
-
-  const today = todayStr();
-  const sent = load('reminders_sent') || {};
-  if (sent[today]) {
-    showToast('Already sent today — check your inbox 📬');
-    return;
-  }
-
-  let promise;
+  var promise;
   if (status.status === 'pre_2days') {
     promise = sendPreReminder(false);
   } else if (status.status === 'in_period') {
     promise = sendMotivation(status.dayOfPeriod, false);
   } else {
-    showToast('No reminder due today — next one in ' + (status.daysUntil - 2) + ' days');
+    showToast('No reminder due today — next one in ' + Math.max(0, status.daysUntil - 2) + ' days');
     return;
   }
 
   showToast('Sending...');
-  promise
-    .then(function() {
-      sent[today] = status.status === 'pre_2days' ? 'pre_2days' : 'period_day_' + status.dayOfPeriod;
-      save('reminders_sent', sent);
-      renderReminderCard();
-      showToast('Reminder sent! Check your inbox 📬');
-    })
-    .catch(function(e) {
-      console.error('Send failed:', e);
-      showToast('Failed to send — check EmailJS config ⚠️');
-    });
+  promise.then(function() {
+    sent[today] = status.status === 'pre_2days' ? 'pre_2days' : 'period_day_' + status.dayOfPeriod;
+    save('reminders_sent', sent);
+    renderReminderCard();
+    showToast('Reminder sent! Check your inbox 📬');
+  }).catch(function(e) {
+    console.error('Send failed:', e);
+    showToast('Failed to send — check EmailJS config ⚠️');
+  });
 }
 
 // ══════════════════════════════════
@@ -959,21 +981,18 @@ function saveOnboarding() {
   var dur   = parseInt(document.getElementById('ob-duration').value) || 5;
 
   if (!email || !email.includes('@')) { showToast('Please enter a valid email 📧'); return; }
-  if (!start) { showToast('Please enter your last period start date'); return; }
+  if (!start) { showToast('Please select your last period start date'); return; }
 
-  if (!save('email', email)) { showToast('Could not save — is localStorage available?'); return; }
+  if (!save('email', email)) { showToast('Could not save — is storage available?'); return; }
   save('cycle', cycle);
   save('duration', dur);
 
   var history = load('history') || [];
   history.unshift({ start: start, end: end || toDateInput(addDays(new Date(start), dur - 1)) });
   save('history', history);
-
-  // Clear old reminder tracking for fresh start
   save('reminders_sent', {});
 
   showMain();
-  // Send reminder after a short delay to ensure UI is ready
   setTimeout(function() { checkAndSendReminders(); }, 500);
 }
 
@@ -999,48 +1018,41 @@ function goTab(tab) {
   if (active) active.classList.add('active');
   var tabEl = document.getElementById('tab-' + tab);
   if (tabEl) tabEl.classList.add('active');
-
   if (tab === 'home') renderHome();
   if (tab === 'log') renderLog();
   if (tab === 'settings') renderSettings();
 }
 
 // ══════════════════════════════════
-//  REMINDER CARD RENDER
+//  REMINDER CARD
 // ══════════════════════════════════
 function renderReminderCard() {
-  var card      = document.getElementById('reminder-card');
-  var icon      = document.getElementById('reminder-icon');
-  var title     = document.getElementById('reminder-title');
-  var sub       = document.getElementById('reminder-sub');
-  var sendBtn   = document.getElementById('reminder-send-btn');
+  var card = document.getElementById('reminder-card');
+  var icon = document.getElementById('reminder-icon');
+  var title = document.getElementById('reminder-title');
+  var sub = document.getElementById('reminder-sub');
+  var sendBtn = document.getElementById('reminder-send-btn');
   var sentBadge = document.getElementById('reminder-sent-badge');
 
   var status = getTodayStatus();
-  var today  = todayStr();
-  var sent   = load('reminders_sent') || {};
+  var today = todayStr();
+  var sent = load('reminders_sent') || {};
   var alreadySent = !!sent[today];
   var ejsReady = isEmailJSReady();
 
-  // Reset
   sendBtn.style.display = 'none';
   sentBadge.style.display = 'none';
   card.classList.remove('inactive');
 
   if (!status) {
-    icon.textContent = '📭';
-    title.textContent = 'No cycle data';
+    icon.textContent = '📭'; title.textContent = 'No cycle data';
     sub.textContent = 'Add a period to enable reminders';
-    card.classList.add('inactive');
-    return;
+    card.classList.add('inactive'); return;
   }
-
   if (!ejsReady) {
-    icon.textContent = '⚠️';
-    title.textContent = 'EmailJS not configured';
+    icon.textContent = '⚠️'; title.textContent = 'EmailJS not configured';
     sub.textContent = 'Go to Settings to set up email reminders';
-    card.classList.add('inactive');
-    return;
+    card.classList.add('inactive'); return;
   }
 
   if (status.status === 'pre_2days') {
@@ -1054,7 +1066,6 @@ function renderReminderCard() {
       sub.textContent = 'Expected ' + fmtDate(status.nextStart) + ' — ' + fmtDate(status.nextEnd);
       sendBtn.style.display = 'inline-block';
     }
-
   } else if (status.status === 'in_period') {
     var remaining = daysBetween(todayDate(), status.periodEnd);
     icon.textContent = '🌸';
@@ -1064,12 +1075,10 @@ function renderReminderCard() {
       sentBadge.style.display = 'inline-block';
     } else {
       title.textContent = 'Day ' + status.dayOfPeriod + ' of your period';
-      sub.textContent = remaining > 0 ? (remaining + ' day' + (remaining > 1 ? 's' : '') + ' remaining — send motivation') : 'Last day — send motivation';
+      sub.textContent = remaining > 0 ? (remaining + ' day' + (remaining > 1 ? 's' : '') + ' remaining — send motivation') : 'Last day';
       sendBtn.style.display = 'inline-block';
     }
-
   } else {
-    // Normal — no reminder due today
     var daysToReminder = status.daysUntil - 2;
     icon.textContent = '📬';
     if (daysToReminder > 0) {
@@ -1087,33 +1096,31 @@ function renderReminderCard() {
 //  HOME RENDER
 // ══════════════════════════════════
 function renderHome() {
-  var status   = getTodayStatus();
+  var status = getTodayStatus();
   if (!status) return;
 
-  var history  = load('history') || [];
+  var history = load('history') || [];
   var cycleLen = load('cycle') || 28;
   var duration = load('duration') || 5;
-  var today    = todayDate();
+  var today = todayDate();
 
   var lastEntry = history[0];
   var lastStart = new Date(lastEntry.start); lastStart.setHours(0,0,0,0);
-  var lastEnd   = lastEntry.end ? new Date(lastEntry.end) : addDays(lastStart, duration - 1);
+  var lastEnd = lastEntry.end ? new Date(lastEntry.end) : addDays(lastStart, duration - 1);
   lastEnd.setHours(0,0,0,0);
 
   var inPeriod = (status.status === 'in_period');
-
-  // Ring
   var progress, daysToShow;
+
   if (inPeriod) {
-    progress = 1;
-    daysToShow = status.dayOfPeriod;
+    progress = 1; daysToShow = status.dayOfPeriod;
   } else {
     progress = Math.max(0, Math.min(1, (cycleLen - status.daysUntil) / cycleLen));
     daysToShow = Math.max(0, status.daysUntil);
   }
+
   var circumference = 2 * Math.PI * 82;
-  var offset = circumference * (1 - progress);
-  document.getElementById('ring-progress').style.strokeDashoffset = Math.round(offset);
+  document.getElementById('ring-progress').style.strokeDashoffset = Math.round(circumference * (1 - progress));
   document.getElementById('ring-progress').style.strokeDasharray = Math.round(circumference);
 
   if (inPeriod) {
@@ -1134,23 +1141,18 @@ function renderHome() {
     document.getElementById('phase-text').textContent = phaseText;
   }
 
-  // Stats
   document.getElementById('stat-next-date').textContent = fmtDate(status.nextStart);
   document.getElementById('stat-next-end').textContent  = 'ends ' + fmtDate(status.nextEnd);
   document.getElementById('stat-cycle').textContent     = cycleLen + ' days';
   document.getElementById('stat-duration').textContent  = duration + ' day period';
   document.getElementById('stat-last-start').textContent = fmtDate(lastStart);
   document.getElementById('stat-last-end').textContent   = 'ended ' + fmtDate(lastEnd);
+  document.getElementById('stat-ovulation').textContent = fmtDate(addDays(status.nextStart, -14));
 
-  var ovulationDate = addDays(status.nextStart, -14);
-  document.getElementById('stat-ovulation').textContent = fmtDate(ovulationDate);
-
-  // Quote
   var q = QUOTES[today.getDate() % QUOTES.length];
   document.getElementById('daily-quote').textContent  = '"' + q.text + '"';
   document.getElementById('quote-author').textContent = '— ' + q.author;
 
-  // Reminder card
   renderReminderCard();
 }
 
@@ -1158,9 +1160,9 @@ function renderHome() {
 //  LOG RENDER
 // ══════════════════════════════════
 function renderLog() {
-  var history   = load('history') || [];
+  var history = load('history') || [];
   var container = document.getElementById('history-list');
-  var duration  = load('duration') || 5;
+  var duration = load('duration') || 5;
 
   document.getElementById('log-start').value = toDateInput(new Date());
   document.getElementById('log-end').value   = toDateInput(addDays(new Date(), duration - 1));
@@ -1175,37 +1177,30 @@ function renderLog() {
     var s = new Date(entry.start);
     var e = entry.end ? new Date(entry.end) : null;
     var dur = e ? daysBetween(s, e) + 1 : '?';
-    html += '<div class="history-item">' +
-      '<div><div class="history-date">' + fmtDateFull(s) + '</div>' +
-      '<div class="history-dur">to ' + (e ? fmtDateFull(e) : '—') + '</div></div>' +
-      '<div style="display:flex;align-items:center;gap:10px">' +
-      '<span class="history-badge">' + dur + ' days</span>' +
-      '<button class="del-entry-btn" data-idx="' + i + '" style="background:none;border:none;cursor:pointer;color:var(--text-muted);font-size:18px;padding:2px">×</button>' +
-      '</div></div>';
+    html += '<div class="history-item"><div><div class="history-date">' + fmtDateFull(s) +
+      '</div><div class="history-dur">to ' + (e ? fmtDateFull(e) : '—') +
+      '</div></div><div style="display:flex;align-items:center;gap:10px"><span class="history-badge">' +
+      dur + ' days</span><button class="del-entry-btn" data-idx="' + i +
+      '" style="background:none;border:none;cursor:pointer;color:var(--text-muted);font-size:18px;padding:2px">×</button></div></div>';
   });
   container.innerHTML = html;
 
   container.querySelectorAll('.del-entry-btn').forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      deleteEntry(parseInt(this.getAttribute('data-idx')));
-    });
+    btn.addEventListener('click', function() { deleteEntry(parseInt(this.getAttribute('data-idx'))); });
   });
 }
 
 function logPeriod() {
   var start = document.getElementById('log-start').value;
   var end   = document.getElementById('log-end').value;
-  if (!start) { showToast('Please enter a start date'); return; }
+  if (!start) { showToast('Please select a start date'); return; }
   var history = load('history') || [];
   history.unshift({ start: start, end: end });
   history.sort(function(a, b) { return new Date(b.start) - new Date(a.start); });
   save('history', history);
-  // Reset reminder tracking for new cycle
   save('reminders_sent', {});
-  renderLog();
-  renderHome();
+  renderLog(); renderHome();
   showToast('Period logged 🌸');
-  // Check if reminder should be sent
   setTimeout(function() { checkAndSendReminders(); }, 300);
 }
 
@@ -1214,8 +1209,7 @@ function deleteEntry(idx) {
   history.splice(idx, 1);
   save('history', history);
   save('reminders_sent', {});
-  renderLog();
-  renderHome();
+  renderLog(); renderHome();
   showToast('Entry removed');
 }
 
@@ -1232,15 +1226,10 @@ function renderSettings() {
   if (cfg.service)  document.getElementById('ejs-service').value  = cfg.service;
   if (cfg.template) document.getElementById('ejs-template').value = cfg.template;
 
-  // Update checklist
-  var dotPub = document.getElementById('check-pub');
-  var dotSvc = document.getElementById('check-svc');
-  var dotTpl = document.getElementById('check-tpl');
-  dotPub.className = 'setup-check-dot ' + (cfg.pubKey ? 'done' : 'missing');
-  dotSvc.className = 'setup-check-dot ' + (cfg.service ? 'done' : 'missing');
-  dotTpl.className = 'setup-check-dot ' + (cfg.template ? 'done' : 'missing');
+  document.getElementById('check-pub').className = 'setup-check-dot ' + (cfg.pubKey ? 'done' : 'missing');
+  document.getElementById('check-svc').className = 'setup-check-dot ' + (cfg.service ? 'done' : 'missing');
+  document.getElementById('check-tpl').className = 'setup-check-dot ' + (cfg.template ? 'done' : 'missing');
 
-  // Update status badge
   var ready = isEmailJSReady();
   document.getElementById('reminder-dot').style.background = ready ? '#81C784' : '#E57373';
   document.getElementById('reminder-status-text').textContent = ready ? 'Active' : 'Off';
@@ -1260,8 +1249,7 @@ function editField(field) {
     save(field, n);
   }
   save('reminders_sent', {});
-  renderSettings();
-  renderHome();
+  renderSettings(); renderHome();
   showToast('Updated ✓');
 }
 
@@ -1271,18 +1259,13 @@ function saveEmailJS() {
   var template = document.getElementById('ejs-template').value.trim();
   if (!pubKey || !service || !template) { showToast('Please fill all three fields'); return; }
   save('emailjs', { pubKey: pubKey, service: service, template: template });
-  renderSettings();
-  renderHome();
+  renderSettings(); renderHome();
   showToast('EmailJS config saved ✓');
 }
 
-// ══════════════════════════════════
-//  TEST FUNCTIONS
-// ══════════════════════════════════
 function testPreReminder() {
   if (!isEmailJSReady()) { showToast('Save EmailJS config first'); return; }
-  var email = load('email');
-  if (!email) { showToast('No email saved'); return; }
+  if (!load('email')) { showToast('No email saved'); return; }
   showToast('Sending test...');
   sendPreReminder(true)
     .then(function() { showToast('Test 2-day warning sent! 📬'); })
@@ -1291,8 +1274,7 @@ function testPreReminder() {
 
 function testMotivation() {
   if (!isEmailJSReady()) { showToast('Save EmailJS config first'); return; }
-  var email = load('email');
-  if (!email) { showToast('No email saved'); return; }
+  if (!load('email')) { showToast('No email saved'); return; }
   showToast('Sending test...');
   sendMotivation(1, true)
     .then(function() { showToast('Test motivation sent! 📬'); })
@@ -1301,13 +1283,12 @@ function testMotivation() {
 
 function testEmailJSOnly() {
   if (!isEmailJSReady()) { showToast('Save EmailJS config first'); return; }
-  var email = load('email');
-  if (!email) { showToast('No email saved'); return; }
+  if (!load('email')) { showToast('No email saved'); return; }
   showToast('Testing connection...');
   sendEmailRaw({
-    to_email: email,
+    to_email: load('email'),
     subject: '🌸 [Connection Test] Her App',
-    message: 'If you received this, your EmailJS is working correctly! Your reminders will be sent to this email address. 💕'
+    message: 'If you received this, your EmailJS is working correctly! 💕'
   })
   .then(function() { showToast('Connection works! Email sent 📬'); })
   .catch(function(e) { showToast('Failed: ' + (e.text || e.message || 'Unknown error')); });
@@ -1318,8 +1299,7 @@ function testEmailJSOnly() {
 // ══════════════════════════════════
 function showToast(msg) {
   var t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
+  t.textContent = msg; t.classList.add('show');
   clearTimeout(t._timer);
   t._timer = setTimeout(function() { t.classList.remove('show'); }, 3200);
 }
@@ -1335,37 +1315,20 @@ function resetApp() {
 //  EVENT LISTENERS
 // ══════════════════════════════════
 document.addEventListener('DOMContentLoaded', function() {
-  // Onboarding
-  document.getElementById('get-started-btn').addEventListener('click', function(e) {
-    e.preventDefault(); saveOnboarding();
-  });
-
-  // Nav tabs
+  document.getElementById('get-started-btn').addEventListener('click', function(e) { e.preventDefault(); saveOnboarding(); });
   document.getElementById('tab-home').addEventListener('click', function(e) { e.preventDefault(); goTab('home'); });
   document.getElementById('tab-log').addEventListener('click', function(e) { e.preventDefault(); goTab('log'); });
   document.getElementById('tab-settings').addEventListener('click', function(e) { e.preventDefault(); goTab('settings'); });
-
-  // Top settings
   document.getElementById('top-settings-btn').addEventListener('click', function(e) { e.preventDefault(); goTab('settings'); });
-
-  // Reminder send now
   document.getElementById('reminder-send-btn').addEventListener('click', function(e) { e.preventDefault(); sendReminderNow(); });
-
-  // Log
   document.getElementById('log-period-btn').addEventListener('click', function(e) { e.preventDefault(); logPeriod(); });
-
-  // Settings edits
   document.getElementById('edit-email-btn').addEventListener('click', function(e) { e.preventDefault(); editField('email'); });
   document.getElementById('edit-cycle-btn').addEventListener('click', function(e) { e.preventDefault(); editField('cycle'); });
   document.getElementById('edit-duration-btn').addEventListener('click', function(e) { e.preventDefault(); editField('duration'); });
-
-  // EmailJS
   document.getElementById('save-emailjs-btn').addEventListener('click', function(e) { e.preventDefault(); saveEmailJS(); });
   document.getElementById('test-pre-btn').addEventListener('click', function(e) { e.preventDefault(); testPreReminder(); });
   document.getElementById('test-motivation-btn').addEventListener('click', function(e) { e.preventDefault(); testMotivation(); });
   document.getElementById('test-emailjs-btn').addEventListener('click', function(e) { e.preventDefault(); testEmailJSOnly(); });
-
-  // Reset
   document.getElementById('reset-app-btn').addEventListener('click', function(e) { e.preventDefault(); resetApp(); });
 });
 
@@ -1377,20 +1340,16 @@ document.addEventListener('DOMContentLoaded', function() {
   var history = load('history');
   if (email && history && history.length) {
     showMain();
-    // Auto-check reminders after UI is ready
     setTimeout(function() { checkAndSendReminders(); }, 800);
   } else {
     document.getElementById('screen-onboarding').classList.add('active');
   }
 
-  // Set date limits
-  try {
-    var today = toDateInput(new Date());
-    var startInput = document.getElementById('ob-start');
-    var endInput   = document.getElementById('ob-end');
-    if (startInput) startInput.max = today;
-    if (endInput) endInput.max = today;
-  } catch(e) {}
+  // ★ REMOVED the max attribute setting — this was blocking date selection on mobile
+  // The old code was:
+  //   startInput.max = today;   ← BUG: toDateInput used UTC, shifting dates in non-GMT zones
+  //   endInput.max = today;     ← Same bug
+  // We don't set max at all now, since the user might want to log a period that started yesterday
 })();
 </script>
 </body>
