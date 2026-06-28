@@ -20,9 +20,7 @@
     --radius-xl: 28px;
     font-family: 'Google Sans', system-ui, sans-serif;
   }
-
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   body {
     background: var(--surface-bg);
     color: var(--text-primary);
@@ -32,7 +30,6 @@
     align-items: center;
   }
 
-  /* ── TOP APP BAR ── */
   .top-bar {
     width: 100%; max-width: 480px;
     padding: 16px 20px 8px;
@@ -61,14 +58,10 @@
   }
   .settings-btn:hover { background: var(--surface-elevated); }
 
-  /* ── SCREENS ── */
   .screen { display: none; width: 100%; max-width: 480px; padding: 8px 20px 32px; }
   .screen.active { display: flex; flex-direction: column; gap: 16px; }
 
-  /* ── ONBOARDING ── */
-  .onboarding-hero {
-    text-align: center; padding: 24px 0 8px;
-  }
+  .onboarding-hero { text-align: center; padding: 24px 0 8px; }
   .hero-ring {
     width: 120px; height: 120px; margin: 0 auto 20px;
     border-radius: 50%;
@@ -85,7 +78,6 @@
   }
   .hero-sub { font-size: 15px; color: var(--text-secondary); line-height: 1.5; }
 
-  /* ── CARDS ── */
   .card {
     background: var(--surface-card);
     border: 0.5px solid var(--border);
@@ -98,12 +90,8 @@
     margin-bottom: 16px;
   }
 
-  /* ── INPUT GROUP ── */
   .input-group { display: flex; flex-direction: column; gap: 12px; }
-  .input-label {
-    font-size: 13px; color: var(--text-secondary);
-    margin-bottom: 4px; display: block;
-  }
+  .input-label { font-size: 13px; color: var(--text-secondary); margin-bottom: 4px; display: block; }
   .input-row { display: flex; flex-direction: column; gap: 4px; }
   input[type="email"], input[type="date"], input[type="number"], input[type="text"] {
     width: 100%; padding: 14px 16px;
@@ -117,7 +105,6 @@
   input:focus { border-color: var(--pink-200); }
   input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(0.8); cursor: pointer; }
 
-  /* ── BUTTONS ── */
   .btn-primary {
     width: 100%; padding: 16px;
     background: linear-gradient(135deg, var(--pink-400), var(--mauve-400));
@@ -140,15 +127,9 @@
   }
   .btn-secondary:hover { background: var(--surface-elevated); }
 
-  /* ── COUNTDOWN RING ── */
-  .ring-wrap {
-    display: flex; flex-direction: column; align-items: center;
-    padding: 8px 0;
-  }
+  .ring-wrap { display: flex; flex-direction: column; align-items: center; padding: 8px 0; }
   .ring-svg { filter: drop-shadow(0 0 16px rgba(244,143,177,0.2)); }
-  .ring-center {
-    text-align: center; margin-top: -8px;
-  }
+  .ring-center { text-align: center; margin-top: -8px; }
   .ring-days {
     font-family: 'Google Sans Display', sans-serif;
     font-size: 52px; font-weight: 600;
@@ -158,7 +139,6 @@
   }
   .ring-label { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
 
-  /* ── STAT CHIPS ── */
   .stat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   .stat-chip {
     background: var(--surface-elevated);
@@ -170,7 +150,6 @@
   .stat-chip-value { font-size: 18px; font-weight: 500; color: var(--text-primary); margin-top: 4px; }
   .stat-chip-sub { font-size: 12px; color: var(--text-secondary); margin-top: 2px; }
 
-  /* ── PHASE PILL ── */
   .phase-pill {
     display: inline-flex; align-items: center; gap: 6px;
     padding: 6px 14px; border-radius: 999px;
@@ -180,24 +159,18 @@
   }
   .phase-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--pink-200); }
 
-  /* ── QUOTE CARD ── */
   .quote-card {
     background: linear-gradient(135deg, rgba(244,143,177,0.08), rgba(206,147,216,0.06));
     border: 0.5px solid var(--border-strong);
     border-radius: var(--radius-xl);
     padding: 20px;
   }
-  .quote-text {
-    font-size: 15px; line-height: 1.65; color: var(--text-secondary);
-    font-style: italic;
-  }
+  .quote-text { font-size: 15px; line-height: 1.65; color: var(--text-secondary); font-style: italic; }
   .quote-author { font-size: 12px; color: var(--text-muted); margin-top: 10px; }
 
-  /* ── HISTORY LIST ── */
   .history-item {
     display: flex; align-items: center; justify-content: space-between;
-    padding: 12px 0;
-    border-bottom: 0.5px solid var(--border);
+    padding: 12px 0; border-bottom: 0.5px solid var(--border);
   }
   .history-item:last-child { border-bottom: none; }
   .history-date { font-size: 14px; color: var(--text-primary); }
@@ -207,7 +180,6 @@
     background: rgba(244,143,177,0.1); color: var(--pink-200);
   }
 
-  /* ── STATUS TAG ── */
   .status-active {
     display: inline-flex; gap: 6px; align-items: center;
     padding: 4px 12px; border-radius: 999px; font-size: 12px;
@@ -215,7 +187,6 @@
     border: 0.5px solid rgba(244,143,177,0.2);
   }
 
-  /* ── SETTINGS SCREEN ── */
   .settings-row {
     display: flex; align-items: center; justify-content: space-between;
     padding: 14px 0; border-bottom: 0.5px solid var(--border);
@@ -228,7 +199,6 @@
     background: none; border: none; font-family: 'Google Sans', sans-serif;
   }
 
-  /* ── TOAST ── */
   #toast {
     position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(80px);
     background: var(--surface-modal); border: 0.5px solid var(--border-strong);
@@ -237,10 +207,10 @@
     transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
     white-space: nowrap; z-index: 999;
     box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    max-width: 90vw; white-space: normal; text-align: center;
   }
   #toast.show { transform: translateX(-50%) translateY(0); }
 
-  /* ── NAV TABS ── */
   .nav-tabs {
     width: 100%; max-width: 480px;
     display: flex; background: var(--surface-card);
@@ -258,7 +228,6 @@
   .nav-tab.active { color: var(--pink-200); }
   .nav-tab svg { width: 22px; height: 22px; }
 
-  /* ── PERIOD ACTIVE BANNER ── */
   .period-active-banner {
     background: linear-gradient(135deg, rgba(244,143,177,0.15), rgba(206,147,216,0.1));
     border: 0.5px solid rgba(244,143,177,0.3);
@@ -270,7 +239,6 @@
   .period-active-text h3 { font-size: 15px; font-weight: 500; color: var(--text-primary); }
   .period-active-text p { font-size: 13px; color: var(--text-secondary); margin-top: 3px; }
 
-  /* EmailJS badge */
   .email-badge {
     display: flex; align-items: center; gap: 8px;
     background: rgba(206,147,216,0.08);
@@ -284,26 +252,97 @@
     font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em;
     color: var(--text-muted); font-weight: 500; padding: 0 4px;
   }
-
   .divider { height: 0.5px; background: var(--border); margin: 4px 0; }
+
+  /* ── REMINDER STATUS CARD ── */
+  .reminder-card {
+    background: linear-gradient(135deg, rgba(244,143,177,0.1), rgba(206,147,216,0.07));
+    border: 0.5px solid rgba(244,143,177,0.2);
+    border-radius: var(--radius-xl);
+    padding: 16px 18px;
+    display: flex; align-items: center; gap: 14px;
+    transition: opacity 0.3s;
+  }
+  .reminder-card.inactive { opacity: 0.55; }
+  .reminder-card-icon { font-size: 26px; flex-shrink: 0; }
+  .reminder-card-body { flex: 1; min-width: 0; }
+  .reminder-card-title { font-size: 14px; font-weight: 500; color: var(--text-primary); }
+  .reminder-card-sub { font-size: 12px; color: var(--text-secondary); margin-top: 3px; line-height: 1.4; }
+  .reminder-send-btn {
+    flex-shrink: 0;
+    padding: 8px 14px;
+    background: rgba(244,143,177,0.15);
+    border: 0.5px solid rgba(244,143,177,0.3);
+    border-radius: var(--radius-sm);
+    color: var(--pink-200);
+    font-size: 12px; font-weight: 500;
+    font-family: 'Google Sans', sans-serif;
+    cursor: pointer; transition: background 0.2s;
+    white-space: nowrap;
+  }
+  .reminder-send-btn:hover { background: rgba(244,143,177,0.28); }
+  .reminder-sent-badge {
+    flex-shrink: 0;
+    padding: 6px 12px;
+    background: rgba(129,199,132,0.12);
+    border: 0.5px solid rgba(129,199,132,0.25);
+    border-radius: var(--radius-sm);
+    color: #81C784;
+    font-size: 12px; font-weight: 500;
+    white-space: nowrap;
+  }
+
+  /* ── EMAILJS SETUP GUIDE ── */
+  .setup-guide {
+    background: var(--surface-elevated);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 14px 16px;
+    margin-bottom: 14px;
+  }
+  .setup-guide-title { font-size: 13px; font-weight: 500; color: var(--text-primary); margin-bottom: 8px; }
+  .setup-step {
+    display: flex; gap: 10px; margin-bottom: 8px; font-size: 12px; color: var(--text-secondary); line-height: 1.5;
+  }
+  .setup-step:last-child { margin-bottom: 0; }
+  .setup-step-num {
+    flex-shrink: 0; width: 20px; height: 20px;
+    border-radius: 50%; background: rgba(244,143,177,0.15);
+    color: var(--pink-200); font-size: 11px; font-weight: 600;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .setup-check {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 12px; padding: 6px 0;
+  }
+  .setup-check-dot {
+    width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+  }
+  .setup-check-dot.done { background: #81C784; }
+  .setup-check-dot.missing { background: #E57373; }
+
+  @keyframes pulse-soft {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+  }
+  .pulse { animation: pulse-soft 2s ease-in-out infinite; }
 </style>
 </head>
 <body>
 
-<!-- TOP APP BAR -->
 <div class="top-bar">
   <div class="logo">
     <div class="logo-icon">🌸</div>
     <span class="logo-name">Her</span>
   </div>
-  <button class="settings-btn" onclick="goTab('settings')" aria-label="Settings">
+  <button class="settings-btn" id="top-settings-btn" aria-label="Settings">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="22" height="22">
       <circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
     </svg>
   </button>
 </div>
 
-<!-- ══════════════════ ONBOARDING SCREEN ══════════════════ -->
+<!-- ══════════════════ ONBOARDING ══════════════════ -->
 <div id="screen-onboarding" class="screen active">
   <div class="onboarding-hero">
     <div class="hero-ring">🌸</div>
@@ -321,7 +360,7 @@
     </div>
     <div class="email-badge" style="margin-top:12px">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-      You'll receive a reminder the day before and on the day your period is expected.
+      You'll get a reminder 2 days before your period, then daily motivation during your period.
     </div>
   </div>
 
@@ -356,9 +395,8 @@
   <button class="btn-primary" id="get-started-btn">Get started →</button>
 </div>
 
-<!-- ══════════════════ HOME SCREEN ══════════════════ -->
+<!-- ══════════════════ HOME ══════════════════ -->
 <div id="screen-home" class="screen">
-  <!-- Countdown ring -->
   <div class="card" style="padding: 24px 20px 20px;">
     <div class="ring-wrap">
       <svg class="ring-svg" width="200" height="200" viewBox="0 0 200 200">
@@ -384,7 +422,17 @@
     </div>
   </div>
 
-  <!-- Period active banner (hidden by default) -->
+  <!-- Reminder Status Card -->
+  <div class="reminder-card" id="reminder-card">
+    <div class="reminder-card-icon" id="reminder-icon">📬</div>
+    <div class="reminder-card-body">
+      <div class="reminder-card-title" id="reminder-title">Checking reminders...</div>
+      <div class="reminder-card-sub" id="reminder-sub">Please wait</div>
+    </div>
+    <button class="reminder-send-btn" id="reminder-send-btn" style="display:none">Send now</button>
+    <span class="reminder-sent-badge" id="reminder-sent-badge" style="display:none">Sent ✓</span>
+  </div>
+
   <div class="period-active-banner" id="active-banner" style="display:none">
     <div class="period-active-icon">🌸</div>
     <div class="period-active-text">
@@ -393,7 +441,6 @@
     </div>
   </div>
 
-  <!-- Stat chips -->
   <div class="stat-row">
     <div class="stat-chip">
       <div class="stat-chip-label">Next period</div>
@@ -420,14 +467,13 @@
     </div>
   </div>
 
-  <!-- Daily quote -->
   <div class="quote-card">
     <p class="quote-text" id="daily-quote">Loading your daily affirmation...</p>
     <p class="quote-author" id="quote-author">— Her</p>
   </div>
 </div>
 
-<!-- ══════════════════ LOG SCREEN ══════════════════ -->
+<!-- ══════════════════ LOG ══════════════════ -->
 <div id="screen-log" class="screen">
   <p class="section-heading">Log a period</p>
   <div class="card">
@@ -444,16 +490,14 @@
     </div>
     <button class="btn-primary" style="margin-top:16px" id="log-period-btn">Save period</button>
   </div>
-
   <div class="divider"></div>
   <p class="section-heading">History</p>
-
   <div class="card" id="history-list">
     <p style="color:var(--text-muted); font-size:14px; text-align:center; padding: 12px 0;">No periods logged yet</p>
   </div>
 </div>
 
-<!-- ══════════════════ SETTINGS SCREEN ══════════════════ -->
+<!-- ══════════════════ SETTINGS ══════════════════ -->
 <div id="screen-settings" class="screen">
   <p class="section-heading">Account</p>
   <div class="card">
@@ -484,39 +528,81 @@
     </div>
   </div>
 
-  <p class="section-heading">Reminders</p>
+  <p class="section-heading">Reminder system</p>
   <div class="card">
     <div class="settings-row" style="border-bottom:none">
       <div>
         <div class="settings-key">Email reminders</div>
-        <div style="font-size:12px; color:var(--text-muted); margin-top:3px">Sent via EmailJS — free</div>
+        <div style="font-size:12px; color:var(--text-muted); margin-top:3px">2 days before + daily during period</div>
       </div>
-      <span class="status-active"><span style="width:6px;height:6px;border-radius:50%;background:var(--pink-200);display:inline-block"></span>On</span>
+      <span class="status-active" id="reminder-status-badge">
+        <span id="reminder-dot" style="width:6px;height:6px;border-radius:50%;background:#E57373;display:inline-block"></span>
+        <span id="reminder-status-text">Off</span>
+      </span>
     </div>
   </div>
 
   <p class="section-heading">EmailJS setup</p>
   <div class="card">
-    <p style="font-size:13px; color:var(--text-secondary); line-height:1.6; margin-bottom:14px">
-      To enable real email reminders, add your EmailJS credentials below. 
-      <a href="https://www.emailjs.com" target="_blank" style="color:var(--pink-200)">Sign up free at emailjs.com</a>
-    </p>
+    <!-- Setup checklist -->
+    <div class="setup-guide" id="setup-guide">
+      <div class="setup-guide-title">Quick setup checklist</div>
+      <div class="setup-check">
+        <span class="setup-check-dot missing" id="check-pub"></span>
+        <span>Public Key entered</span>
+      </div>
+      <div class="setup-check">
+        <span class="setup-check-dot missing" id="check-svc"></span>
+        <span>Service ID entered</span>
+      </div>
+      <div class="setup-check">
+        <span class="setup-check-dot missing" id="check-tpl"></span>
+        <span>Template ID entered</span>
+      </div>
+    </div>
+
+    <div class="setup-guide" style="margin-bottom:14px">
+      <div class="setup-guide-title">How to set up (2 minutes)</div>
+      <div class="setup-step">
+        <span class="setup-step-num">1</span>
+        <span>Go to <a href="https://www.emailjs.com" target="_blank" style="color:var(--pink-200)">emailjs.com</a> and create a free account</span>
+      </div>
+      <div class="setup-step">
+        <span class="setup-step-num">2</span>
+        <span>Add an email service (Gmail, Outlook, etc.) and copy the Service ID</span>
+      </div>
+      <div class="setup-step">
+        <span class="setup-step-num">3</span>
+        <span>Create a template with variables: <code style="color:var(--pink-200);background:var(--surface-card);padding:1px 5px;border-radius:4px">{{to_email}}</code> <code style="color:var(--pink-200);background:var(--surface-card);padding:1px 5px;border-radius:4px">{{subject}}</code> <code style="color:var(--pink-200);background:var(--surface-card);padding:1px 5px;border-radius:4px">{{message}}</code></span>
+      </div>
+      <div class="setup-step">
+        <span class="setup-step-num">4</span>
+        <span>Copy your Public Key from Account page and paste everything below</span>
+      </div>
+    </div>
+
     <div class="input-group">
       <div class="input-row">
         <label class="input-label" for="ejs-pubkey">Public Key</label>
-        <input type="text" id="ejs-pubkey" placeholder="your_public_key" style="font-size:13px">
+        <input type="text" id="ejs-pubkey" placeholder="e.g. aBcDeFgHiJkLmN" style="font-size:13px">
       </div>
       <div class="input-row">
         <label class="input-label" for="ejs-service">Service ID</label>
-        <input type="text" id="ejs-service" placeholder="service_xxxxxxx" style="font-size:13px">
+        <input type="text" id="ejs-service" placeholder="e.g. service_abc123" style="font-size:13px">
       </div>
       <div class="input-row">
         <label class="input-label" for="ejs-template">Template ID</label>
-        <input type="text" id="ejs-template" placeholder="template_xxxxxxx" style="font-size:13px">
+        <input type="text" id="ejs-template" placeholder="e.g. template_xyz789" style="font-size:13px">
       </div>
     </div>
     <button class="btn-primary" style="margin-top:14px" id="save-emailjs-btn">Save EmailJS config</button>
-    <button class="btn-secondary" style="margin-top:8px" id="test-email-btn">Send test email</button>
+  </div>
+
+  <div class="card">
+    <p class="card-title">Test reminders</p>
+    <button class="btn-secondary" style="margin-bottom:8px" id="test-pre-btn">Send test: 2-day warning</button>
+    <button class="btn-secondary" style="margin-bottom:8px" id="test-motivation-btn">Send test: Daily motivation</button>
+    <button class="btn-secondary" id="test-emailjs-btn">Test EmailJS connection only</button>
   </div>
 
   <div class="card" style="margin-top:4px">
@@ -524,7 +610,6 @@
   </div>
 </div>
 
-<!-- ══════════════════ BOTTOM NAV ══════════════════ -->
 <nav class="nav-tabs" id="bottom-nav" style="display:none">
   <button class="nav-tab active" id="tab-home">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
@@ -546,35 +631,26 @@
   </button>
 </nav>
 
-<!-- TOAST -->
 <div id="toast"></div>
 
-<!-- EmailJS SDK -->
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
 <script>
 // ══════════════════════════════════
 //  DATA LAYER
 // ══════════════════════════════════
-function save(key, val) { 
-  try {
-    localStorage.setItem('her_' + key, JSON.stringify(val));
-    return true;
-  } catch(e) {
-    console.error('Error saving to localStorage:', e);
-    return false;
-  }
+function save(key, val) {
+  try { localStorage.setItem('her_' + key, JSON.stringify(val)); return true; }
+  catch(e) { console.error('Save error:', e); return false; }
+}
+function load(key) {
+  try { return JSON.parse(localStorage.getItem('her_' + key)); }
+  catch(e) { return null; }
 }
 
-function load(key) { 
-  try { 
-    return JSON.parse(localStorage.getItem('her_' + key)); 
-  } catch(e) { 
-    console.error('Error loading from localStorage:', e);
-    return null; 
-  } 
-}
-
+// ══════════════════════════════════
+//  QUOTES
+// ══════════════════════════════════
 const QUOTES = [
   { text: "Your body is not a problem to be solved. It's a home to be loved.", author: "Her" },
   { text: "Rest is not laziness. It's your body's way of asking for what it needs.", author: "Her" },
@@ -591,144 +667,419 @@ const QUOTES = [
 ];
 
 // ══════════════════════════════════
+//  REMINDER MESSAGES
+// ══════════════════════════════════
+const PRE_REMINDER_SUBJECT = '🌸 Heads up — your period is in 2 days';
+const PRE_REMINDER_MESSAGES = [
+  'Hey! Just a heads up — your period is expected in 2 days.\n\nTime to prep your comfort kit: warm drinks, cozy blankets, and whatever makes you feel good. You know yourself best.\n\nTake it easy these next couple of days. Your body is about to do something amazing, and it deserves all the care you can give it. 💕',
+  'Friendly reminder: your period is coming in about 2 days.\n\nStart taking it a little easier now — cancel what you can, say no to what drains you, and say yes to rest.\n\nYou\'ve been through this before and you always handle it beautifully. Trust yourself. 🌸',
+  'In 2 days, your cycle begins.\n\nStock up on what you need — your favorite snacks, pain relief if you use it, comfy clothes. Give yourself permission to slow down.\n\nThis isn\'t laziness. This is wisdom. You deserve it. ✨',
+  'Quick note: your period is expected in 2 days.\n\nThink about what helped you feel good last cycle. Was it a hot water bottle? A specific tea? A movie marathon? Get those things ready now.\n\nYour future self will thank you. 🌙'
+];
+
+const PERIOD_MESSAGES = {
+  1: {
+    subject: '🌸 Day 1 — Your period is here',
+    messages: [
+      'Your period has arrived.\n\nToday is all about rest and kindness to yourself. You don\'t need to be productive — you need to be gentle.\n\nWarm drinks, a cozy blanket, and zero guilt about doing nothing. That\'s the plan for today. You\'ve earned it. 💕',
+      'Day 1 of your period.\n\nYour body is working hard right now — shedding, renewing, resetting. Honor that with warmth, rest, and absolutely zero guilt.\n\nCancel whatever you can. The world can wait. You come first today. 🌸',
+      'Day 1 — the beginning of a new cycle.\n\nTake it slow, stay warm, and remember: resting IS doing something. It\'s doing the most important thing — taking care of you.\n\nYou\'re allowed to be soft today. ✨'
+    ]
+  },
+  2: {
+    subject: '🌸 Day 2 — You\'re doing great',
+    messages: [
+      'Day 2 — often the toughest, but you\'ve got this.\n\nYou made it through day 1, and that\'s already a win. Keep resting, keep sipping warm things, keep being gentle.\n\nIf today feels heavier than yesterday, that\'s normal. Let it be heavy. You don\'t have to fight it. 💪',
+      'Day 2 of your period.\n\nIf today feels heavy, that\'s okay. Let it be heavy. You don\'t have to fight it — just flow with it like water.\n\nYour strength isn\'t in pushing through. It\'s in knowing when to rest. 🌊',
+      'Day 2 and you\'re still here, still showing up for yourself.\n\nThat takes more strength than you realize. Most people don\'t give themselves this kind of care. Be proud of that. 🌸'
+    ]
+  },
+  3: {
+    subject: '🌸 Day 3 — Halfway there',
+    messages: [
+      'Day 3 — the midpoint.\n\nEnergy might start creeping back. Take it at your own pace — no rush, no pressure. Just you, moving at your speed.\n\nIf you feel like doing something light, great. If not, that\'s great too. No rules today. 🌱',
+      'Halfway through! Day 3 is a turning point for many.\n\nListen to what your body wants today and honor it — no questions asked. Your body has been communicating with you this whole time. It\'s time to listen. 🌿',
+      'Day 3. You\'re past the hardest part for most people.\n\nIf you can, take a gentle walk or do some light stretching — movement can help. But only if you want to. No shoulds, just coulds. 💫'
+    ]
+  },
+  4: {
+    subject: '🌸 Day 4 — Almost there',
+    messages: [
+      'Day 4 — you\'re so close to the finish line!\n\nIf you\'ve been resting well, you might start feeling lighter. Either way, you\'re doing incredible.\n\nThink about what self-care rituals felt best this cycle. Save them for next time — you\'re building your own personal care toolkit. ✨',
+      'Almost there! Day 4 and your body is already preparing to reset.\n\nBe proud of how you\'ve taken care of yourself this cycle. Not everyone does. You\'re learning your body\'s language and that\'s powerful. 🌸',
+      'Day 4. Notice how your body is starting to shift?\n\nThat\'s its wisdom at work. Trust the process — you\'re almost through. One more push of self-care and you\'ll be on the other side. 🌙'
+    ]
+  },
+  5: {
+    subject: '🌸 Day 5 — You made it!',
+    messages: [
+      'Last stretch! Your period is nearly over.\n\nThink about what self-care rituals felt best this cycle — keep them close for next time. You know yourself well, and that knowledge is priceless.\n\nYou showed up for yourself every single day. That\'s everything. 💕',
+      'Final days of your period.\n\nSoon you\'ll enter a fresh cycle with new energy. Take a moment right now to appreciate your body\'s wisdom. It never stops working for you.\n\nYou\'re incredible. Never forget that. 🌸',
+      'Day 5 — you made it!\n\nThrough the cramps, the fatigue, the emotions — you showed up for yourself. That takes more strength than anyone talks about.\n\nRest tonight knowing you did beautifully. ✨'
+    ]
+  }
+};
+
+const PERIOD_MSG_DEFAULT = {
+  subject: '🌸 Still in your period — keep going',
+  messages: [
+    'Still in your period — and that\'s completely okay.\n\nEvery body is different, every cycle is different. Some are shorter, some longer. Keep being gentle with yourself.\n\nIf this is unusual for you, it might be worth mentioning to your doctor. But for now — rest and be kind. 💕',
+    'Your body is taking its time, and that\'s fine.\n\nThere\'s no rush. Rest, nourish yourself, and trust the process. Your body knows what it\'s doing even when it doesn\'t feel like it.\n\nKeep showing up for yourself. 🌸',
+    'Extended periods happen sometimes — it\'s more common than you think.\n\nKeep doing what you\'ve been doing: resting, staying warm, drinking water, being gentle. If this becomes a regular pattern, check in with your doctor.\n\nFor today though? Just rest. 🌙'
+  ]
+};
+
+function pickRandom(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
+// ══════════════════════════════════
 //  CYCLE MATH
 // ══════════════════════════════════
-function daysBetween(a, b) {
-  return Math.round((b - a) / 86400000);
-}
-function addDays(date, n) {
-  const d = new Date(date); d.setDate(d.getDate() + n); return d;
-}
-function fmtDate(d) {
-  if (!d) return '—';
-  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-}
-function fmtDateFull(d) {
-  if (!d) return '—';
-  return d.toLocaleDateString('en-US', { weekday:'short', month: 'short', day: 'numeric' });
-}
-function toDateInput(d) {
-  if (!d) return '';
-  return d.toISOString().split('T')[0];
-}
+function daysBetween(a, b) { return Math.round((b - a) / 86400000); }
+function addDays(date, n) { const d = new Date(date); d.setDate(d.getDate() + n); return d; }
+function fmtDate(d) { return d ? d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : '—'; }
+function fmtDateFull(d) { return d ? d.toLocaleDateString('en-US', { weekday:'short', month: 'short', day: 'numeric' }) : '—'; }
+function toDateInput(d) { return d ? d.toISOString().split('T')[0] : ''; }
+function todayStr() { return toDateInput(new Date()); }
+function todayDate() { const t = new Date(); t.setHours(0,0,0,0); return t; }
 
 function computeNext(lastStart, cycleLen) {
   const ls = new Date(lastStart);
-  const today = new Date(); today.setHours(0,0,0,0);
   let next = new Date(ls);
-  // Safety check to prevent infinite loop
-  let maxIterations = 100;
-  while (next <= today && maxIterations > 0) { 
-    next = addDays(next, cycleLen); 
-    maxIterations--;
-  }
+  let safety = 200;
+  while (next <= todayDate() && safety > 0) { next = addDays(next, cycleLen); safety--; }
   return next;
 }
 
-function getPhase(daysUntil, cycleLen, periodDuration) {
-  if (daysUntil <= 0 && daysUntil > -periodDuration) return { phase: 'Menstrual phase', emoji: '🌸' };
-  if (daysUntil > 0 && daysUntil <= 5) return { phase: 'Premenstrual phase', emoji: '🌙' };
-  const ovDay = Math.round(cycleLen / 2);
-  if (daysUntil > 5 && daysUntil <= (cycleLen - ovDay + 5)) return { phase: 'Luteal phase', emoji: '🌕' };
-  if (daysUntil > (cycleLen - ovDay + 5)) return { phase: 'Follicular phase', emoji: '🌱' };
-  return { phase: 'Tracking…', emoji: '🔮' };
+// ══════════════════════════════════
+//  CORE: GET TODAY'S STATUS
+//  This is the single source of truth
+// ══════════════════════════════════
+function getTodayStatus() {
+  const history  = load('history') || [];
+  const cycleLen = load('cycle') || 28;
+  const duration = load('duration') || 5;
+  if (!history.length) return null;
+
+  const today     = todayDate();
+  const lastStart = new Date(history[0].start); lastStart.setHours(0,0,0,0);
+  const lastEnd   = history[0].end ? new Date(history[0].end) : addDays(lastStart, duration - 1);
+  lastEnd.setHours(0,0,0,0);
+  const nextStart = addDays(lastStart, cycleLen);
+  nextStart.setHours(0,0,0,0);
+  const nextEnd   = addDays(nextStart, duration - 1);
+  const daysUntil = daysBetween(today, nextStart);
+
+  // Case 1: Currently in the last LOGGED period
+  if (today >= lastStart && today <= lastEnd) {
+    const dayOfPeriod = daysBetween(lastStart, today) + 1;
+    return {
+      status: 'in_period',
+      dayOfPeriod: dayOfPeriod,
+      periodEnd: lastEnd,
+      periodStart: lastStart,
+      nextStart: nextStart,
+      nextEnd: nextEnd,
+      daysUntil: daysUntil
+    };
+  }
+
+  // Case 2: The predicted next period has started but not yet logged
+  if (daysUntil <= 0) {
+    const dayOfPeriod = Math.abs(daysUntil) + 1;
+    return {
+      status: 'in_period',
+      dayOfPeriod: dayOfPeriod,
+      periodEnd: nextEnd,
+      periodStart: nextStart,
+      nextStart: addDays(nextStart, cycleLen),
+      nextEnd: addDays(nextStart, cycleLen + duration - 1),
+      daysUntil: daysUntil,
+      isPredicted: true
+    };
+  }
+
+  // Case 3: Exactly 2 days before next period
+  if (daysUntil === 2) {
+    return {
+      status: 'pre_2days',
+      daysUntil: 2,
+      nextStart: nextStart,
+      nextEnd: nextEnd
+    };
+  }
+
+  // Case 4: Normal days — no reminder due
+  return {
+    status: 'normal',
+    daysUntil: daysUntil,
+    nextStart: nextStart,
+    nextEnd: nextEnd
+  };
+}
+
+// ══════════════════════════════════
+//  EMAIL SENDING
+// ══════════════════════════════════
+function isEmailJSReady() {
+  const cfg = load('emailjs');
+  return cfg && cfg.pubKey && cfg.service && cfg.template;
+}
+
+function sendEmailRaw(params) {
+  const cfg = load('emailjs');
+  if (!cfg || !cfg.pubKey) return Promise.reject(new Error('EmailJS not configured'));
+  try {
+    emailjs.init(cfg.pubKey);
+    return emailjs.send(cfg.service, cfg.template, params);
+  } catch(e) {
+    return Promise.reject(e);
+  }
+}
+
+function sendPreReminder(isManual) {
+  const status = getTodayStatus();
+  const email = load('email');
+  if (!email) return Promise.reject(new Error('No email saved'));
+
+  const params = {
+    to_email: email,
+    subject: PRE_REMINDER_SUBJECT + (isManual ? ' [Test]' : ''),
+    message: pickRandom(PRE_REMINDER_MESSAGES)
+  };
+
+  return sendEmailRaw(params);
+}
+
+function sendMotivation(dayOfPeriod, isManual) {
+  const email = load('email');
+  if (!email) return Promise.reject(new Error('No email saved'));
+
+  const dayData = PERIOD_MESSAGES[dayOfPeriod] || PERIOD_MSG_DEFAULT;
+  const params = {
+    to_email: email,
+    subject: dayData.subject + (isManual ? ' [Test]' : ''),
+    message: pickRandom(dayData.messages)
+  };
+
+  return sendEmailRaw(params);
+}
+
+// ══════════════════════════════════
+//  AUTO REMINDER CHECK
+//  Called every time the app opens
+// ══════════════════════════════════
+function checkAndSendReminders() {
+  if (!isEmailJSReady()) return;
+
+  const status = getTodayStatus();
+  if (!status) return;
+
+  const today = todayStr();
+  const sent = load('reminders_sent') || {};
+  if (sent[today]) return; // Already sent today
+
+  if (status.status === 'pre_2days') {
+    sendPreReminder(false)
+      .then(function() {
+        sent[today] = 'pre_2days';
+        save('reminders_sent', sent);
+        renderReminderCard();
+        console.log('[Her] 2-day pre-reminder sent');
+      })
+      .catch(function(e) { console.warn('[Her] Pre-reminder failed:', e); });
+
+  } else if (status.status === 'in_period') {
+    sendMotivation(status.dayOfPeriod, false)
+      .then(function() {
+        sent[today] = 'period_day_' + status.dayOfPeriod;
+        save('reminders_sent', sent);
+        renderReminderCard();
+        console.log('[Her] Day ' + status.dayOfPeriod + ' motivation sent');
+      })
+      .catch(function(e) { console.warn('[Her] Motivation failed:', e); });
+  }
+}
+
+// ══════════════════════════════════
+//  MANUAL SEND (from Home card)
+// ══════════════════════════════════
+function sendReminderNow() {
+  if (!isEmailJSReady()) {
+    showToast('Set up EmailJS in Settings first ⚙️');
+    return;
+  }
+
+  const status = getTodayStatus();
+  if (!status) {
+    showToast('No cycle data yet');
+    return;
+  }
+
+  const today = todayStr();
+  const sent = load('reminders_sent') || {};
+  if (sent[today]) {
+    showToast('Already sent today — check your inbox 📬');
+    return;
+  }
+
+  let promise;
+  if (status.status === 'pre_2days') {
+    promise = sendPreReminder(false);
+  } else if (status.status === 'in_period') {
+    promise = sendMotivation(status.dayOfPeriod, false);
+  } else {
+    showToast('No reminder due today — next one in ' + (status.daysUntil - 2) + ' days');
+    return;
+  }
+
+  showToast('Sending...');
+  promise
+    .then(function() {
+      sent[today] = status.status === 'pre_2days' ? 'pre_2days' : 'period_day_' + status.dayOfPeriod;
+      save('reminders_sent', sent);
+      renderReminderCard();
+      showToast('Reminder sent! Check your inbox 📬');
+    })
+    .catch(function(e) {
+      console.error('Send failed:', e);
+      showToast('Failed to send — check EmailJS config ⚠️');
+    });
 }
 
 // ══════════════════════════════════
 //  ONBOARDING
 // ══════════════════════════════════
 function saveOnboarding() {
-  const email   = document.getElementById('ob-email').value.trim();
-  const start   = document.getElementById('ob-start').value;
-  const end     = document.getElementById('ob-end').value;
-  const cycle   = parseInt(document.getElementById('ob-cycle').value) || 28;
-  const dur     = parseInt(document.getElementById('ob-duration').value) || 5;
+  var email = document.getElementById('ob-email').value.trim();
+  var start = document.getElementById('ob-start').value;
+  var end   = document.getElementById('ob-end').value;
+  var cycle = parseInt(document.getElementById('ob-cycle').value) || 28;
+  var dur   = parseInt(document.getElementById('ob-duration').value) || 5;
 
-  if (!email || !email.includes('@')) { 
-    showToast('Please enter a valid email 📧'); 
-    return; 
-  }
-  
-  if (!start) { 
-    showToast('Please enter your last period start date'); 
-    return; 
-  }
+  if (!email || !email.includes('@')) { showToast('Please enter a valid email 📧'); return; }
+  if (!start) { showToast('Please enter your last period start date'); return; }
 
-  try {
-    const emailSaved = save('email', email);
-    const cycleSaved = save('cycle', cycle);
-    const durationSaved = save('duration', dur);
+  if (!save('email', email)) { showToast('Could not save — is localStorage available?'); return; }
+  save('cycle', cycle);
+  save('duration', dur);
 
-    if (!emailSaved || !cycleSaved || !durationSaved) {
-      showToast('Could not save data. Is localStorage available?');
-      return;
-    }
+  var history = load('history') || [];
+  history.unshift({ start: start, end: end || toDateInput(addDays(new Date(start), dur - 1)) });
+  save('history', history);
 
-    let history = load('history') || [];
-    history.unshift({ 
-      start, 
-      end: end || toDateInput(addDays(new Date(start), dur-1)) 
-    });
-    
-    const historySaved = save('history', history);
-    if (!historySaved) {
-      showToast('Could not save period history.');
-      return;
-    }
-  } catch(e) {
-    console.error('Error saving onboarding data:', e);
-    showToast('Could not save data. Please try again.');
-    return;
-  }
-
-  try { 
-    checkAndScheduleReminders(); 
-  } catch(e) { 
-    console.warn('Reminder check failed:', e); 
-  }
+  // Clear old reminder tracking for fresh start
+  save('reminders_sent', {});
 
   showMain();
+  // Send reminder after a short delay to ensure UI is ready
+  setTimeout(function() { checkAndSendReminders(); }, 500);
 }
 
 // ══════════════════════════════════
 //  MAIN APP
 // ══════════════════════════════════
 function showMain() {
-  try {
-    const onb = document.getElementById('screen-onboarding');
-    if (onb) onb.classList.remove('active');
-    
-    const nav = document.getElementById('bottom-nav');
-    if (nav) nav.style.display = 'flex';
-    
-    goTab('home');
-  } catch(e) {
-    console.error('showMain error:', e);
-    showToast('Something went wrong loading the app.');
-  }
+  var onb = document.getElementById('screen-onboarding');
+  if (onb) onb.classList.remove('active');
+  var nav = document.getElementById('bottom-nav');
+  if (nav) nav.style.display = 'flex';
+  goTab('home');
 }
 
 function goTab(tab) {
-  try {
-    ['home','log','settings'].forEach(t => {
-      const screen = document.getElementById('screen-' + t);
-      if (screen) screen.classList.remove('active');
-      
-      const tabEl = document.getElementById('tab-' + t);
-      if (tabEl) tabEl.classList.remove('active');
-    });
-    
-    const activeScreen = document.getElementById('screen-' + tab);
-    if (activeScreen) activeScreen.classList.add('active');
-    
-    const activeTab = document.getElementById('tab-' + tab);
-    if (activeTab) activeTab.classList.add('active');
+  ['home','log','settings'].forEach(function(t) {
+    var s = document.getElementById('screen-' + t);
+    if (s) s.classList.remove('active');
+    var tb = document.getElementById('tab-' + t);
+    if (tb) tb.classList.remove('active');
+  });
+  var active = document.getElementById('screen-' + tab);
+  if (active) active.classList.add('active');
+  var tabEl = document.getElementById('tab-' + tab);
+  if (tabEl) tabEl.classList.add('active');
 
-    if (tab === 'home') renderHome();
-    if (tab === 'log')  renderLog();
-    if (tab === 'settings') renderSettings();
-  } catch(e) {
-    console.error('goTab error:', e);
+  if (tab === 'home') renderHome();
+  if (tab === 'log') renderLog();
+  if (tab === 'settings') renderSettings();
+}
+
+// ══════════════════════════════════
+//  REMINDER CARD RENDER
+// ══════════════════════════════════
+function renderReminderCard() {
+  var card      = document.getElementById('reminder-card');
+  var icon      = document.getElementById('reminder-icon');
+  var title     = document.getElementById('reminder-title');
+  var sub       = document.getElementById('reminder-sub');
+  var sendBtn   = document.getElementById('reminder-send-btn');
+  var sentBadge = document.getElementById('reminder-sent-badge');
+
+  var status = getTodayStatus();
+  var today  = todayStr();
+  var sent   = load('reminders_sent') || {};
+  var alreadySent = !!sent[today];
+  var ejsReady = isEmailJSReady();
+
+  // Reset
+  sendBtn.style.display = 'none';
+  sentBadge.style.display = 'none';
+  card.classList.remove('inactive');
+
+  if (!status) {
+    icon.textContent = '📭';
+    title.textContent = 'No cycle data';
+    sub.textContent = 'Add a period to enable reminders';
+    card.classList.add('inactive');
+    return;
+  }
+
+  if (!ejsReady) {
+    icon.textContent = '⚠️';
+    title.textContent = 'EmailJS not configured';
+    sub.textContent = 'Go to Settings to set up email reminders';
+    card.classList.add('inactive');
+    return;
+  }
+
+  if (status.status === 'pre_2days') {
+    icon.textContent = '🔔';
+    if (alreadySent) {
+      title.textContent = '2-day warning sent!';
+      sub.textContent = 'Your period is expected ' + fmtDate(status.nextStart);
+      sentBadge.style.display = 'inline-block';
+    } else {
+      title.textContent = 'Period in 2 days';
+      sub.textContent = 'Expected ' + fmtDate(status.nextStart) + ' — ' + fmtDate(status.nextEnd);
+      sendBtn.style.display = 'inline-block';
+    }
+
+  } else if (status.status === 'in_period') {
+    var remaining = daysBetween(todayDate(), status.periodEnd);
+    icon.textContent = '🌸';
+    if (alreadySent) {
+      title.textContent = 'Day ' + status.dayOfPeriod + ' motivation sent!';
+      sub.textContent = remaining > 0 ? (remaining + ' day' + (remaining > 1 ? 's' : '') + ' remaining') : 'Last day';
+      sentBadge.style.display = 'inline-block';
+    } else {
+      title.textContent = 'Day ' + status.dayOfPeriod + ' of your period';
+      sub.textContent = remaining > 0 ? (remaining + ' day' + (remaining > 1 ? 's' : '') + ' remaining — send motivation') : 'Last day — send motivation';
+      sendBtn.style.display = 'inline-block';
+    }
+
+  } else {
+    // Normal — no reminder due today
+    var daysToReminder = status.daysUntil - 2;
+    icon.textContent = '📬';
+    if (daysToReminder > 0) {
+      title.textContent = 'Next reminder in ' + daysToReminder + ' day' + (daysToReminder > 1 ? 's' : '');
+      sub.textContent = '2-day warning before ' + fmtDate(status.nextStart);
+    } else {
+      title.textContent = 'Reminder schedule passed';
+      sub.textContent = 'Next period: ' + fmtDate(status.nextStart);
+    }
+    card.classList.add('inactive');
   }
 }
 
@@ -736,310 +1087,247 @@ function goTab(tab) {
 //  HOME RENDER
 // ══════════════════════════════════
 function renderHome() {
-  try {
-    const history  = load('history') || [];
-    const cycleLen = load('cycle') || 28;
-    const duration = load('duration') || 5;
-    
-    if (!history.length) return;
+  var status   = getTodayStatus();
+  if (!status) return;
 
-    const lastEntry = history[0];
-    const today = new Date(); today.setHours(0,0,0,0);
-    const nextStart  = computeNext(lastEntry.start, cycleLen);
-    const nextEnd    = addDays(nextStart, duration - 1);
-    const daysUntil  = daysBetween(today, nextStart);
+  var history  = load('history') || [];
+  var cycleLen = load('cycle') || 28;
+  var duration = load('duration') || 5;
+  var today    = todayDate();
 
-    // Check if currently in period
-    const lastStart = new Date(lastEntry.start); lastStart.setHours(0,0,0,0);
-    const lastEnd   = lastEntry.end ? new Date(lastEntry.end) : addDays(lastStart, duration-1);
-    lastEnd.setHours(0,0,0,0);
-    const inPeriod  = today >= lastStart && today <= lastEnd;
+  var lastEntry = history[0];
+  var lastStart = new Date(lastEntry.start); lastStart.setHours(0,0,0,0);
+  var lastEnd   = lastEntry.end ? new Date(lastEntry.end) : addDays(lastStart, duration - 1);
+  lastEnd.setHours(0,0,0,0);
 
-    // Ring
-    const progress = Math.max(0, Math.min(1, (cycleLen - daysUntil) / cycleLen));
-    const circumference = 2 * Math.PI * 82;
-    const offset = circumference * (1 - progress);
-    document.getElementById('ring-progress').style.strokeDashoffset = Math.round(offset);
-    document.getElementById('ring-progress').style.strokeDasharray = Math.round(circumference);
+  var inPeriod = (status.status === 'in_period');
 
-    if (inPeriod) {
-      const dayNum = daysBetween(lastStart, today) + 1;
-      document.getElementById('ring-days').textContent = 'Day ' + dayNum;
-      document.getElementById('ring-label').textContent = 'of your period';
-      document.getElementById('active-banner').style.display = 'flex';
-      const remaining = daysBetween(today, lastEnd);
-      document.getElementById('active-banner-text').textContent =
-        remaining > 0 ? `About ${remaining} more day${remaining>1?'s':''} — take care of yourself 💕` : 'Last day — you\'re almost through 🌸';
-      document.getElementById('phase-text').textContent = '🌸 Menstrual phase';
-    } else {
-      document.getElementById('ring-days').textContent = Math.max(0, daysUntil);
-      document.getElementById('ring-label').textContent = 'days until period';
-      document.getElementById('active-banner').style.display = 'none';
-      const { phase, emoji } = getPhase(daysUntil, cycleLen, duration);
-      document.getElementById('phase-text').textContent = emoji + ' ' + phase;
-    }
-
-    // Stats
-    document.getElementById('stat-next-date').textContent = fmtDate(nextStart);
-    document.getElementById('stat-next-end').textContent  = 'ends ' + fmtDate(nextEnd);
-    document.getElementById('stat-cycle').textContent     = cycleLen + ' days';
-    document.getElementById('stat-duration').textContent  = duration + ' day period';
-    document.getElementById('stat-last-start').textContent = fmtDate(lastStart);
-    document.getElementById('stat-last-end').textContent   = 'ended ' + fmtDate(lastEnd);
-
-    // Ovulation
-    const ovulationDate = addDays(nextStart, -14);
-    document.getElementById('stat-ovulation').textContent = fmtDate(ovulationDate);
-
-    // Quote
-    const q = QUOTES[today.getDate() % QUOTES.length];
-    document.getElementById('daily-quote').textContent  = '" ' + q.text + ' "';
-    document.getElementById('quote-author').textContent = q.author;
-  } catch(e) {
-    console.error('renderHome error:', e);
+  // Ring
+  var progress, daysToShow;
+  if (inPeriod) {
+    progress = 1;
+    daysToShow = status.dayOfPeriod;
+  } else {
+    progress = Math.max(0, Math.min(1, (cycleLen - status.daysUntil) / cycleLen));
+    daysToShow = Math.max(0, status.daysUntil);
   }
+  var circumference = 2 * Math.PI * 82;
+  var offset = circumference * (1 - progress);
+  document.getElementById('ring-progress').style.strokeDashoffset = Math.round(offset);
+  document.getElementById('ring-progress').style.strokeDasharray = Math.round(circumference);
+
+  if (inPeriod) {
+    document.getElementById('ring-days').textContent = 'Day ' + status.dayOfPeriod;
+    document.getElementById('ring-label').textContent = 'of your period';
+    document.getElementById('active-banner').style.display = 'flex';
+    var remaining = daysBetween(today, status.periodEnd);
+    document.getElementById('active-banner-text').textContent =
+      remaining > 0 ? ('About ' + remaining + ' more day' + (remaining > 1 ? 's' : '') + ' — take care of yourself 💕') : 'Last day — you\'re almost through 🌸';
+    document.getElementById('phase-text').textContent = '🌸 Menstrual phase';
+  } else {
+    document.getElementById('ring-days').textContent = daysToShow;
+    document.getElementById('ring-label').textContent = 'days until period';
+    document.getElementById('active-banner').style.display = 'none';
+    var phaseText = '🌱 Follicular phase';
+    if (status.daysUntil <= 5) phaseText = '🌙 Premenstrual phase';
+    else if (status.daysUntil <= cycleLen - 14 + 5) phaseText = '🌕 Luteal phase';
+    document.getElementById('phase-text').textContent = phaseText;
+  }
+
+  // Stats
+  document.getElementById('stat-next-date').textContent = fmtDate(status.nextStart);
+  document.getElementById('stat-next-end').textContent  = 'ends ' + fmtDate(status.nextEnd);
+  document.getElementById('stat-cycle').textContent     = cycleLen + ' days';
+  document.getElementById('stat-duration').textContent  = duration + ' day period';
+  document.getElementById('stat-last-start').textContent = fmtDate(lastStart);
+  document.getElementById('stat-last-end').textContent   = 'ended ' + fmtDate(lastEnd);
+
+  var ovulationDate = addDays(status.nextStart, -14);
+  document.getElementById('stat-ovulation').textContent = fmtDate(ovulationDate);
+
+  // Quote
+  var q = QUOTES[today.getDate() % QUOTES.length];
+  document.getElementById('daily-quote').textContent  = '"' + q.text + '"';
+  document.getElementById('quote-author').textContent = '— ' + q.author;
+
+  // Reminder card
+  renderReminderCard();
 }
 
 // ══════════════════════════════════
 //  LOG RENDER
 // ══════════════════════════════════
 function renderLog() {
-  try {
-    const history  = load('history') || [];
-    const container = document.getElementById('history-list');
+  var history   = load('history') || [];
+  var container = document.getElementById('history-list');
+  var duration  = load('duration') || 5;
 
-    // Set default dates
-    const today = new Date();
-    document.getElementById('log-start').value = toDateInput(today);
-    document.getElementById('log-end').value   = toDateInput(addDays(today, (load('duration')||5)-1));
+  document.getElementById('log-start').value = toDateInput(new Date());
+  document.getElementById('log-end').value   = toDateInput(addDays(new Date(), duration - 1));
 
-    if (!history.length) {
-      container.innerHTML = '<p style="color:var(--text-muted);font-size:14px;text-align:center;padding:12px 0">No periods logged yet</p>';
-      return;
-    }
-    
-    container.innerHTML = '<p class="card-title">Past entries</p>' + history.slice(0, 12).map((entry, i) => {
-      const s = new Date(entry.start);
-      const e = entry.end ? new Date(entry.end) : null;
-      const dur = e ? daysBetween(s, e) + 1 : '?';
-      return `<div class="history-item">
-        <div>
-          <div class="history-date">${fmtDateFull(s)}</div>
-          <div class="history-dur">to ${e ? fmtDateFull(e) : '—'}</div>
-        </div>
-        <div style="display:flex;align-items:center;gap:10px">
-          <span class="history-badge">${dur} days</span>
-          <button class="delete-entry-btn" data-index="${i}" style="background:none;border:none;cursor:pointer;color:var(--text-muted);font-size:18px;padding:2px">×</button>
-        </div>
-      </div>`;
-    }).join('');
-    
-    // Add event listeners to delete buttons
-    document.querySelectorAll('.delete-entry-btn').forEach(btn => {
-      btn.addEventListener('click', function() {
-        const index = parseInt(this.getAttribute('data-index'));
-        deleteEntry(index);
-      });
-    });
-  } catch(e) {
-    console.error('renderLog error:', e);
+  if (!history.length) {
+    container.innerHTML = '<p style="color:var(--text-muted);font-size:14px;text-align:center;padding:12px 0">No periods logged yet</p>';
+    return;
   }
+
+  var html = '<p class="card-title">Past entries</p>';
+  history.slice(0, 12).forEach(function(entry, i) {
+    var s = new Date(entry.start);
+    var e = entry.end ? new Date(entry.end) : null;
+    var dur = e ? daysBetween(s, e) + 1 : '?';
+    html += '<div class="history-item">' +
+      '<div><div class="history-date">' + fmtDateFull(s) + '</div>' +
+      '<div class="history-dur">to ' + (e ? fmtDateFull(e) : '—') + '</div></div>' +
+      '<div style="display:flex;align-items:center;gap:10px">' +
+      '<span class="history-badge">' + dur + ' days</span>' +
+      '<button class="del-entry-btn" data-idx="' + i + '" style="background:none;border:none;cursor:pointer;color:var(--text-muted);font-size:18px;padding:2px">×</button>' +
+      '</div></div>';
+  });
+  container.innerHTML = html;
+
+  container.querySelectorAll('.del-entry-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      deleteEntry(parseInt(this.getAttribute('data-idx')));
+    });
+  });
 }
 
 function logPeriod() {
-  try {
-    const start = document.getElementById('log-start').value;
-    const end   = document.getElementById('log-end').value;
-    if (!start) { showToast('Please enter a start date'); return; }
-    let history = load('history') || [];
-    history.unshift({ start, end });
-    history.sort((a,b) => new Date(b.start) - new Date(a.start));
-    save('history', history);
-    checkAndScheduleReminders();
-    renderLog();
-    renderHome();
-    showToast('Period logged 🌸');
-  } catch(e) {
-    console.error('logPeriod error:', e);
-    showToast('Error logging period. Please try again.');
-  }
+  var start = document.getElementById('log-start').value;
+  var end   = document.getElementById('log-end').value;
+  if (!start) { showToast('Please enter a start date'); return; }
+  var history = load('history') || [];
+  history.unshift({ start: start, end: end });
+  history.sort(function(a, b) { return new Date(b.start) - new Date(a.start); });
+  save('history', history);
+  // Reset reminder tracking for new cycle
+  save('reminders_sent', {});
+  renderLog();
+  renderHome();
+  showToast('Period logged 🌸');
+  // Check if reminder should be sent
+  setTimeout(function() { checkAndSendReminders(); }, 300);
 }
 
 function deleteEntry(idx) {
-  try {
-    let history = load('history') || [];
-    history.splice(idx, 1);
-    save('history', history);
-    renderLog();
-    renderHome();
-    showToast('Entry removed');
-  } catch(e) {
-    console.error('deleteEntry error:', e);
-    showToast('Error deleting entry. Please try again.');
-  }
+  var history = load('history') || [];
+  history.splice(idx, 1);
+  save('history', history);
+  save('reminders_sent', {});
+  renderLog();
+  renderHome();
+  showToast('Entry removed');
 }
 
 // ══════════════════════════════════
 //  SETTINGS RENDER
 // ══════════════════════════════════
 function renderSettings() {
-  try {
-    document.getElementById('set-email').textContent    = load('email') || '—';
-    document.getElementById('set-cycle').textContent    = (load('cycle') || 28) + ' days';
-    document.getElementById('set-duration').textContent = (load('duration') || 5) + ' days';
+  document.getElementById('set-email').textContent    = load('email') || '—';
+  document.getElementById('set-cycle').textContent    = (load('cycle') || 28) + ' days';
+  document.getElementById('set-duration').textContent = (load('duration') || 5) + ' days';
 
-    const cfg = load('emailjs') || {};
-    if (cfg.pubKey)   document.getElementById('ejs-pubkey').value   = cfg.pubKey;
-    if (cfg.service)  document.getElementById('ejs-service').value  = cfg.service;
-    if (cfg.template) document.getElementById('ejs-template').value = cfg.template;
-  } catch(e) {
-    console.error('renderSettings error:', e);
-  }
+  var cfg = load('emailjs') || {};
+  if (cfg.pubKey)   document.getElementById('ejs-pubkey').value   = cfg.pubKey;
+  if (cfg.service)  document.getElementById('ejs-service').value  = cfg.service;
+  if (cfg.template) document.getElementById('ejs-template').value = cfg.template;
+
+  // Update checklist
+  var dotPub = document.getElementById('check-pub');
+  var dotSvc = document.getElementById('check-svc');
+  var dotTpl = document.getElementById('check-tpl');
+  dotPub.className = 'setup-check-dot ' + (cfg.pubKey ? 'done' : 'missing');
+  dotSvc.className = 'setup-check-dot ' + (cfg.service ? 'done' : 'missing');
+  dotTpl.className = 'setup-check-dot ' + (cfg.template ? 'done' : 'missing');
+
+  // Update status badge
+  var ready = isEmailJSReady();
+  document.getElementById('reminder-dot').style.background = ready ? '#81C784' : '#E57373';
+  document.getElementById('reminder-status-text').textContent = ready ? 'Active' : 'Off';
 }
 
 function editField(field) {
-  try {
-    const map = { email: 'New email', cycle: 'Cycle length (days)', duration: 'Period duration (days)' };
-    const cur = field === 'email' ? load('email') : load(field);
-    const val = prompt(map[field], cur);
-    if (val === null) return;
-    if (field === 'email') {
-      if (!val.includes('@')) { showToast('Invalid email'); return; }
-      save('email', val);
-    } else {
-      const n = parseInt(val);
-      if (isNaN(n) || n < 1) { showToast('Invalid number'); return; }
-      save(field, n);
-    }
-    renderSettings();
-    renderHome();
-    showToast('Updated ✓');
-  } catch(e) {
-    console.error('editField error:', e);
-    showToast('Error updating field. Please try again.');
+  var map = { email: 'New email', cycle: 'Cycle length (days)', duration: 'Period duration (days)' };
+  var cur = field === 'email' ? load('email') : load(field);
+  var val = prompt(map[field], cur);
+  if (val === null) return;
+  if (field === 'email') {
+    if (!val.includes('@')) { showToast('Invalid email'); return; }
+    save('email', val);
+  } else {
+    var n = parseInt(val);
+    if (isNaN(n) || n < 1) { showToast('Invalid number'); return; }
+    save(field, n);
   }
+  save('reminders_sent', {});
+  renderSettings();
+  renderHome();
+  showToast('Updated ✓');
 }
 
 function saveEmailJS() {
-  try {
-    const pubKey   = document.getElementById('ejs-pubkey').value.trim();
-    const service  = document.getElementById('ejs-service').value.trim();
-    const template = document.getElementById('ejs-template').value.trim();
-    if (!pubKey || !service || !template) { showToast('Please fill all three fields'); return; }
-    save('emailjs', { pubKey, service, template });
-    showToast('EmailJS config saved ✓');
-  } catch(e) {
-    console.error('saveEmailJS error:', e);
-    showToast('Error saving EmailJS config. Please try again.');
-  }
+  var pubKey   = document.getElementById('ejs-pubkey').value.trim();
+  var service  = document.getElementById('ejs-service').value.trim();
+  var template = document.getElementById('ejs-template').value.trim();
+  if (!pubKey || !service || !template) { showToast('Please fill all three fields'); return; }
+  save('emailjs', { pubKey: pubKey, service: service, template: template });
+  renderSettings();
+  renderHome();
+  showToast('EmailJS config saved ✓');
 }
 
 // ══════════════════════════════════
-//  EMAIL REMINDERS
+//  TEST FUNCTIONS
 // ══════════════════════════════════
-function getEmailParams(daysUntil, nextStart, nextEnd) {
-  const dayLabel = daysUntil === 1
-    ? 'tomorrow (' + fmtDate(nextStart) + ')'
-    : 'today (' + fmtDate(nextStart) + ')';
-
-  const messages = daysUntil === 1
-    ? ['Stock up on your comfort essentials — tomorrow is a good day to be gentle with yourself.',
-       'A gentle heads-up: your period is expected tomorrow. Take it easy and prepare your cozy kit.',
-       'Tomorrow your cycle begins. You\'ve got this — take care of yourself. 💕']
-    : ['Your period has arrived. Be kind to yourself today — rest, warmth, and your favorite comfort food.',
-       'It\'s that time of the cycle. Your body is doing something remarkable. Honor it today. 🌸',
-       'Your period is here. Take it slow, drink warm things, and know you\'re doing great.'];
-
-  return {
-    to_email: load('email'),
-    subject:  daysUntil === 1 ? '🌸 Your period is expected tomorrow' : '🌸 Your period starts today',
-    message:  messages[Math.floor(Math.random() * messages.length)],
-    day_label: dayLabel,
-    end_date:  fmtDate(nextEnd)
-  };
+function testPreReminder() {
+  if (!isEmailJSReady()) { showToast('Save EmailJS config first'); return; }
+  var email = load('email');
+  if (!email) { showToast('No email saved'); return; }
+  showToast('Sending test...');
+  sendPreReminder(true)
+    .then(function() { showToast('Test 2-day warning sent! 📬'); })
+    .catch(function(e) { showToast('Failed: ' + (e.text || e.message || 'Check config')); });
 }
 
-function sendEmail(params) {
-  const cfg = load('emailjs');
-  if (!cfg || !cfg.pubKey) return;
-  try {
-    emailjs.init(cfg.pubKey);
-    emailjs.send(cfg.service, cfg.template, params);
-  } catch(e) { 
-    console.warn('EmailJS error:', e); 
-  }
+function testMotivation() {
+  if (!isEmailJSReady()) { showToast('Save EmailJS config first'); return; }
+  var email = load('email');
+  if (!email) { showToast('No email saved'); return; }
+  showToast('Sending test...');
+  sendMotivation(1, true)
+    .then(function() { showToast('Test motivation sent! 📬'); })
+    .catch(function(e) { showToast('Failed: ' + (e.text || e.message || 'Check config')); });
 }
 
-function checkAndScheduleReminders() {
-  try {
-    const history  = load('history') || [];
-    const cycleLen = load('cycle') || 28;
-    const duration = load('duration') || 5;
-    if (!history.length) return;
-
-    const today    = new Date(); today.setHours(0,0,0,0);
-    const nextStart = computeNext(history[0].start, cycleLen);
-    const nextEnd   = addDays(nextStart, duration - 1);
-    const daysUntil = daysBetween(today, nextStart);
-    const lastSent  = load('last_reminder_sent');
-    const todayStr  = toDateInput(today);
-
-    if (lastSent === todayStr) return;
-
-    if (daysUntil === 1 || daysUntil === 0) {
-      sendEmail(getEmailParams(daysUntil, nextStart, nextEnd));
-      save('last_reminder_sent', todayStr);
-    }
-  } catch(e) {
-    console.error('checkAndScheduleReminders error:', e);
-  }
-}
-
-function sendTestEmail() {
-  try {
-    const cfg = load('emailjs');
-    if (!cfg || !cfg.pubKey) { showToast('Save EmailJS config first'); return; }
-    const history  = load('history') || [];
-    const cycleLen = load('cycle') || 28;
-    const duration = load('duration') || 5;
-    if (!history.length) { showToast('Add a period first'); return; }
-    const nextStart = computeNext(history[0].start, cycleLen);
-    const nextEnd   = addDays(nextStart, duration - 1);
-    const params    = getEmailParams(1, nextStart, nextEnd);
-    params.subject  = '🌸 [Test] Her — Period reminder';
-    
-    emailjs.init(cfg.pubKey);
-    emailjs.send(cfg.service, cfg.template, params)
-      .then(() => showToast('Test email sent! Check your inbox 📧'))
-      .catch((e) => {
-        console.error('EmailJS send error:', e);
-        showToast('Email failed — check your EmailJS config');
-      });
-  } catch(e) {
-    console.error('sendTestEmail error:', e);
-    showToast('Error sending test email: ' + e.message);
-  }
+function testEmailJSOnly() {
+  if (!isEmailJSReady()) { showToast('Save EmailJS config first'); return; }
+  var email = load('email');
+  if (!email) { showToast('No email saved'); return; }
+  showToast('Testing connection...');
+  sendEmailRaw({
+    to_email: email,
+    subject: '🌸 [Connection Test] Her App',
+    message: 'If you received this, your EmailJS is working correctly! Your reminders will be sent to this email address. 💕'
+  })
+  .then(function() { showToast('Connection works! Email sent 📬'); })
+  .catch(function(e) { showToast('Failed: ' + (e.text || e.message || 'Unknown error')); });
 }
 
 // ══════════════════════════════════
 //  UTILITIES
 // ══════════════════════════════════
 function showToast(msg) {
-  try {
-    const t = document.getElementById('toast');
-    t.textContent = msg; 
-    t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), 2800);
-  } catch(e) {
-    console.error('showToast error:', e);
-    alert(msg); // Fallback if toast fails
-  }
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(t._timer);
+  t._timer = setTimeout(function() { t.classList.remove('show'); }, 3200);
 }
 
 function resetApp() {
   if (!confirm('This will delete all your data. Are you sure?')) return;
-  ['email','cycle','duration','history','emailjs','last_reminder_sent']
-    .forEach(k => localStorage.removeItem('her_' + k));
+  ['email','cycle','duration','history','emailjs','reminders_sent','last_reminder_sent']
+    .forEach(function(k) { localStorage.removeItem('her_' + k); });
   location.reload();
 }
 
@@ -1047,122 +1335,62 @@ function resetApp() {
 //  EVENT LISTENERS
 // ══════════════════════════════════
 document.addEventListener('DOMContentLoaded', function() {
-  // Get started button
-  const getStartedBtn = document.getElementById('get-started-btn');
-  if (getStartedBtn) {
-    getStartedBtn.addEventListener('click', function(e) {
-      e.preventDefault();
-      saveOnboarding();
-    });
-  }
-  
-  // Log period button
-  const logPeriodBtn = document.getElementById('log-period-btn');
-  if (logPeriodBtn) {
-    logPeriodBtn.addEventListener('click', function(e) {
-      e.preventDefault();
-      logPeriod();
-    });
-  }
-  
-  // Navigation tabs
-  const tabHome = document.getElementById('tab-home');
-  const tabLog = document.getElementById('tab-log');
-  const tabSettings = document.getElementById('tab-settings');
-  
-  if (tabHome) {
-    tabHome.addEventListener('click', function(e) {
-      e.preventDefault();
-      goTab('home');
-    });
-  }
-  
-  if (tabLog) {
-    tabLog.addEventListener('click', function(e) {
-      e.preventDefault();
-      goTab('log');
-    });
-  }
-  
-  if (tabSettings) {
-    tabSettings.addEventListener('click', function(e) {
-      e.preventDefault();
-      goTab('settings');
-    });
-  }
-  
-  // Settings buttons
-  const editEmailBtn = document.getElementById('edit-email-btn');
-  const editCycleBtn = document.getElementById('edit-cycle-btn');
-  const editDurationBtn = document.getElementById('edit-duration-btn');
-  const saveEmailjsBtn = document.getElementById('save-emailjs-btn');
-  const testEmailBtn = document.getElementById('test-email-btn');
-  const resetAppBtn = document.getElementById('reset-app-btn');
-  
-  if (editEmailBtn) {
-    editEmailBtn.addEventListener('click', function(e) {
-      e.preventDefault();
-      editField('email');
-    });
-  }
-  
-  if (editCycleBtn) {
-    editCycleBtn.addEventListener('click', function(e) {
-      e.preventDefault();
-      editField('cycle');
-    });
-  }
-  
-  if (editDurationBtn) {
-    editDurationBtn.addEventListener('click', function(e) {
-      e.preventDefault();
-      editField('duration');
-    });
-  }
-  
-  if (saveEmailjsBtn) {
-    saveEmailjsBtn.addEventListener('click', function(e) {
-      e.preventDefault();
-      saveEmailJS();
-    });
-  }
-  
-  if (testEmailBtn) {
-    testEmailBtn.addEventListener('click', function(e) {
-      e.preventDefault();
-      sendTestEmail();
-    });
-  }
-  
-  if (resetAppBtn) {
-    resetAppBtn.addEventListener('click', function(e) {
-      e.preventDefault();
-      resetApp();
-    });
-  }
+  // Onboarding
+  document.getElementById('get-started-btn').addEventListener('click', function(e) {
+    e.preventDefault(); saveOnboarding();
+  });
+
+  // Nav tabs
+  document.getElementById('tab-home').addEventListener('click', function(e) { e.preventDefault(); goTab('home'); });
+  document.getElementById('tab-log').addEventListener('click', function(e) { e.preventDefault(); goTab('log'); });
+  document.getElementById('tab-settings').addEventListener('click', function(e) { e.preventDefault(); goTab('settings'); });
+
+  // Top settings
+  document.getElementById('top-settings-btn').addEventListener('click', function(e) { e.preventDefault(); goTab('settings'); });
+
+  // Reminder send now
+  document.getElementById('reminder-send-btn').addEventListener('click', function(e) { e.preventDefault(); sendReminderNow(); });
+
+  // Log
+  document.getElementById('log-period-btn').addEventListener('click', function(e) { e.preventDefault(); logPeriod(); });
+
+  // Settings edits
+  document.getElementById('edit-email-btn').addEventListener('click', function(e) { e.preventDefault(); editField('email'); });
+  document.getElementById('edit-cycle-btn').addEventListener('click', function(e) { e.preventDefault(); editField('cycle'); });
+  document.getElementById('edit-duration-btn').addEventListener('click', function(e) { e.preventDefault(); editField('duration'); });
+
+  // EmailJS
+  document.getElementById('save-emailjs-btn').addEventListener('click', function(e) { e.preventDefault(); saveEmailJS(); });
+  document.getElementById('test-pre-btn').addEventListener('click', function(e) { e.preventDefault(); testPreReminder(); });
+  document.getElementById('test-motivation-btn').addEventListener('click', function(e) { e.preventDefault(); testMotivation(); });
+  document.getElementById('test-emailjs-btn').addEventListener('click', function(e) { e.preventDefault(); testEmailJSOnly(); });
+
+  // Reset
+  document.getElementById('reset-app-btn').addEventListener('click', function(e) { e.preventDefault(); resetApp(); });
 });
 
 // ══════════════════════════════════
 //  INIT
 // ══════════════════════════════════
 (function init() {
-  try {
-    const email = load('email');
-    const history = load('history');
-    if (email && history && history.length) {
-      try { 
-        checkAndScheduleReminders(); 
-      } catch(e) { 
-        console.warn('Reminder check failed:', e); 
-      }
-      showMain();
-    } else {
-      document.getElementById('screen-onboarding').classList.add('active');
-    }
-  } catch(e) {
-    console.error('Init error:', e);
+  var email   = load('email');
+  var history = load('history');
+  if (email && history && history.length) {
+    showMain();
+    // Auto-check reminders after UI is ready
+    setTimeout(function() { checkAndSendReminders(); }, 800);
+  } else {
     document.getElementById('screen-onboarding').classList.add('active');
   }
+
+  // Set date limits
+  try {
+    var today = toDateInput(new Date());
+    var startInput = document.getElementById('ob-start');
+    var endInput   = document.getElementById('ob-end');
+    if (startInput) startInput.max = today;
+    if (endInput) endInput.max = today;
+  } catch(e) {}
 })();
 </script>
 </body>
