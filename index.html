@@ -18,44 +18,35 @@
     --border-strong: rgba(244,143,177,0.25);
     --radius-sm: 12px; --radius-md: 16px; --radius-lg: 24px;
     --radius-xl: 28px;
+    --green: #81C784; --red: #E57373;
     font-family: 'Google Sans', system-ui, sans-serif;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
-    background: var(--surface-bg);
-    color: var(--text-primary);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    background: var(--surface-bg); color: var(--text-primary);
+    min-height: 100vh; display: flex; flex-direction: column; align-items: center;
     -webkit-text-size-adjust: 100%;
   }
 
   .top-bar {
-    width: 100%; max-width: 480px;
-    padding: 16px 20px 8px;
+    width: 100%; max-width: 480px; padding: 16px 20px 8px;
     display: flex; align-items: center; justify-content: space-between;
   }
   .logo { display: flex; align-items: center; gap: 10px; }
   .logo-icon {
     width: 36px; height: 36px; border-radius: 50%;
     background: linear-gradient(135deg, var(--pink-200), var(--mauve-200));
-    display: flex; align-items: center; justify-content: center;
-    font-size: 18px;
+    display: flex; align-items: center; justify-content: center; font-size: 18px;
   }
   .logo-name {
-    font-family: 'Google Sans Display', sans-serif;
-    font-size: 22px; font-weight: 600;
+    font-family: 'Google Sans Display', sans-serif; font-size: 22px; font-weight: 600;
     background: linear-gradient(135deg, var(--pink-200), var(--mauve-200));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    background-clip: text;
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
   }
   .settings-btn {
-    width: 40px; height: 40px; border-radius: 50%;
-    background: transparent; border: none; cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    color: var(--text-secondary); font-size: 20px;
-    transition: background 0.2s;
+    width: 40px; height: 40px; border-radius: 50%; background: transparent;
+    border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;
+    color: var(--text-secondary); font-size: 20px; transition: background 0.2s;
   }
   .settings-btn:hover { background: var(--surface-elevated); }
 
@@ -64,127 +55,69 @@
 
   .onboarding-hero { text-align: center; padding: 24px 0 8px; }
   .hero-ring {
-    width: 120px; height: 120px; margin: 0 auto 20px;
-    border-radius: 50%;
+    width: 120px; height: 120px; margin: 0 auto 20px; border-radius: 50%;
     background: radial-gradient(circle at 40% 40%, #2A1A2E, #1A0E20);
     border: 2px solid var(--border-strong);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 56px;
+    display: flex; align-items: center; justify-content: center; font-size: 56px;
     box-shadow: 0 0 40px rgba(244,143,177,0.15);
   }
   .hero-title {
-    font-family: 'Google Sans Display', sans-serif;
-    font-size: 28px; font-weight: 600; color: var(--text-primary);
-    margin-bottom: 8px;
+    font-family: 'Google Sans Display', sans-serif; font-size: 28px;
+    font-weight: 600; color: var(--text-primary); margin-bottom: 8px;
   }
   .hero-sub { font-size: 15px; color: var(--text-secondary); line-height: 1.5; }
 
   .card {
-    background: var(--surface-card);
-    border: 0.5px solid var(--border);
-    border-radius: var(--radius-xl);
-    padding: 20px;
+    background: var(--surface-card); border: 0.5px solid var(--border);
+    border-radius: var(--radius-xl); padding: 20px;
   }
   .card-title {
     font-size: 12px; font-weight: 500; letter-spacing: 0.08em;
-    text-transform: uppercase; color: var(--text-muted);
-    margin-bottom: 16px;
+    text-transform: uppercase; color: var(--text-muted); margin-bottom: 16px;
   }
 
   .input-group { display: flex; flex-direction: column; gap: 12px; }
   .input-label { font-size: 13px; color: var(--text-secondary); margin-bottom: 4px; display: block; }
   .input-row { display: flex; flex-direction: column; gap: 4px; }
 
-  /* ══════════════════════════════════
-     FIXED DATE INPUT STYLING FOR MOBILE
-     ══════════════════════════════════ */
-  input[type="email"],
-  input[type="number"],
-  input[type="text"] {
-    width: 100%; padding: 14px 16px;
-    background: var(--surface-elevated);
-    border: 0.5px solid var(--border-strong);
-    border-radius: var(--radius-sm);
-    color: var(--text-primary); font-size: 15px;
-    font-family: 'Google Sans', sans-serif;
-    outline: none; transition: border-color 0.2s;
-    -webkit-appearance: none;
-    appearance: none;
+  input[type="email"], input[type="number"], input[type="text"] {
+    width: 100%; padding: 14px 16px; background: var(--surface-elevated);
+    border: 0.5px solid var(--border-strong); border-radius: var(--radius-sm);
+    color: var(--text-primary); font-size: 15px; font-family: 'Google Sans', sans-serif;
+    outline: none; transition: border-color 0.2s; -webkit-appearance: none; appearance: none;
   }
-  input[type="email"]:focus,
-  input[type="number"]:focus,
-  input[type="text"]:focus {
-    border-color: var(--pink-200);
-  }
+  input:focus { border-color: var(--pink-200); }
 
-  /* Date input — completely separate styling for mobile compatibility */
-  .date-input-wrap {
-    position: relative;
-    width: 100%;
-  }
+  .date-input-wrap { position: relative; width: 100%; }
   .date-input-wrap input[type="date"] {
-    width: 100%;
-    padding: 14px 50px 14px 16px;
-    background: var(--surface-elevated);
-    border: 0.5px solid var(--border-strong);
-    border-radius: var(--radius-sm);
-    color: var(--text-primary);
-    font-size: 15px;
-    font-family: 'Google Sans', sans-serif;
-    outline: none;
-    transition: border-color 0.2s;
-    min-height: 48px;
-    /* Critical for mobile: don't override native appearance */
-    -webkit-appearance: menulist-button;
-    appearance: menulist-button;
-    /* Ensure the calendar icon area is tappable */
-    cursor: pointer;
+    width: 100%; padding: 14px 50px 14px 16px; background: var(--surface-elevated);
+    border: 0.5px solid var(--border-strong); border-radius: var(--radius-sm);
+    color: var(--text-primary); font-size: 15px; font-family: 'Google Sans', sans-serif;
+    outline: none; transition: border-color 0.2s; min-height: 48px;
+    -webkit-appearance: menulist-button; appearance: menulist-button; cursor: pointer;
   }
-  .date-input-wrap input[type="date"]:focus {
-    border-color: var(--pink-200);
-  }
-  /* Make sure the native calendar icon is visible on all platforms */
+  .date-input-wrap input[type="date"]:focus { border-color: var(--pink-200); }
   .date-input-wrap input[type="date"]::-webkit-calendar-picker-indicator {
     filter: invert(0.75) sepia(0.3) saturate(3) hue-rotate(290deg);
-    cursor: pointer;
-    opacity: 1;
-    /* Make the tap target bigger on mobile */
-    width: 36px;
-    height: 36px;
-    margin-right: 4px;
+    cursor: pointer; opacity: 1; width: 36px; height: 36px; margin-right: 4px;
   }
-  /* Firefox date input */
-  .date-input-wrap input[type="date"]::-moz-calendar-picker-indicator {
-    filter: invert(0.75) sepia(0.3) saturate(3) hue-rotate(290deg);
-    cursor: pointer;
-    opacity: 1;
-    width: 36px;
-    height: 36px;
-  }
-
-  /* ═══ END DATE INPUT FIXES ═══ */
 
   .btn-primary {
     width: 100%; padding: 16px;
     background: linear-gradient(135deg, var(--pink-400), var(--mauve-400));
-    border: none; border-radius: var(--radius-lg);
-    color: #fff; font-size: 15px; font-weight: 500;
-    font-family: 'Google Sans', sans-serif;
+    border: none; border-radius: var(--radius-lg); color: #fff;
+    font-size: 15px; font-weight: 500; font-family: 'Google Sans', sans-serif;
     cursor: pointer; transition: opacity 0.2s, transform 0.1s;
-    letter-spacing: 0.02em;
-    -webkit-tap-highlight-color: transparent;
+    letter-spacing: 0.02em; -webkit-tap-highlight-color: transparent;
   }
   .btn-primary:hover { opacity: 0.92; }
   .btn-primary:active { transform: scale(0.98); }
+  .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
   .btn-secondary {
-    width: 100%; padding: 14px;
-    background: transparent;
-    border: 0.5px solid var(--border-strong);
-    border-radius: var(--radius-lg);
-    color: var(--text-secondary); font-size: 14px;
-    font-family: 'Google Sans', sans-serif;
-    cursor: pointer; transition: background 0.2s;
-    -webkit-tap-highlight-color: transparent;
+    width: 100%; padding: 14px; background: transparent;
+    border: 0.5px solid var(--border-strong); border-radius: var(--radius-lg);
+    color: var(--text-secondary); font-size: 14px; font-family: 'Google Sans', sans-serif;
+    cursor: pointer; transition: background 0.2s; -webkit-tap-highlight-color: transparent;
   }
   .btn-secondary:hover { background: var(--surface-elevated); }
 
@@ -192,39 +125,32 @@
   .ring-svg { filter: drop-shadow(0 0 16px rgba(244,143,177,0.2)); }
   .ring-center { text-align: center; margin-top: -8px; }
   .ring-days {
-    font-family: 'Google Sans Display', sans-serif;
-    font-size: 52px; font-weight: 600;
+    font-family: 'Google Sans Display', sans-serif; font-size: 52px; font-weight: 600;
     background: linear-gradient(135deg, var(--pink-200), var(--mauve-200));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    background-clip: text; line-height: 1;
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1;
   }
   .ring-label { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
 
   .stat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   .stat-chip {
-    background: var(--surface-elevated);
-    border: 0.5px solid var(--border);
-    border-radius: var(--radius-md);
-    padding: 14px 16px;
+    background: var(--surface-elevated); border: 0.5px solid var(--border);
+    border-radius: var(--radius-md); padding: 14px 16px;
   }
   .stat-chip-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; }
   .stat-chip-value { font-size: 18px; font-weight: 500; color: var(--text-primary); margin-top: 4px; }
   .stat-chip-sub { font-size: 12px; color: var(--text-secondary); margin-top: 2px; }
 
   .phase-pill {
-    display: inline-flex; align-items: center; gap: 6px;
-    padding: 6px 14px; border-radius: 999px;
-    font-size: 13px; font-weight: 500;
-    background: rgba(244,143,177,0.12);
-    color: var(--pink-200); border: 0.5px solid rgba(244,143,177,0.25);
+    display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px;
+    border-radius: 999px; font-size: 13px; font-weight: 500;
+    background: rgba(244,143,177,0.12); color: var(--pink-200);
+    border: 0.5px solid rgba(244,143,177,0.25);
   }
   .phase-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--pink-200); }
 
   .quote-card {
     background: linear-gradient(135deg, rgba(244,143,177,0.08), rgba(206,147,216,0.06));
-    border: 0.5px solid var(--border-strong);
-    border-radius: var(--radius-xl);
-    padding: 20px;
+    border: 0.5px solid var(--border-strong); border-radius: var(--radius-xl); padding: 20px;
   }
   .quote-text { font-size: 15px; line-height: 1.65; color: var(--text-secondary); font-style: italic; }
   .quote-author { font-size: 12px; color: var(--text-muted); margin-top: 10px; }
@@ -239,13 +165,6 @@
   .history-badge {
     font-size: 11px; padding: 3px 10px; border-radius: 999px;
     background: rgba(244,143,177,0.1); color: var(--pink-200);
-  }
-
-  .status-active {
-    display: inline-flex; gap: 6px; align-items: center;
-    padding: 4px 12px; border-radius: 999px; font-size: 12px;
-    background: rgba(244,143,177,0.1); color: var(--pink-200);
-    border: 0.5px solid rgba(244,143,177,0.2);
   }
 
   .settings-row {
@@ -264,52 +183,34 @@
   #toast {
     position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(80px);
     background: var(--surface-modal); border: 0.5px solid var(--border-strong);
-    border-radius: var(--radius-md); padding: 12px 20px;
-    font-size: 14px; color: var(--text-primary);
-    transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
-    white-space: normal; text-align: center;
-    z-index: 999; max-width: 90vw;
+    border-radius: var(--radius-md); padding: 12px 20px; font-size: 14px;
+    color: var(--text-primary); transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+    white-space: normal; text-align: center; z-index: 999; max-width: 90vw;
     box-shadow: 0 8px 32px rgba(0,0,0,0.4);
   }
   #toast.show { transform: translateX(-50%) translateY(0); }
 
   .nav-tabs {
-    width: 100%; max-width: 480px;
-    display: flex; background: var(--surface-card);
-    border-top: 0.5px solid var(--border);
-    position: sticky; bottom: 0;
+    width: 100%; max-width: 480px; display: flex; background: var(--surface-card);
+    border-top: 0.5px solid var(--border); position: sticky; bottom: 0;
   }
   .nav-tab {
-    flex: 1; padding: 12px 8px 16px;
-    display: flex; flex-direction: column; align-items: center; gap: 4px;
-    background: none; border: none; cursor: pointer;
-    color: var(--text-muted); font-size: 10px;
-    font-family: 'Google Sans', sans-serif; letter-spacing: 0.04em;
-    transition: color 0.2s;
-    -webkit-tap-highlight-color: transparent;
+    flex: 1; padding: 12px 8px 16px; display: flex; flex-direction: column;
+    align-items: center; gap: 4px; background: none; border: none; cursor: pointer;
+    color: var(--text-muted); font-size: 10px; font-family: 'Google Sans', sans-serif;
+    letter-spacing: 0.04em; transition: color 0.2s; -webkit-tap-highlight-color: transparent;
   }
   .nav-tab.active { color: var(--pink-200); }
   .nav-tab svg { width: 22px; height: 22px; }
 
   .period-active-banner {
     background: linear-gradient(135deg, rgba(244,143,177,0.15), rgba(206,147,216,0.1));
-    border: 0.5px solid rgba(244,143,177,0.3);
-    border-radius: var(--radius-xl);
-    padding: 16px 20px;
-    display: flex; align-items: center; gap: 12px;
+    border: 0.5px solid rgba(244,143,177,0.3); border-radius: var(--radius-xl);
+    padding: 16px 20px; display: flex; align-items: center; gap: 12px;
   }
   .period-active-icon { font-size: 28px; }
   .period-active-text h3 { font-size: 15px; font-weight: 500; color: var(--text-primary); }
   .period-active-text p { font-size: 13px; color: var(--text-secondary); margin-top: 3px; }
-
-  .email-badge {
-    display: flex; align-items: center; gap: 8px;
-    background: rgba(206,147,216,0.08);
-    border: 0.5px solid rgba(206,147,216,0.2);
-    border-radius: var(--radius-sm); padding: 10px 14px;
-    font-size: 13px; color: var(--text-secondary);
-  }
-  .email-badge svg { width: 16px; height: 16px; color: var(--mauve-200); flex-shrink: 0; }
 
   .section-heading {
     font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em;
@@ -317,76 +218,94 @@
   }
   .divider { height: 0.5px; background: var(--border); margin: 4px 0; }
 
-  .reminder-card {
-    background: linear-gradient(135deg, rgba(244,143,177,0.1), rgba(206,147,216,0.07));
-    border: 0.5px solid rgba(244,143,177,0.2);
-    border-radius: var(--radius-xl);
-    padding: 16px 18px;
+  /* ── Notification Card on Home ── */
+  .notif-card {
+    border-radius: var(--radius-xl); padding: 16px 18px;
     display: flex; align-items: center; gap: 14px;
     transition: opacity 0.3s;
   }
-  .reminder-card.inactive { opacity: 0.55; }
-  .reminder-card-icon { font-size: 26px; flex-shrink: 0; }
-  .reminder-card-body { flex: 1; min-width: 0; }
-  .reminder-card-title { font-size: 14px; font-weight: 500; color: var(--text-primary); }
-  .reminder-card-sub { font-size: 12px; color: var(--text-secondary); margin-top: 3px; line-height: 1.4; }
-  .reminder-send-btn {
-    flex-shrink: 0;
-    padding: 8px 14px;
-    background: rgba(244,143,177,0.15);
-    border: 0.5px solid rgba(244,143,177,0.3);
-    border-radius: var(--radius-sm);
-    color: var(--pink-200);
-    font-size: 12px; font-weight: 500;
-    font-family: 'Google Sans', sans-serif;
-    cursor: pointer; transition: background 0.2s;
-    white-space: nowrap;
+  .notif-card.active-notif {
+    background: linear-gradient(135deg, rgba(129,199,132,0.1), rgba(129,199,132,0.05));
+    border: 0.5px solid rgba(129,199,132,0.2);
+  }
+  .notif-card.pending-notif {
+    background: linear-gradient(135deg, rgba(244,143,177,0.1), rgba(206,147,216,0.07));
+    border: 0.5px solid rgba(244,143,177,0.2);
+  }
+  .notif-card.off-notif {
+    background: var(--surface-card); border: 0.5px solid var(--border); opacity: 0.55;
+  }
+  .notif-card-icon { font-size: 26px; flex-shrink: 0; }
+  .notif-card-body { flex: 1; min-width: 0; }
+  .notif-card-title { font-size: 14px; font-weight: 500; color: var(--text-primary); }
+  .notif-card-sub { font-size: 12px; color: var(--text-secondary); margin-top: 3px; line-height: 1.4; }
+  .notif-test-btn {
+    flex-shrink: 0; padding: 8px 14px;
+    background: rgba(244,143,177,0.15); border: 0.5px solid rgba(244,143,177,0.3);
+    border-radius: var(--radius-sm); color: var(--pink-200);
+    font-size: 12px; font-weight: 500; font-family: 'Google Sans', sans-serif;
+    cursor: pointer; transition: background 0.2s; white-space: nowrap;
     -webkit-tap-highlight-color: transparent;
   }
-  .reminder-send-btn:hover { background: rgba(244,143,177,0.28); }
-  .reminder-sent-badge {
-    flex-shrink: 0;
-    padding: 6px 12px;
-    background: rgba(129,199,132,0.12);
-    border: 0.5px solid rgba(129,199,132,0.25);
-    border-radius: var(--radius-sm);
-    color: #81C784;
-    font-size: 12px; font-weight: 500;
+  .notif-test-btn:hover { background: rgba(244,143,177,0.28); }
+  .notif-sent-badge {
+    flex-shrink: 0; padding: 6px 12px;
+    background: rgba(129,199,132,0.12); border: 0.5px solid rgba(129,199,132,0.25);
+    border-radius: var(--radius-sm); color: var(--green); font-size: 12px; font-weight: 500;
     white-space: nowrap;
   }
 
-  .setup-guide {
-    background: var(--surface-elevated);
-    border: 0.5px solid var(--border);
-    border-radius: var(--radius-md);
-    padding: 14px 16px;
-    margin-bottom: 14px;
+  /* ── Onboarding notification permission ── */
+  .perm-card {
+    background: linear-gradient(135deg, rgba(244,143,177,0.12), rgba(206,147,216,0.08));
+    border: 0.5px solid rgba(244,143,177,0.25); border-radius: var(--radius-xl);
+    padding: 18px 20px; display: flex; align-items: center; gap: 14px;
   }
-  .setup-guide-title { font-size: 13px; font-weight: 500; color: var(--text-primary); margin-bottom: 8px; }
-  .setup-step {
-    display: flex; gap: 10px; margin-bottom: 8px; font-size: 12px; color: var(--text-secondary); line-height: 1.5;
+  .perm-card-icon { font-size: 32px; flex-shrink: 0; }
+  .perm-card-body { flex: 1; }
+  .perm-card-title { font-size: 14px; font-weight: 500; color: var(--text-primary); }
+  .perm-card-sub { font-size: 12px; color: var(--text-secondary); margin-top: 4px; line-height: 1.5; }
+  .perm-btn {
+    flex-shrink: 0; padding: 10px 18px;
+    background: linear-gradient(135deg, var(--pink-400), var(--mauve-400));
+    border: none; border-radius: var(--radius-sm); color: #fff;
+    font-size: 13px; font-weight: 500; font-family: 'Google Sans', sans-serif;
+    cursor: pointer; -webkit-tap-highlight-color: transparent;
   }
-  .setup-step:last-child { margin-bottom: 0; }
-  .setup-step-num {
-    flex-shrink: 0; width: 20px; height: 20px;
-    border-radius: 50%; background: rgba(244,143,177,0.15);
-    color: var(--pink-200); font-size: 11px; font-weight: 600;
-    display: flex; align-items: center; justify-content: center;
+  .perm-granted {
+    flex-shrink: 0; padding: 8px 14px;
+    background: rgba(129,199,132,0.12); border: 0.5px solid rgba(129,199,132,0.25);
+    border-radius: var(--radius-sm); color: var(--green); font-size: 13px; font-weight: 500;
   }
-  .setup-check {
-    display: flex; align-items: center; gap: 8px;
-    font-size: 12px; padding: 6px 0;
-  }
-  .setup-check-dot {
-    width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
-  }
-  .setup-check-dot.done { background: #81C784; }
-  .setup-check-dot.missing { background: #E57373; }
 
-  /* Mobile tap highlight removal for all interactive elements */
-  button, a, input, .settings-edit, .reminder-send-btn {
-    -webkit-tap-highlight-color: transparent;
+  /* ── Settings notification section ── */
+  .toggle-wrap {
+    display: flex; align-items: center; gap: 12px;
   }
+  .toggle {
+    position: relative; width: 48px; height: 28px; border-radius: 14px;
+    background: rgba(255,255,255,0.1); border: none; cursor: pointer;
+    transition: background 0.3s; -webkit-tap-highlight-color: transparent;
+    flex-shrink: 0;
+  }
+  .toggle.on { background: var(--pink-400); }
+  .toggle::after {
+    content: ''; position: absolute; top: 3px; left: 3px;
+    width: 22px; height: 22px; border-radius: 50%; background: #fff;
+    transition: transform 0.3s;
+  }
+  .toggle.on::after { transform: translateX(20px); }
+
+  .notif-log-item {
+    display: flex; align-items: flex-start; gap: 12px; padding: 10px 0;
+    border-bottom: 0.5px solid var(--border); font-size: 13px;
+  }
+  .notif-log-item:last-child { border-bottom: none; }
+  .notif-log-emoji { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+  .notif-log-text { color: var(--text-secondary); line-height: 1.4; flex: 1; }
+  .notif-log-time { color: var(--text-muted); font-size: 11px; flex-shrink: 0; margin-top: 2px; }
+
+  button, a, input { -webkit-tap-highlight-color: transparent; }
 </style>
 </head>
 <body>
@@ -408,21 +327,7 @@
   <div class="onboarding-hero">
     <div class="hero-ring">🌸</div>
     <h1 class="hero-title">Welcome to Her</h1>
-    <p class="hero-sub">Track your cycle, get gentle reminders,<br>and understand your body better.</p>
-  </div>
-
-  <div class="card">
-    <p class="card-title">Your email</p>
-    <div class="input-group">
-      <div class="input-row">
-        <label class="input-label" for="ob-email">Email address for reminders</label>
-        <input type="email" id="ob-email" placeholder="you@example.com" autocomplete="email">
-      </div>
-    </div>
-    <div class="email-badge" style="margin-top:12px">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-      You'll get a reminder 2 days before your period, then daily motivation during your period.
-    </div>
+    <p class="hero-sub">Track your cycle & get gentle reminders<br>right on your phone.</p>
   </div>
 
   <div class="card">
@@ -430,15 +335,11 @@
     <div class="input-group">
       <div class="input-row">
         <label class="input-label" for="ob-start">When did it start?</label>
-        <div class="date-input-wrap">
-          <input type="date" id="ob-start">
-        </div>
+        <div class="date-input-wrap"><input type="date" id="ob-start"></div>
       </div>
       <div class="input-row">
         <label class="input-label" for="ob-end">When did it end?</label>
-        <div class="date-input-wrap">
-          <input type="date" id="ob-end">
-        </div>
+        <div class="date-input-wrap"><input type="date" id="ob-end"></div>
       </div>
     </div>
   </div>
@@ -457,6 +358,16 @@
     </div>
   </div>
 
+  <!-- Notification permission card -->
+  <div class="perm-card" id="perm-card">
+    <div class="perm-card-icon">🔔</div>
+    <div class="perm-card-body">
+      <div class="perm-card-title">Turn on notifications</div>
+      <div class="perm-card-sub">Get a reminder 2 days before your period + daily motivation during your period — right on your phone.</div>
+    </div>
+    <button class="perm-btn" id="perm-btn">Allow</button>
+  </div>
+
   <button class="btn-primary" id="get-started-btn">Get started →</button>
 </div>
 
@@ -468,12 +379,10 @@
         <circle cx="100" cy="100" r="82" fill="none" stroke="rgba(244,143,177,0.08)" stroke-width="12"/>
         <circle id="ring-progress" cx="100" cy="100" r="82" fill="none"
           stroke="url(#ringGrad)" stroke-width="12" stroke-linecap="round"
-          stroke-dasharray="515" stroke-dashoffset="515"
-          transform="rotate(-90 100 100)"/>
+          stroke-dasharray="515" stroke-dashoffset="515" transform="rotate(-90 100 100)"/>
         <defs>
           <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#F48FB1"/>
-            <stop offset="100%" stop-color="#CE93D8"/>
+            <stop offset="0%" stop-color="#F48FB1"/><stop offset="100%" stop-color="#CE93D8"/>
           </linearGradient>
         </defs>
       </svg>
@@ -487,14 +396,15 @@
     </div>
   </div>
 
-  <div class="reminder-card" id="reminder-card">
-    <div class="reminder-card-icon" id="reminder-icon">📬</div>
-    <div class="reminder-card-body">
-      <div class="reminder-card-title" id="reminder-title">Checking reminders...</div>
-      <div class="reminder-card-sub" id="reminder-sub">Please wait</div>
+  <!-- Notification status card -->
+  <div class="notif-card" id="notif-card">
+    <div class="notif-card-icon" id="notif-icon">📬</div>
+    <div class="notif-card-body">
+      <div class="notif-card-title" id="notif-title">Checking...</div>
+      <div class="notif-card-sub" id="notif-sub">Please wait</div>
     </div>
-    <button class="reminder-send-btn" id="reminder-send-btn" style="display:none">Send now</button>
-    <span class="reminder-sent-badge" id="reminder-sent-badge" style="display:none">Sent ✓</span>
+    <button class="notif-test-btn" id="notif-test-btn" style="display:none">Test</button>
+    <span class="notif-sent-badge" id="notif-sent-badge" style="display:none">Sent ✓</span>
   </div>
 
   <div class="period-active-banner" id="active-banner" style="display:none">
@@ -517,7 +427,6 @@
       <div class="stat-chip-sub" id="stat-duration">5 day period</div>
     </div>
   </div>
-
   <div class="stat-row">
     <div class="stat-chip">
       <div class="stat-chip-label">Ovulation</div>
@@ -545,15 +454,11 @@
     <div class="input-group">
       <div class="input-row">
         <label class="input-label" for="log-start">Start date</label>
-        <div class="date-input-wrap">
-          <input type="date" id="log-start">
-        </div>
+        <div class="date-input-wrap"><input type="date" id="log-start"></div>
       </div>
       <div class="input-row">
         <label class="input-label" for="log-end">End date</label>
-        <div class="date-input-wrap">
-          <input type="date" id="log-end">
-        </div>
+        <div class="date-input-wrap"><input type="date" id="log-end"></div>
       </div>
     </div>
     <button class="btn-primary" style="margin-top:16px" id="log-period-btn">Save period</button>
@@ -561,23 +466,12 @@
   <div class="divider"></div>
   <p class="section-heading">History</p>
   <div class="card" id="history-list">
-    <p style="color:var(--text-muted); font-size:14px; text-align:center; padding: 12px 0;">No periods logged yet</p>
+    <p style="color:var(--text-muted);font-size:14px;text-align:center;padding:12px 0">No periods logged yet</p>
   </div>
 </div>
 
 <!-- ══════════════════ SETTINGS ══════════════════ -->
 <div id="screen-settings" class="screen">
-  <p class="section-heading">Account</p>
-  <div class="card">
-    <div class="settings-row">
-      <span class="settings-key">Email</span>
-      <div style="display:flex;align-items:center;gap:12px">
-        <span class="settings-val" id="set-email">—</span>
-        <button class="settings-edit" id="edit-email-btn">Edit</button>
-      </div>
-    </div>
-  </div>
-
   <p class="section-heading">Cycle settings</p>
   <div class="card">
     <div class="settings-row">
@@ -596,80 +490,32 @@
     </div>
   </div>
 
-  <p class="section-heading">Reminder system</p>
+  <p class="section-heading">Notifications</p>
   <div class="card">
-    <div class="settings-row" style="border-bottom:none">
+    <div class="settings-row">
       <div>
-        <div class="settings-key">Email reminders</div>
-        <div style="font-size:12px; color:var(--text-muted); margin-top:3px">2 days before + daily during period</div>
+        <div class="settings-key">Push notifications</div>
+        <div style="font-size:12px;color:var(--text-muted);margin-top:3px">2 days before + daily during period</div>
       </div>
-      <span class="status-active" id="reminder-status-badge">
-        <span id="reminder-dot" style="width:6px;height:6px;border-radius:50%;background:#E57373;display:inline-block"></span>
-        <span id="reminder-status-text">Off</span>
-      </span>
+      <div class="toggle-wrap">
+        <button class="toggle" id="notif-toggle"></button>
+      </div>
+    </div>
+    <div class="settings-row" style="border-bottom:none">
+      <span class="settings-key" style="font-size:13px;color:var(--text-muted)">Permission status</span>
+      <span id="perm-status" style="font-size:13px;color:var(--text-secondary)">—</span>
     </div>
   </div>
 
-  <p class="section-heading">EmailJS setup</p>
   <div class="card">
-    <div class="setup-guide" id="setup-guide">
-      <div class="setup-guide-title">Quick setup checklist</div>
-      <div class="setup-check">
-        <span class="setup-check-dot missing" id="check-pub"></span>
-        <span>Public Key entered</span>
-      </div>
-      <div class="setup-check">
-        <span class="setup-check-dot missing" id="check-svc"></span>
-        <span>Service ID entered</span>
-      </div>
-      <div class="setup-check">
-        <span class="setup-check-dot missing" id="check-tpl"></span>
-        <span>Template ID entered</span>
-      </div>
+    <p class="card-title">Notification log</p>
+    <div id="notif-log">
+      <p style="color:var(--text-muted);font-size:13px;text-align:center;padding:8px 0">No notifications sent yet</p>
     </div>
-
-    <div class="setup-guide" style="margin-bottom:14px">
-      <div class="setup-guide-title">How to set up (2 minutes)</div>
-      <div class="setup-step">
-        <span class="setup-step-num">1</span>
-        <span>Go to <a href="https://www.emailjs.com" target="_blank" style="color:var(--pink-200)">emailjs.com</a> and create a free account</span>
-      </div>
-      <div class="setup-step">
-        <span class="setup-step-num">2</span>
-        <span>Add an email service (Gmail, Outlook, etc.) and copy the Service ID</span>
-      </div>
-      <div class="setup-step">
-        <span class="setup-step-num">3</span>
-        <span>Create a template with variables: <code style="color:var(--pink-200);background:var(--surface-card);padding:1px 5px;border-radius:4px">{{to_email}}</code> <code style="color:var(--pink-200);background:var(--surface-card);padding:1px 5px;border-radius:4px">{{subject}}</code> <code style="color:var(--pink-200);background:var(--surface-card);padding:1px 5px;border-radius:4px">{{message}}</code></span>
-      </div>
-      <div class="setup-step">
-        <span class="setup-step-num">4</span>
-        <span>Copy your Public Key from Account page and paste everything below</span>
-      </div>
-    </div>
-
-    <div class="input-group">
-      <div class="input-row">
-        <label class="input-label" for="ejs-pubkey">Public Key</label>
-        <input type="text" id="ejs-pubkey" placeholder="e.g. aBcDeFgHiJkLmN" style="font-size:13px">
-      </div>
-      <div class="input-row">
-        <label class="input-label" for="ejs-service">Service ID</label>
-        <input type="text" id="ejs-service" placeholder="e.g. service_abc123" style="font-size:13px">
-      </div>
-      <div class="input-row">
-        <label class="input-label" for="ejs-template">Template ID</label>
-        <input type="text" id="ejs-template" placeholder="e.g. template_xyz789" style="font-size:13px">
-      </div>
-    </div>
-    <button class="btn-primary" style="margin-top:14px" id="save-emailjs-btn">Save EmailJS config</button>
   </div>
 
   <div class="card">
-    <p class="card-title">Test reminders</p>
-    <button class="btn-secondary" style="margin-bottom:8px" id="test-pre-btn">Send test: 2-day warning</button>
-    <button class="btn-secondary" style="margin-bottom:8px" id="test-motivation-btn">Send test: Daily motivation</button>
-    <button class="btn-secondary" id="test-emailjs-btn">Test EmailJS connection only</button>
+    <button class="btn-secondary" id="test-notif-btn">Send a test notification</button>
   </div>
 
   <div class="card" style="margin-top:4px">
@@ -681,414 +527,340 @@
   <button class="nav-tab active" id="tab-home">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
       <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
-    </svg>
-    Home
+    </svg>Home
   </button>
   <button class="nav-tab" id="tab-log">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
       <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
-    </svg>
-    Log
+    </svg>Log
   </button>
   <button class="nav-tab" id="tab-settings">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
       <circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-    </svg>
-    Settings
+    </svg>Settings
   </button>
 </nav>
 
 <div id="toast"></div>
 
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
 <script>
 // ══════════════════════════════════
-//  DATA LAYER
+//  DATA
 // ══════════════════════════════════
-function save(key, val) {
-  try { localStorage.setItem('her_' + key, JSON.stringify(val)); return true; }
-  catch(e) { console.error('Save error:', e); return false; }
-}
-function load(key) {
-  try { return JSON.parse(localStorage.getItem('her_' + key)); }
-  catch(e) { return null; }
-}
+function save(k, v) { try { localStorage.setItem('her_' + k, JSON.stringify(v)); return true; } catch(e) { return false; } }
+function load(k) { try { return JSON.parse(localStorage.getItem('her_' + k)); } catch(e) { return null; } }
 
-// ══════════════════════════════════
-//  ★ FIXED: toDateInput using LOCAL time, not UTC
-//  This was the main bug — toISOString() converts to UTC
-//  which shifts the date for anyone not in GMT timezone
-// ══════════════════════════════════
 function toDateInput(d) {
   if (!d) return '';
-  var year  = d.getFullYear();
-  var month = String(d.getMonth() + 1).padStart(2, '0');
-  var day   = String(d.getDate()).padStart(2, '0');
-  return year + '-' + month + '-' + day;
+  return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
 }
 
 // ══════════════════════════════════
 //  QUOTES
 // ══════════════════════════════════
 var QUOTES = [
-  { text: "Your body is not a problem to be solved. It's a home to be loved.", author: "Her" },
-  { text: "Rest is not laziness. It's your body's way of asking for what it needs.", author: "Her" },
-  { text: "Every cycle is a reminder of how powerful you truly are.", author: "Her" },
-  { text: "Be gentle with yourself — you're doing better than you think.", author: "Her" },
-  { text: "Your feelings are valid. Your body is wise. You are enough.", author: "Her" },
-  { text: "Take up space. Feel deeply. Rest when you need to.", author: "Her" },
-  { text: "Healing isn't linear, and neither is a cycle. Both are natural.", author: "Her" },
-  { text: "Your sensitivity is your superpower — especially today.", author: "Her" },
-  { text: "You deserve warmth, chocolate, and all the softness in the world today.", author: "Her" },
-  { text: "Listen to your body — it's the wisest voice in the room.", author: "Her" },
-  { text: "A little self-compassion goes a long way on the harder days.", author: "Her" },
-  { text: "You are cyclical by nature. That's not a weakness. That's magic.", author: "Her" }
+  "Your body is not a problem to be solved. It's a home to be loved.",
+  "Rest is not laziness. It's your body's way of asking for what it needs.",
+  "Every cycle is a reminder of how powerful you truly are.",
+  "Be gentle with yourself — you're doing better than you think.",
+  "Your feelings are valid. Your body is wise. You are enough.",
+  "Take up space. Feel deeply. Rest when you need to.",
+  "Healing isn't linear, and neither is a cycle. Both are natural.",
+  "Your sensitivity is your superpower — especially today.",
+  "You deserve warmth, chocolate, and all the softness in the world today.",
+  "Listen to your body — it's the wisest voice in the room.",
+  "A little self-compassion goes a long way on the harder days.",
+  "You are cyclical by nature. That's not a weakness. That's magic."
 ];
 
 // ══════════════════════════════════
-//  REMINDER MESSAGES
+//  NOTIFICATION MESSAGES
 // ══════════════════════════════════
-var PRE_REMINDER_SUBJECT = '🌸 Heads up — your period is in 2 days';
-var PRE_REMINDER_MESSAGES = [
-  'Hey! Just a heads up — your period is expected in 2 days.\n\nTime to prep your comfort kit: warm drinks, cozy blankets, and whatever makes you feel good.\n\nTake it easy these next couple of days. Your body is about to do something amazing. 💕',
-  'Friendly reminder: your period is coming in about 2 days.\n\nStart taking it a little easier now — cancel what you can, say no to what drains you, and say yes to rest.\n\nYou\'ve been through this before and you always handle it beautifully. 🌸',
-  'In 2 days, your cycle begins.\n\nStock up on what you need — your favorite snacks, pain relief if you use it, comfy clothes. Give yourself permission to slow down.\n\nThis isn\'t laziness. This is wisdom. ✨',
-  'Quick note: your period is expected in 2 days.\n\nThink about what helped you feel good last cycle. Hot water bottle? A specific tea? A movie marathon? Get those things ready now.\n\nYour future self will thank you. 🌙'
+var PRE_MESSAGES = [
+  { title: "🌸 Period in 2 days", body: "Time to prep your comfort kit — warm drinks, cozy blanket, and whatever makes you feel good. Take it easy!" },
+  { title: "🌸 Heads up!", body: "Your period is expected in 2 days. Cancel what you can, say no to what drains you, and say yes to rest." },
+  { title: "🌸 Friendly reminder", body: "In 2 days your cycle begins. Stock up on snacks, get your comfy clothes ready. You know yourself best." }
 ];
 
 var PERIOD_MESSAGES = {
-  1: {
-    subject: '🌸 Day 1 — Your period is here',
-    messages: [
-      'Your period has arrived.\n\nToday is all about rest and kindness to yourself. Warm drinks, a cozy blanket, and zero guilt about doing nothing.\n\nYou\'ve earned this rest. 💕',
-      'Day 1 of your period.\n\nYour body is working hard right now — shedding, renewing, resetting. Honor that with warmth, rest, and absolutely zero guilt.\n\nCancel whatever you can. The world can wait. 🌸',
-      'Day 1 — the beginning of a new cycle.\n\nTake it slow, stay warm, and remember: resting IS doing something. It\'s doing the most important thing — taking care of you. ✨'
-    ]
-  },
-  2: {
-    subject: '🌸 Day 2 — You\'re doing great',
-    messages: [
-      'Day 2 — often the toughest, but you\'ve got this.\n\nYou made it through day 1, and that\'s already a win. Keep resting, keep sipping warm things, keep being gentle.\n\nIf today feels heavier, that\'s normal. Let it be heavy. 💪',
-      'Day 2 of your period.\n\nIf today feels heavy, that\'s okay. Let it be heavy. You don\'t have to fight it — just flow with it like water.\n\nYour strength isn\'t in pushing through. It\'s in knowing when to rest. 🌊',
-      'Day 2 and you\'re still here, still showing up for yourself.\n\nThat takes more strength than you realize. Be proud of that. 🌸'
-    ]
-  },
-  3: {
-    subject: '🌸 Day 3 — Halfway there',
-    messages: [
-      'Day 3 — the midpoint.\n\nEnergy might start creeping back. Take it at your own pace — no rush, no pressure.\n\nIf you feel like doing something light, great. If not, that\'s great too. 🌱',
-      'Halfway through! Day 3 is a turning point for many.\n\nListen to what your body wants today and honor it — no questions asked. Your body has been communicating with you. 🌿',
-      'Day 3. You\'re past the hardest part for most people.\n\nIf you can, take a gentle walk or do some light stretching — but only if you want to. No shoulds, just coulds. 💫'
-    ]
-  },
-  4: {
-    subject: '🌸 Day 4 — Almost there',
-    messages: [
-      'Day 4 — you\'re so close to the finish line!\n\nIf you\'ve been resting well, you might start feeling lighter. Either way, you\'re doing incredible.\n\nThink about what self-care rituals felt best this cycle. Save them for next time. ✨',
-      'Almost there! Day 4 and your body is already preparing to reset.\n\nBe proud of how you\'ve taken care of yourself this cycle. You\'re learning your body\'s language and that\'s powerful. 🌸',
-      'Day 4. Notice how your body is starting to shift?\n\nThat\'s its wisdom at work. Trust the process — you\'re almost through. 🌙'
-    ]
-  },
-  5: {
-    subject: '🌸 Day 5 — You made it!',
-    messages: [
-      'Last stretch! Your period is nearly over.\n\nThink about what self-care rituals felt best this cycle — keep them close for next time.\n\nYou showed up for yourself every single day. That\'s everything. 💕',
-      'Final days of your period.\n\nSoon you\'ll enter a fresh cycle with new energy. Take a moment to appreciate your body\'s wisdom.\n\nYou\'re incredible. Never forget that. 🌸',
-      'Day 5 — you made it!\n\nThrough the cramps, the fatigue, the emotions — you showed up for yourself.\n\nRest tonight knowing you did beautifully. ✨'
-    ]
-  }
-};
-
-var PERIOD_MSG_DEFAULT = {
-  subject: '🌸 Still in your period — keep going',
-  messages: [
-    'Still in your period — and that\'s completely okay.\n\nEvery body is different, every cycle is different. Keep being gentle with yourself.\n\nIf this is unusual for you, it might be worth mentioning to your doctor. But for now — rest and be kind. 💕',
-    'Your body is taking its time, and that\'s fine.\n\nThere\'s no rush. Rest, nourish yourself, and trust the process.\n\nKeep showing up for yourself. 🌸',
-    'Extended periods happen sometimes — it\'s more common than you think.\n\nKeep doing what you\'ve been doing: resting, staying warm, drinking water, being gentle.\n\nFor today though? Just rest. 🌙'
+  1: [
+    { title: "🌸 Day 1 — Your period is here", body: "Today is all about rest and kindness to yourself. Warm drinks, cozy blanket, zero guilt about doing nothing. 💕" },
+    { title: "🌸 Day 1", body: "Your body is working hard right now — shedding, renewing, resetting. Cancel whatever you can. The world can wait. 🌸" }
+  ],
+  2: [
+    { title: "🌸 Day 2 — You're doing great", body: "Day 2 can be the toughest, but you made it through day 1. Keep resting, keep sipping warm things. 💪" },
+    { title: "🌸 Day 2", body: "If today feels heavy, that's okay. Let it be heavy. You don't have to fight it — just flow with it. 🌊" }
+  ],
+  3: [
+    { title: "🌸 Day 3 — Halfway there", body: "Energy might start creeping back. Take it at your own pace — no rush, no pressure. 🌱" },
+    { title: "🌸 Day 3", body: "Halfway through! Listen to what your body wants today and honor it — no questions asked. 🌿" }
+  ],
+  4: [
+    { title: "🌸 Day 4 — Almost there", body: "You're so close to the finish line! Think about what self-care felt best this cycle. Save it for next time. ✨" },
+    { title: "🌸 Day 4", body: "Almost there! Be proud of how you've taken care of yourself. You're learning your body's language. 🌸" }
+  ],
+  5: [
+    { title: "🌸 Day 5 — You made it!", body: "You showed up for yourself every single day this cycle. That's everything. Rest tonight knowing you did beautifully. 💕" },
+    { title: "🌸 Day 5 — Final stretch", body: "Through the cramps, fatigue, emotions — you showed up. You're incredible. Never forget that. ✨" }
   ]
 };
 
-function pickRandom(arr) {
-  return arr[Math.floor(Math.random() * arr.length)];
+var PERIOD_DEFAULT = [
+  { title: "🌸 Still in your period", body: "Every body is different. Keep being gentle with yourself today. Rest, warmth, and zero guilt. 💕" },
+  { title: "🌸 Keep going", body: "Your body is taking its time, and that's fine. No rush. Rest, nourish yourself, trust the process. 🌸" }
+];
+
+function pickMsg(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+
+// ══════════════════════════════════
+//  NOTIFICATION SYSTEM
+// ══════════════════════════════════
+function notifEnabled() {
+  var s = load('notif_enabled');
+  return s === true || s === 'true';
+}
+
+function notifPermission() {
+  if (!('Notification' in window)) return 'unsupported';
+  return Notification.permission;
+}
+
+function requestNotifPermission() {
+  if (!('Notification' in window)) {
+    showToast('Notifications not supported in this browser');
+    return Promise.resolve('unsupported');
+  }
+  if (Notification.permission === 'granted') return Promise.resolve('granted');
+  if (Notification.permission === 'denied') return Promise.resolve('denied');
+  return Notification.requestPermission();
+}
+
+function sendNotif(title, body, logType) {
+  if (!notifEnabled()) return false;
+  if (notifPermission() !== 'granted') return false;
+
+  try {
+    var n = new Notification(title, {
+      body: body,
+      icon: 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23EC407A"/><text x="50" y="65" text-anchor="middle" font-size="45">🌸</text></svg>'),
+      tag: 'her-' + todayStr(),
+      renotify: true
+    });
+
+    // Log it
+    var log = load('notif_log') || [];
+    log.unshift({
+      type: logType || 'info',
+      title: title,
+      body: body,
+      time: new Date().toISOString()
+    });
+    if (log.length > 30) log = log.slice(0, 30);
+    save('notif_log', log);
+
+    return true;
+  } catch(e) {
+    console.error('Notification error:', e);
+    return false;
+  }
 }
 
 // ══════════════════════════════════
 //  CYCLE MATH
 // ══════════════════════════════════
 function daysBetween(a, b) { return Math.round((b - a) / 86400000); }
-function addDays(date, n) { var d = new Date(date); d.setDate(d.getDate() + n); return d; }
+function addDays(d, n) { var r = new Date(d); r.setDate(r.getDate() + n); return r; }
 function fmtDate(d) { return d ? d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : '—'; }
-function fmtDateFull(d) { return d ? d.toLocaleDateString('en-US', { weekday:'short', month: 'short', day: 'numeric' }) : '—'; }
+function fmtDateFull(d) { return d ? d.toLocaleDateString('en-US', { weekday:'short', month:'short', day:'numeric' }) : '—'; }
 function todayStr() { return toDateInput(new Date()); }
 function todayDate() { var t = new Date(); t.setHours(0,0,0,0); return t; }
 
 function computeNext(lastStart, cycleLen) {
-  var ls = new Date(lastStart);
-  var next = new Date(ls);
-  var safety = 200;
-  while (next <= todayDate() && safety > 0) { next = addDays(next, cycleLen); safety--; }
+  var next = new Date(lastStart);
+  var s = 200;
+  while (next <= todayDate() && s > 0) { next = addDays(next, cycleLen); s--; }
   return next;
 }
 
-// ══════════════════════════════════
-//  CORE: GET TODAY'S STATUS
-// ══════════════════════════════════
-function getTodayStatus() {
-  var history  = load('history') || [];
+function getStatus() {
+  var history = load('history') || [];
   var cycleLen = load('cycle') || 28;
   var duration = load('duration') || 5;
   if (!history.length) return null;
 
-  var today     = todayDate();
-  var lastStart = new Date(history[0].start); lastStart.setHours(0,0,0,0);
-  var lastEnd   = history[0].end ? new Date(history[0].end) : addDays(lastStart, duration - 1);
-  lastEnd.setHours(0,0,0,0);
-  var nextStart = addDays(lastStart, cycleLen);
-  nextStart.setHours(0,0,0,0);
-  var nextEnd   = addDays(nextStart, duration - 1);
-  var daysUntil = daysBetween(today, nextStart);
+  var today = todayDate();
+  var ls = new Date(history[0].start); ls.setHours(0,0,0,0);
+  var le = history[0].end ? new Date(history[0].end) : addDays(ls, duration - 1);
+  le.setHours(0,0,0,0);
+  var ns = addDays(ls, cycleLen); ns.setHours(0,0,0,0);
+  var ne = addDays(ns, duration - 1);
+  var du = daysBetween(today, ns);
 
-  if (today >= lastStart && today <= lastEnd) {
-    var dayOfPeriod = daysBetween(lastStart, today) + 1;
-    return {
-      status: 'in_period', dayOfPeriod: dayOfPeriod,
-      periodEnd: lastEnd, periodStart: lastStart,
-      nextStart: nextStart, nextEnd: nextEnd, daysUntil: daysUntil
-    };
+  if (today >= ls && today <= le) {
+    return { status: 'in_period', day: daysBetween(ls, today) + 1, periodEnd: le, periodStart: ls, nextStart: ns, nextEnd: ne, daysUntil: du };
   }
-
-  if (daysUntil <= 0) {
-    var dayOfPeriod2 = Math.abs(daysUntil) + 1;
-    return {
-      status: 'in_period', dayOfPeriod: dayOfPeriod2,
-      periodEnd: nextEnd, periodStart: nextStart,
-      nextStart: addDays(nextStart, cycleLen),
-      nextEnd: addDays(nextStart, cycleLen + duration - 1),
-      daysUntil: daysUntil, isPredicted: true
-    };
+  if (du <= 0) {
+    return { status: 'in_period', day: Math.abs(du) + 1, periodEnd: ne, periodStart: ns, nextStart: addDays(ns, cycleLen), nextEnd: addDays(ns, cycleLen + duration - 1), daysUntil: du, predicted: true };
   }
-
-  if (daysUntil === 2) {
-    return { status: 'pre_2days', daysUntil: 2, nextStart: nextStart, nextEnd: nextEnd };
+  if (du === 2) {
+    return { status: 'pre_2days', daysUntil: 2, nextStart: ns, nextEnd: ne };
   }
-
-  return { status: 'normal', daysUntil: daysUntil, nextStart: nextStart, nextEnd: nextEnd };
+  return { status: 'normal', daysUntil: du, nextStart: ns, nextEnd: ne };
 }
 
 // ══════════════════════════════════
-//  EMAIL SENDING
+//  AUTO CHECK (runs every time app opens)
 // ══════════════════════════════════
-function isEmailJSReady() {
-  var cfg = load('emailjs');
-  return cfg && cfg.pubKey && cfg.service && cfg.template;
-}
+function checkAndNotify() {
+  if (!notifEnabled()) return;
+  if (notifPermission() !== 'granted') return;
 
-function sendEmailRaw(params) {
-  var cfg = load('emailjs');
-  if (!cfg || !cfg.pubKey) return Promise.reject(new Error('EmailJS not configured'));
-  try {
-    emailjs.init(cfg.pubKey);
-    return emailjs.send(cfg.service, cfg.template, params);
-  } catch(e) { return Promise.reject(e); }
-}
+  var s = getStatus();
+  if (!s) return;
 
-function sendPreReminder(isManual) {
-  var email = load('email');
-  if (!email) return Promise.reject(new Error('No email saved'));
-  return sendEmailRaw({
-    to_email: email,
-    subject: PRE_REMINDER_SUBJECT + (isManual ? ' [Test]' : ''),
-    message: pickRandom(PRE_REMINDER_MESSAGES)
-  });
-}
-
-function sendMotivation(dayOfPeriod, isManual) {
-  var email = load('email');
-  if (!email) return Promise.reject(new Error('No email saved'));
-  var dayData = PERIOD_MESSAGES[dayOfPeriod] || PERIOD_MSG_DEFAULT;
-  return sendEmailRaw({
-    to_email: email,
-    subject: dayData.subject + (isManual ? ' [Test]' : ''),
-    message: pickRandom(dayData.messages)
-  });
-}
-
-// ══════════════════════════════════
-//  AUTO REMINDER CHECK
-// ══════════════════════════════════
-function checkAndSendReminders() {
-  if (!isEmailJSReady()) return;
-  var status = getTodayStatus();
-  if (!status) return;
   var today = todayStr();
-  var sent = load('reminders_sent') || {};
-  if (sent[today]) return;
+  var sent = load('notif_sent') || {};
+  if (sent[today]) return; // Already sent today
 
-  if (status.status === 'pre_2days') {
-    sendPreReminder(false).then(function() {
+  var msg;
+
+  if (s.status === 'pre_2days') {
+    msg = pickMsg(PRE_MESSAGES);
+    if (sendNotif(msg.title, msg.body, 'pre_2days')) {
       sent[today] = 'pre_2days';
-      save('reminders_sent', sent);
-      renderReminderCard();
-    }).catch(function(e) { console.warn('[Her] Pre-reminder failed:', e); });
-  } else if (status.status === 'in_period') {
-    sendMotivation(status.dayOfPeriod, false).then(function() {
-      sent[today] = 'period_day_' + status.dayOfPeriod;
-      save('reminders_sent', sent);
-      renderReminderCard();
-    }).catch(function(e) { console.warn('[Her] Motivation failed:', e); });
+      save('notif_sent', sent);
+      renderNotifCard();
+    }
+  } else if (s.status === 'in_period') {
+    var pool = PERIOD_MESSAGES[s.day] || PERIOD_DEFAULT;
+    msg = pickMsg(pool);
+    if (sendNotif(msg.title, msg.body, 'period_day_' + s.day)) {
+      sent[today] = 'period_day_' + s.day;
+      save('notif_sent', sent);
+      renderNotifCard();
+    }
   }
-}
-
-function sendReminderNow() {
-  if (!isEmailJSReady()) { showToast('Set up EmailJS in Settings first ⚙️'); return; }
-  var status = getTodayStatus();
-  if (!status) { showToast('No cycle data yet'); return; }
-  var today = todayStr();
-  var sent = load('reminders_sent') || {};
-  if (sent[today]) { showToast('Already sent today — check your inbox 📬'); return; }
-
-  var promise;
-  if (status.status === 'pre_2days') {
-    promise = sendPreReminder(false);
-  } else if (status.status === 'in_period') {
-    promise = sendMotivation(status.dayOfPeriod, false);
-  } else {
-    showToast('No reminder due today — next one in ' + Math.max(0, status.daysUntil - 2) + ' days');
-    return;
-  }
-
-  showToast('Sending...');
-  promise.then(function() {
-    sent[today] = status.status === 'pre_2days' ? 'pre_2days' : 'period_day_' + status.dayOfPeriod;
-    save('reminders_sent', sent);
-    renderReminderCard();
-    showToast('Reminder sent! Check your inbox 📬');
-  }).catch(function(e) {
-    console.error('Send failed:', e);
-    showToast('Failed to send — check EmailJS config ⚠️');
-  });
 }
 
 // ══════════════════════════════════
 //  ONBOARDING
 // ══════════════════════════════════
+var permGranted = false;
+
 function saveOnboarding() {
-  var email = document.getElementById('ob-email').value.trim();
   var start = document.getElementById('ob-start').value;
   var end   = document.getElementById('ob-end').value;
   var cycle = parseInt(document.getElementById('ob-cycle').value) || 28;
   var dur   = parseInt(document.getElementById('ob-duration').value) || 5;
 
-  if (!email || !email.includes('@')) { showToast('Please enter a valid email 📧'); return; }
   if (!start) { showToast('Please select your last period start date'); return; }
 
-  if (!save('email', email)) { showToast('Could not save — is storage available?'); return; }
   save('cycle', cycle);
   save('duration', dur);
-
   var history = load('history') || [];
   history.unshift({ start: start, end: end || toDateInput(addDays(new Date(start), dur - 1)) });
   save('history', history);
-  save('reminders_sent', {});
+  save('notif_sent', {});
+  save('notif_enabled', permGranted);
+  save('notif_log', []);
 
   showMain();
-  setTimeout(function() { checkAndSendReminders(); }, 500);
+  setTimeout(checkAndNotify, 500);
 }
 
 // ══════════════════════════════════
-//  MAIN APP
+//  NAVIGATION
 // ══════════════════════════════════
 function showMain() {
-  var onb = document.getElementById('screen-onboarding');
-  if (onb) onb.classList.remove('active');
-  var nav = document.getElementById('bottom-nav');
-  if (nav) nav.style.display = 'flex';
+  document.getElementById('screen-onboarding').classList.remove('active');
+  document.getElementById('bottom-nav').style.display = 'flex';
   goTab('home');
 }
 
 function goTab(tab) {
   ['home','log','settings'].forEach(function(t) {
-    var s = document.getElementById('screen-' + t);
-    if (s) s.classList.remove('active');
-    var tb = document.getElementById('tab-' + t);
-    if (tb) tb.classList.remove('active');
+    document.getElementById('screen-' + t).classList.remove('active');
+    document.getElementById('tab-' + t).classList.remove('active');
   });
-  var active = document.getElementById('screen-' + tab);
-  if (active) active.classList.add('active');
-  var tabEl = document.getElementById('tab-' + tab);
-  if (tabEl) tabEl.classList.add('active');
+  document.getElementById('screen-' + tab).classList.add('active');
+  document.getElementById('tab-' + tab).classList.add('active');
   if (tab === 'home') renderHome();
   if (tab === 'log') renderLog();
   if (tab === 'settings') renderSettings();
 }
 
 // ══════════════════════════════════
-//  REMINDER CARD
+//  NOTIFICATION CARD (Home)
 // ══════════════════════════════════
-function renderReminderCard() {
-  var card = document.getElementById('reminder-card');
-  var icon = document.getElementById('reminder-icon');
-  var title = document.getElementById('reminder-title');
-  var sub = document.getElementById('reminder-sub');
-  var sendBtn = document.getElementById('reminder-send-btn');
-  var sentBadge = document.getElementById('reminder-sent-badge');
+function renderNotifCard() {
+  var card = document.getElementById('notif-card');
+  var icon = document.getElementById('notif-icon');
+  var title = document.getElementById('notif-title');
+  var sub = document.getElementById('notif-sub');
+  var testBtn = document.getElementById('notif-test-btn');
+  var sentBadge = document.getElementById('notif-sent-badge');
 
-  var status = getTodayStatus();
-  var today = todayStr();
-  var sent = load('reminders_sent') || {};
-  var alreadySent = !!sent[today];
-  var ejsReady = isEmailJSReady();
-
-  sendBtn.style.display = 'none';
+  testBtn.style.display = 'none';
   sentBadge.style.display = 'none';
-  card.classList.remove('inactive');
+  card.className = 'notif-card';
 
-  if (!status) {
-    icon.textContent = '📭'; title.textContent = 'No cycle data';
-    sub.textContent = 'Add a period to enable reminders';
-    card.classList.add('inactive'); return;
-  }
-  if (!ejsReady) {
-    icon.textContent = '⚠️'; title.textContent = 'EmailJS not configured';
-    sub.textContent = 'Go to Settings to set up email reminders';
-    card.classList.add('inactive'); return;
+  if (!notifEnabled()) {
+    icon.textContent = '🔕'; title.textContent = 'Notifications off';
+    sub.textContent = 'Turn on in Settings to get reminders';
+    card.classList.add('off-notif');
+    return;
   }
 
-  if (status.status === 'pre_2days') {
+  if (notifPermission() !== 'granted') {
+    icon.textContent = '⚠️'; title.textContent = 'Notifications blocked';
+    sub.textContent = 'Go to Settings → enable notifications';
+    card.classList.add('off-notif');
+    return;
+  }
+
+  var s = getStatus();
+  if (!s) return;
+
+  var today = todayStr();
+  var sent = load('notif_sent') || {};
+  var alreadySent = !!sent[today];
+
+  if (s.status === 'pre_2days') {
     icon.textContent = '🔔';
+    card.classList.add('pending-notif');
     if (alreadySent) {
       title.textContent = '2-day warning sent!';
-      sub.textContent = 'Your period is expected ' + fmtDate(status.nextStart);
+      sub.textContent = 'Your period is expected ' + fmtDate(s.nextStart);
       sentBadge.style.display = 'inline-block';
     } else {
       title.textContent = 'Period in 2 days';
-      sub.textContent = 'Expected ' + fmtDate(status.nextStart) + ' — ' + fmtDate(status.nextEnd);
-      sendBtn.style.display = 'inline-block';
+      sub.textContent = 'Expected ' + fmtDate(s.nextStart) + ' — tap Test to preview';
+      testBtn.style.display = 'inline-block';
     }
-  } else if (status.status === 'in_period') {
-    var remaining = daysBetween(todayDate(), status.periodEnd);
+  } else if (s.status === 'in_period') {
+    var rem = daysBetween(todayDate(), s.periodEnd);
     icon.textContent = '🌸';
+    card.classList.add(alreadySent ? 'active-notif' : 'pending-notif');
     if (alreadySent) {
-      title.textContent = 'Day ' + status.dayOfPeriod + ' motivation sent!';
-      sub.textContent = remaining > 0 ? (remaining + ' day' + (remaining > 1 ? 's' : '') + ' remaining') : 'Last day';
+      title.textContent = 'Day ' + s.day + ' motivation sent!';
+      sub.textContent = rem > 0 ? (rem + ' day' + (rem > 1 ? 's' : '') + ' remaining') : 'Last day';
       sentBadge.style.display = 'inline-block';
     } else {
-      title.textContent = 'Day ' + status.dayOfPeriod + ' of your period';
-      sub.textContent = remaining > 0 ? (remaining + ' day' + (remaining > 1 ? 's' : '') + ' remaining — send motivation') : 'Last day';
-      sendBtn.style.display = 'inline-block';
+      title.textContent = 'Day ' + s.day + ' of your period';
+      sub.textContent = rem > 0 ? (rem + ' day' + (rem > 1 ? 's' : '') + ' remaining') : 'Last day';
+      testBtn.style.display = 'inline-block';
     }
   } else {
-    var daysToReminder = status.daysUntil - 2;
+    var daysTo = s.daysUntil - 2;
     icon.textContent = '📬';
-    if (daysToReminder > 0) {
-      title.textContent = 'Next reminder in ' + daysToReminder + ' day' + (daysToReminder > 1 ? 's' : '');
-      sub.textContent = '2-day warning before ' + fmtDate(status.nextStart);
+    card.classList.add('off-notif');
+    if (daysTo > 0) {
+      title.textContent = 'Next notification in ' + daysTo + ' day' + (daysTo > 1 ? 's' : '');
+      sub.textContent = '2-day warning before ' + fmtDate(s.nextStart);
     } else {
-      title.textContent = 'Reminder schedule passed';
-      sub.textContent = 'Next period: ' + fmtDate(status.nextStart);
+      title.textContent = 'No notification due';
+      sub.textContent = 'Next period: ' + fmtDate(s.nextStart);
     }
-    card.classList.add('inactive');
   }
 }
 
@@ -1096,223 +868,254 @@ function renderReminderCard() {
 //  HOME RENDER
 // ══════════════════════════════════
 function renderHome() {
-  var status = getTodayStatus();
-  if (!status) return;
+  var s = getStatus();
+  if (!s) return;
 
   var history = load('history') || [];
   var cycleLen = load('cycle') || 28;
   var duration = load('duration') || 5;
   var today = todayDate();
+  var ls = new Date(history[0].start); ls.setHours(0,0,0,0);
+  var le = history[0].end ? new Date(history[0].end) : addDays(ls, duration - 1);
+  le.setHours(0,0,0,0);
 
-  var lastEntry = history[0];
-  var lastStart = new Date(lastEntry.start); lastStart.setHours(0,0,0,0);
-  var lastEnd = lastEntry.end ? new Date(lastEntry.end) : addDays(lastStart, duration - 1);
-  lastEnd.setHours(0,0,0,0);
+  var inP = s.status === 'in_period';
+  var progress, daysShow;
+  if (inP) { progress = 1; daysShow = s.day; }
+  else { progress = Math.max(0, Math.min(1, (cycleLen - s.daysUntil) / cycleLen)); daysShow = Math.max(0, s.daysUntil); }
 
-  var inPeriod = (status.status === 'in_period');
-  var progress, daysToShow;
+  var circ = 2 * Math.PI * 82;
+  document.getElementById('ring-progress').style.strokeDashoffset = Math.round(circ * (1 - progress));
+  document.getElementById('ring-progress').style.strokeDasharray = Math.round(circ);
 
-  if (inPeriod) {
-    progress = 1; daysToShow = status.dayOfPeriod;
-  } else {
-    progress = Math.max(0, Math.min(1, (cycleLen - status.daysUntil) / cycleLen));
-    daysToShow = Math.max(0, status.daysUntil);
-  }
-
-  var circumference = 2 * Math.PI * 82;
-  document.getElementById('ring-progress').style.strokeDashoffset = Math.round(circumference * (1 - progress));
-  document.getElementById('ring-progress').style.strokeDasharray = Math.round(circumference);
-
-  if (inPeriod) {
-    document.getElementById('ring-days').textContent = 'Day ' + status.dayOfPeriod;
+  if (inP) {
+    document.getElementById('ring-days').textContent = 'Day ' + s.day;
     document.getElementById('ring-label').textContent = 'of your period';
     document.getElementById('active-banner').style.display = 'flex';
-    var remaining = daysBetween(today, status.periodEnd);
+    var rem = daysBetween(today, s.periodEnd);
     document.getElementById('active-banner-text').textContent =
-      remaining > 0 ? ('About ' + remaining + ' more day' + (remaining > 1 ? 's' : '') + ' — take care of yourself 💕') : 'Last day — you\'re almost through 🌸';
+      rem > 0 ? ('About ' + rem + ' more day' + (rem > 1 ? 's' : '') + ' — take care of yourself 💕') : 'Last day — you\'re almost through 🌸';
     document.getElementById('phase-text').textContent = '🌸 Menstrual phase';
   } else {
-    document.getElementById('ring-days').textContent = daysToShow;
+    document.getElementById('ring-days').textContent = daysShow;
     document.getElementById('ring-label').textContent = 'days until period';
     document.getElementById('active-banner').style.display = 'none';
-    var phaseText = '🌱 Follicular phase';
-    if (status.daysUntil <= 5) phaseText = '🌙 Premenstrual phase';
-    else if (status.daysUntil <= cycleLen - 14 + 5) phaseText = '🌕 Luteal phase';
-    document.getElementById('phase-text').textContent = phaseText;
+    var pt = '🌱 Follicular phase';
+    if (s.daysUntil <= 5) pt = '🌙 Premenstrual phase';
+    else if (s.daysUntil <= cycleLen - 14 + 5) pt = '🌕 Luteal phase';
+    document.getElementById('phase-text').textContent = pt;
   }
 
-  document.getElementById('stat-next-date').textContent = fmtDate(status.nextStart);
-  document.getElementById('stat-next-end').textContent  = 'ends ' + fmtDate(status.nextEnd);
-  document.getElementById('stat-cycle').textContent     = cycleLen + ' days';
-  document.getElementById('stat-duration').textContent  = duration + ' day period';
-  document.getElementById('stat-last-start').textContent = fmtDate(lastStart);
-  document.getElementById('stat-last-end').textContent   = 'ended ' + fmtDate(lastEnd);
-  document.getElementById('stat-ovulation').textContent = fmtDate(addDays(status.nextStart, -14));
+  document.getElementById('stat-next-date').textContent = fmtDate(s.nextStart);
+  document.getElementById('stat-next-end').textContent = 'ends ' + fmtDate(s.nextEnd);
+  document.getElementById('stat-cycle').textContent = cycleLen + ' days';
+  document.getElementById('stat-duration').textContent = duration + ' day period';
+  document.getElementById('stat-last-start').textContent = fmtDate(ls);
+  document.getElementById('stat-last-end').textContent = 'ended ' + fmtDate(le);
+  document.getElementById('stat-ovulation').textContent = fmtDate(addDays(s.nextStart, -14));
 
   var q = QUOTES[today.getDate() % QUOTES.length];
-  document.getElementById('daily-quote').textContent  = '"' + q.text + '"';
-  document.getElementById('quote-author').textContent = '— ' + q.author;
+  document.getElementById('daily-quote').textContent = '"' + q + '"';
+  document.getElementById('quote-author').textContent = '— Her';
 
-  renderReminderCard();
+  renderNotifCard();
 }
 
 // ══════════════════════════════════
-//  LOG RENDER
+//  LOG
 // ══════════════════════════════════
 function renderLog() {
   var history = load('history') || [];
-  var container = document.getElementById('history-list');
-  var duration = load('duration') || 5;
-
+  var c = document.getElementById('history-list');
+  var dur = load('duration') || 5;
   document.getElementById('log-start').value = toDateInput(new Date());
-  document.getElementById('log-end').value   = toDateInput(addDays(new Date(), duration - 1));
+  document.getElementById('log-end').value = toDateInput(addDays(new Date(), dur - 1));
 
-  if (!history.length) {
-    container.innerHTML = '<p style="color:var(--text-muted);font-size:14px;text-align:center;padding:12px 0">No periods logged yet</p>';
-    return;
-  }
+  if (!history.length) { c.innerHTML = '<p style="color:var(--text-muted);font-size:14px;text-align:center;padding:12px 0">No periods logged yet</p>'; return; }
 
-  var html = '<p class="card-title">Past entries</p>';
-  history.slice(0, 12).forEach(function(entry, i) {
-    var s = new Date(entry.start);
-    var e = entry.end ? new Date(entry.end) : null;
-    var dur = e ? daysBetween(s, e) + 1 : '?';
-    html += '<div class="history-item"><div><div class="history-date">' + fmtDateFull(s) +
-      '</div><div class="history-dur">to ' + (e ? fmtDateFull(e) : '—') +
-      '</div></div><div style="display:flex;align-items:center;gap:10px"><span class="history-badge">' +
-      dur + ' days</span><button class="del-entry-btn" data-idx="' + i +
-      '" style="background:none;border:none;cursor:pointer;color:var(--text-muted);font-size:18px;padding:2px">×</button></div></div>';
+  var h = '<p class="card-title">Past entries</p>';
+  history.slice(0, 12).forEach(function(e, i) {
+    var s = new Date(e.start), en = e.end ? new Date(e.end) : null;
+    var d = en ? daysBetween(s, en) + 1 : '?';
+    h += '<div class="history-item"><div><div class="history-date">' + fmtDateFull(s) + '</div><div class="history-dur">to ' + (en ? fmtDateFull(en) : '—') + '</div></div><div style="display:flex;align-items:center;gap:10px"><span class="history-badge">' + d + ' days</span><button class="del-btn" data-i="' + i + '" style="background:none;border:none;cursor:pointer;color:var(--text-muted);font-size:18px;padding:2px">×</button></div></div>';
   });
-  container.innerHTML = html;
-
-  container.querySelectorAll('.del-entry-btn').forEach(function(btn) {
-    btn.addEventListener('click', function() { deleteEntry(parseInt(this.getAttribute('data-idx'))); });
+  c.innerHTML = h;
+  c.querySelectorAll('.del-btn').forEach(function(b) {
+    b.addEventListener('click', function() { deleteEntry(parseInt(this.getAttribute('data-i'))); });
   });
 }
 
 function logPeriod() {
   var start = document.getElementById('log-start').value;
-  var end   = document.getElementById('log-end').value;
+  var end = document.getElementById('log-end').value;
   if (!start) { showToast('Please select a start date'); return; }
-  var history = load('history') || [];
-  history.unshift({ start: start, end: end });
-  history.sort(function(a, b) { return new Date(b.start) - new Date(a.start); });
-  save('history', history);
-  save('reminders_sent', {});
+  var h = load('history') || [];
+  h.unshift({ start: start, end: end });
+  h.sort(function(a, b) { return new Date(b.start) - new Date(a.start); });
+  save('history', h);
+  save('notif_sent', {});
   renderLog(); renderHome();
   showToast('Period logged 🌸');
-  setTimeout(function() { checkAndSendReminders(); }, 300);
+  setTimeout(checkAndNotify, 300);
 }
 
-function deleteEntry(idx) {
-  var history = load('history') || [];
-  history.splice(idx, 1);
-  save('history', history);
-  save('reminders_sent', {});
+function deleteEntry(i) {
+  var h = load('history') || [];
+  h.splice(i, 1);
+  save('history', h);
+  save('notif_sent', {});
   renderLog(); renderHome();
   showToast('Entry removed');
 }
 
 // ══════════════════════════════════
-//  SETTINGS RENDER
+//  SETTINGS
 // ══════════════════════════════════
 function renderSettings() {
-  document.getElementById('set-email').textContent    = load('email') || '—';
-  document.getElementById('set-cycle').textContent    = (load('cycle') || 28) + ' days';
+  document.getElementById('set-cycle').textContent = (load('cycle') || 28) + ' days';
   document.getElementById('set-duration').textContent = (load('duration') || 5) + ' days';
 
-  var cfg = load('emailjs') || {};
-  if (cfg.pubKey)   document.getElementById('ejs-pubkey').value   = cfg.pubKey;
-  if (cfg.service)  document.getElementById('ejs-service').value  = cfg.service;
-  if (cfg.template) document.getElementById('ejs-template').value = cfg.template;
+  // Toggle
+  var tog = document.getElementById('notif-toggle');
+  if (notifEnabled()) tog.classList.add('on'); else tog.classList.remove('on');
 
-  document.getElementById('check-pub').className = 'setup-check-dot ' + (cfg.pubKey ? 'done' : 'missing');
-  document.getElementById('check-svc').className = 'setup-check-dot ' + (cfg.service ? 'done' : 'missing');
-  document.getElementById('check-tpl').className = 'setup-check-dot ' + (cfg.template ? 'done' : 'missing');
+  // Permission status
+  var ps = document.getElementById('perm-status');
+  var p = notifPermission();
+  if (p === 'granted') { ps.textContent = '✅ Granted'; ps.style.color = 'var(--green)'; }
+  else if (p === 'denied') { ps.textContent = '❌ Blocked'; ps.style.color = 'var(--red)'; }
+  else if (p === 'unsupported') { ps.textContent = '⛔ Not supported'; ps.style.color = 'var(--red)'; }
+  else { ps.textContent = '⏳ Not yet asked'; ps.style.color = 'var(--text-muted)'; }
 
-  var ready = isEmailJSReady();
-  document.getElementById('reminder-dot').style.background = ready ? '#81C784' : '#E57373';
-  document.getElementById('reminder-status-text').textContent = ready ? 'Active' : 'Off';
+  // Notification log
+  var log = load('notif_log') || [];
+  var logEl = document.getElementById('notif-log');
+  if (!log.length) {
+    logEl.innerHTML = '<p style="color:var(--text-muted);font-size:13px;text-align:center;padding:8px 0">No notifications sent yet</p>';
+  } else {
+    var html = '';
+    log.slice(0, 10).forEach(function(entry) {
+      var d = new Date(entry.time);
+      var timeStr = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) + ' ' + d.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+      var emoji = entry.type === 'pre_2days' ? '🔔' : entry.type.startsWith('period') ? '🌸' : '📬';
+      html += '<div class="notif-log-item"><span class="notif-log-emoji">' + emoji + '</span><div class="notif-log-text"><strong>' + entry.title + '</strong><br>' + entry.body + '</div><span class="notif-log-time">' + timeStr + '</span></div>';
+    });
+    logEl.innerHTML = html;
+  }
+}
+
+function toggleNotif() {
+  if (notifEnabled()) {
+    save('notif_enabled', false);
+    renderSettings(); renderHome();
+    showToast('Notifications turned off');
+    return;
+  }
+
+  // Turning on — need permission first
+  requestNotifPermission().then(function(result) {
+    if (result === 'granted') {
+      save('notif_enabled', true);
+      renderSettings(); renderHome();
+      showToast('Notifications turned on! 🔔');
+      checkAndNotify();
+    } else if (result === 'denied') {
+      showToast('Notifications blocked — enable in browser settings');
+      renderSettings();
+    } else {
+      showToast('Could not request permission');
+    }
+  });
+}
+
+function testNotif() {
+  if (notifPermission() !== 'granted') {
+    showToast('Please allow notifications first');
+    requestNotifPermission().then(function(r) {
+      if (r === 'granted') {
+        save('notif_enabled', true);
+        doTestNotif();
+        renderSettings(); renderHome();
+      } else {
+        showToast('Permission denied');
+      }
+    });
+    return;
+  }
+  doTestNotif();
+}
+
+function doTestNotif() {
+  var msg = pickMsg(PERIOD_MESSAGES[1]);
+  var ok = sendNotif('🌸 Test notification', 'If you see this, notifications are working perfectly! 💕', 'test');
+  if (ok) {
+    showToast('Test sent! Check your notifications 🔔');
+    renderSettings(); renderHome();
+  } else {
+    showToast('Failed to send notification');
+  }
+}
+
+function sendNotifFromHome() {
+  var s = getStatus();
+  if (!s) { showToast('No cycle data'); return; }
+  var today = todayStr();
+  var sent = load('notif_sent') || {};
+  if (sent[today]) { showToast('Already sent today — check your notifications 🔔'); return; }
+
+  var msg;
+  if (s.status === 'pre_2days') {
+    msg = pickMsg(PRE_MESSAGES);
+  } else if (s.status === 'in_period') {
+    var pool = PERIOD_MESSAGES[s.day] || PERIOD_DEFAULT;
+    msg = pickMsg(pool);
+  } else {
+    showToast('No notification due today');
+    return;
+  }
+
+  if (sendNotif(msg.title, msg.body, s.status === 'pre_2days' ? 'pre_2days' : 'period_day_' + s.day)) {
+    sent[today] = s.status === 'pre_2days' ? 'pre_2days' : 'period_day_' + s.day;
+    save('notif_sent', sent);
+    renderNotifCard();
+    showToast('Notification sent! 🔔');
+  } else {
+    showToast('Failed — check notification permission');
+  }
 }
 
 function editField(field) {
-  var map = { email: 'New email', cycle: 'Cycle length (days)', duration: 'Period duration (days)' };
-  var cur = field === 'email' ? load('email') : load(field);
+  var map = { cycle: 'Cycle length (days)', duration: 'Period duration (days)' };
+  var cur = load(field);
   var val = prompt(map[field], cur);
   if (val === null) return;
-  if (field === 'email') {
-    if (!val.includes('@')) { showToast('Invalid email'); return; }
-    save('email', val);
-  } else {
-    var n = parseInt(val);
-    if (isNaN(n) || n < 1) { showToast('Invalid number'); return; }
-    save(field, n);
-  }
-  save('reminders_sent', {});
+  var n = parseInt(val);
+  if (isNaN(n) || n < 1) { showToast('Invalid number'); return; }
+  save(field, n);
+  save('notif_sent', {});
   renderSettings(); renderHome();
   showToast('Updated ✓');
 }
 
-function saveEmailJS() {
-  var pubKey   = document.getElementById('ejs-pubkey').value.trim();
-  var service  = document.getElementById('ejs-service').value.trim();
-  var template = document.getElementById('ejs-template').value.trim();
-  if (!pubKey || !service || !template) { showToast('Please fill all three fields'); return; }
-  save('emailjs', { pubKey: pubKey, service: service, template: template });
-  renderSettings(); renderHome();
-  showToast('EmailJS config saved ✓');
-}
-
-function testPreReminder() {
-  if (!isEmailJSReady()) { showToast('Save EmailJS config first'); return; }
-  if (!load('email')) { showToast('No email saved'); return; }
-  showToast('Sending test...');
-  sendPreReminder(true)
-    .then(function() { showToast('Test 2-day warning sent! 📬'); })
-    .catch(function(e) { showToast('Failed: ' + (e.text || e.message || 'Check config')); });
-}
-
-function testMotivation() {
-  if (!isEmailJSReady()) { showToast('Save EmailJS config first'); return; }
-  if (!load('email')) { showToast('No email saved'); return; }
-  showToast('Sending test...');
-  sendMotivation(1, true)
-    .then(function() { showToast('Test motivation sent! 📬'); })
-    .catch(function(e) { showToast('Failed: ' + (e.text || e.message || 'Check config')); });
-}
-
-function testEmailJSOnly() {
-  if (!isEmailJSReady()) { showToast('Save EmailJS config first'); return; }
-  if (!load('email')) { showToast('No email saved'); return; }
-  showToast('Testing connection...');
-  sendEmailRaw({
-    to_email: load('email'),
-    subject: '🌸 [Connection Test] Her App',
-    message: 'If you received this, your EmailJS is working correctly! 💕'
-  })
-  .then(function() { showToast('Connection works! Email sent 📬'); })
-  .catch(function(e) { showToast('Failed: ' + (e.text || e.message || 'Unknown error')); });
-}
-
 // ══════════════════════════════════
-//  UTILITIES
+//  UTILS
 // ══════════════════════════════════
 function showToast(msg) {
   var t = document.getElementById('toast');
   t.textContent = msg; t.classList.add('show');
-  clearTimeout(t._timer);
-  t._timer = setTimeout(function() { t.classList.remove('show'); }, 3200);
+  clearTimeout(t._t);
+  t._t = setTimeout(function() { t.classList.remove('show'); }, 3200);
 }
 
 function resetApp() {
-  if (!confirm('This will delete all your data. Are you sure?')) return;
-  ['email','cycle','duration','history','emailjs','reminders_sent','last_reminder_sent']
+  if (!confirm('Delete all data? Are you sure?')) return;
+  ['cycle','duration','history','notif_enabled','notif_sent','notif_log']
     .forEach(function(k) { localStorage.removeItem('her_' + k); });
   location.reload();
 }
 
 // ══════════════════════════════════
-//  EVENT LISTENERS
+//  EVENTS
 // ══════════════════════════════════
 document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('get-started-btn').addEventListener('click', function(e) { e.preventDefault(); saveOnboarding(); });
@@ -1320,36 +1123,61 @@ document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('tab-log').addEventListener('click', function(e) { e.preventDefault(); goTab('log'); });
   document.getElementById('tab-settings').addEventListener('click', function(e) { e.preventDefault(); goTab('settings'); });
   document.getElementById('top-settings-btn').addEventListener('click', function(e) { e.preventDefault(); goTab('settings'); });
-  document.getElementById('reminder-send-btn').addEventListener('click', function(e) { e.preventDefault(); sendReminderNow(); });
   document.getElementById('log-period-btn').addEventListener('click', function(e) { e.preventDefault(); logPeriod(); });
-  document.getElementById('edit-email-btn').addEventListener('click', function(e) { e.preventDefault(); editField('email'); });
+  document.getElementById('notif-toggle').addEventListener('click', function(e) { e.preventDefault(); toggleNotif(); });
+  document.getElementById('test-notif-btn').addEventListener('click', function(e) { e.preventDefault(); testNotif(); });
+  document.getElementById('notif-test-btn').addEventListener('click', function(e) { e.preventDefault(); sendNotifFromHome(); });
   document.getElementById('edit-cycle-btn').addEventListener('click', function(e) { e.preventDefault(); editField('cycle'); });
   document.getElementById('edit-duration-btn').addEventListener('click', function(e) { e.preventDefault(); editField('duration'); });
-  document.getElementById('save-emailjs-btn').addEventListener('click', function(e) { e.preventDefault(); saveEmailJS(); });
-  document.getElementById('test-pre-btn').addEventListener('click', function(e) { e.preventDefault(); testPreReminder(); });
-  document.getElementById('test-motivation-btn').addEventListener('click', function(e) { e.preventDefault(); testMotivation(); });
-  document.getElementById('test-emailjs-btn').addEventListener('click', function(e) { e.preventDefault(); testEmailJSOnly(); });
   document.getElementById('reset-app-btn').addEventListener('click', function(e) { e.preventDefault(); resetApp(); });
+
+  // Permission button on onboarding
+  document.getElementById('perm-btn').addEventListener('click', function(e) {
+    e.preventDefault();
+    requestNotifPermission().then(function(result) {
+      if (result === 'granted') {
+        permGranted = true;
+        document.getElementById('perm-btn').style.display = 'none';
+        var badge = document.createElement('span');
+        badge.className = 'perm-granted';
+        badge.textContent = '✅ On';
+        document.getElementById('perm-card').appendChild(badge);
+        showToast('Notifications enabled! 🔔');
+      } else if (result === 'denied') {
+        showToast('Notifications blocked — you can enable later in Settings');
+        permGranted = false;
+      } else {
+        showToast('Permission not granted');
+      }
+    });
+  });
+
+  // Check if already granted on load
+  if (notifPermission() === 'granted') {
+    permGranted = true;
+    var btn = document.getElementById('perm-btn');
+    if (btn) btn.style.display = 'none';
+    var card = document.getElementById('perm-card');
+    if (card) {
+      var badge = document.createElement('span');
+      badge.className = 'perm-granted';
+      badge.textContent = '✅ On';
+      card.appendChild(badge);
+    }
+  }
 });
 
 // ══════════════════════════════════
 //  INIT
 // ══════════════════════════════════
 (function init() {
-  var email   = load('email');
   var history = load('history');
-  if (email && history && history.length) {
+  if (history && history.length) {
     showMain();
-    setTimeout(function() { checkAndSendReminders(); }, 800);
+    setTimeout(checkAndNotify, 600);
   } else {
     document.getElementById('screen-onboarding').classList.add('active');
   }
-
-  // ★ REMOVED the max attribute setting — this was blocking date selection on mobile
-  // The old code was:
-  //   startInput.max = today;   ← BUG: toDateInput used UTC, shifting dates in non-GMT zones
-  //   endInput.max = today;     ← Same bug
-  // We don't set max at all now, since the user might want to log a period that started yesterday
 })();
 </script>
 </body>
