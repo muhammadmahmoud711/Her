@@ -105,7 +105,7 @@
     margin-bottom: 4px; display: block;
   }
   .input-row { display: flex; flex-direction: column; gap: 4px; }
-  input[type="email"], input[type="date"], input[type="number"] {
+  input[type="email"], input[type="date"], input[type="number"], input[type="text"] {
     width: 100%; padding: 14px 16px;
     background: var(--surface-elevated);
     border: 0.5px solid var(--border-strong);
@@ -353,7 +353,7 @@
     </div>
   </div>
 
-  <button class="btn-primary" onclick="saveOnboarding()">Get started →</button>
+  <button class="btn-primary" id="get-started-btn">Get started →</button>
 </div>
 
 <!-- ══════════════════ HOME SCREEN ══════════════════ -->
@@ -442,7 +442,7 @@
         <input type="date" id="log-end">
       </div>
     </div>
-    <button class="btn-primary" style="margin-top:16px" onclick="logPeriod()">Save period</button>
+    <button class="btn-primary" style="margin-top:16px" id="log-period-btn">Save period</button>
   </div>
 
   <div class="divider"></div>
@@ -461,7 +461,7 @@
       <span class="settings-key">Email</span>
       <div style="display:flex;align-items:center;gap:12px">
         <span class="settings-val" id="set-email">—</span>
-        <button class="settings-edit" onclick="editField('email')">Edit</button>
+        <button class="settings-edit" id="edit-email-btn">Edit</button>
       </div>
     </div>
   </div>
@@ -472,14 +472,14 @@
       <span class="settings-key">Cycle length</span>
       <div style="display:flex;align-items:center;gap:12px">
         <span class="settings-val" id="set-cycle">28 days</span>
-        <button class="settings-edit" onclick="editField('cycle')">Edit</button>
+        <button class="settings-edit" id="edit-cycle-btn">Edit</button>
       </div>
     </div>
     <div class="settings-row">
       <span class="settings-key">Period duration</span>
       <div style="display:flex;align-items:center;gap:12px">
         <span class="settings-val" id="set-duration">5 days</span>
-        <button class="settings-edit" onclick="editField('duration')">Edit</button>
+        <button class="settings-edit" id="edit-duration-btn">Edit</button>
       </div>
     </div>
   </div>
@@ -515,30 +515,30 @@
         <input type="text" id="ejs-template" placeholder="template_xxxxxxx" style="font-size:13px">
       </div>
     </div>
-    <button class="btn-primary" style="margin-top:14px" onclick="saveEmailJS()">Save EmailJS config</button>
-    <button class="btn-secondary" style="margin-top:8px" onclick="sendTestEmail()">Send test email</button>
+    <button class="btn-primary" style="margin-top:14px" id="save-emailjs-btn">Save EmailJS config</button>
+    <button class="btn-secondary" style="margin-top:8px" id="test-email-btn">Send test email</button>
   </div>
 
   <div class="card" style="margin-top:4px">
-    <button class="btn-secondary" onclick="resetApp()" style="color:#E57373; border-color:rgba(229,115,115,0.3)">Reset all data</button>
+    <button class="btn-secondary" id="reset-app-btn" style="color:#E57373; border-color:rgba(229,115,115,0.3)">Reset all data</button>
   </div>
 </div>
 
 <!-- ══════════════════ BOTTOM NAV ══════════════════ -->
 <nav class="nav-tabs" id="bottom-nav" style="display:none">
-  <button class="nav-tab active" id="tab-home" onclick="goTab('home')">
+  <button class="nav-tab active" id="tab-home">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
       <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
     </svg>
     Home
   </button>
-  <button class="nav-tab" id="tab-log" onclick="goTab('log')">
+  <button class="nav-tab" id="tab-log">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
       <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
     </svg>
     Log
   </button>
-  <button class="nav-tab" id="tab-settings" onclick="goTab('settings')">
+  <button class="nav-tab" id="tab-settings">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
       <circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
     </svg>
@@ -556,8 +556,24 @@
 // ══════════════════════════════════
 //  DATA LAYER
 // ══════════════════════════════════
-function save(key, val) { localStorage.setItem('her_' + key, JSON.stringify(val)); }
-function load(key) { try { return JSON.parse(localStorage.getItem('her_' + key)); } catch { return null; } }
+function save(key, val) { 
+  try {
+    localStorage.setItem('her_' + key, JSON.stringify(val));
+    return true;
+  } catch(e) {
+    console.error('Error saving to localStorage:', e);
+    return false;
+  }
+}
+
+function load(key) { 
+  try { 
+    return JSON.parse(localStorage.getItem('her_' + key)); 
+  } catch(e) { 
+    console.error('Error loading from localStorage:', e);
+    return null; 
+  } 
+}
 
 const QUOTES = [
   { text: "Your body is not a problem to be solved. It's a home to be loved.", author: "Her" },
@@ -600,7 +616,12 @@ function computeNext(lastStart, cycleLen) {
   const ls = new Date(lastStart);
   const today = new Date(); today.setHours(0,0,0,0);
   let next = new Date(ls);
-  while (next <= today) { next = addDays(next, cycleLen); }
+  // Safety check to prevent infinite loop
+  let maxIterations = 100;
+  while (next <= today && maxIterations > 0) { 
+    next = addDays(next, cycleLen); 
+    maxIterations--;
+  }
   return next;
 }
 
@@ -623,23 +644,48 @@ function saveOnboarding() {
   const cycle   = parseInt(document.getElementById('ob-cycle').value) || 28;
   const dur     = parseInt(document.getElementById('ob-duration').value) || 5;
 
-  if (!email || !email.includes('@')) { showToast('Please enter a valid email 📧'); return; }
-  if (!start) { showToast('Please enter your last period start date'); return; }
+  if (!email || !email.includes('@')) { 
+    showToast('Please enter a valid email 📧'); 
+    return; 
+  }
+  
+  if (!start) { 
+    showToast('Please enter your last period start date'); 
+    return; 
+  }
 
   try {
-    save('email', email);
-    save('cycle', cycle);
-    save('duration', dur);
+    const emailSaved = save('email', email);
+    const cycleSaved = save('cycle', cycle);
+    const durationSaved = save('duration', dur);
+
+    if (!emailSaved || !cycleSaved || !durationSaved) {
+      showToast('Could not save data. Is localStorage available?');
+      return;
+    }
 
     let history = load('history') || [];
-    history.unshift({ start, end: end || toDateInput(addDays(new Date(start), dur-1)) });
-    save('history', history);
+    history.unshift({ 
+      start, 
+      end: end || toDateInput(addDays(new Date(start), dur-1)) 
+    });
+    
+    const historySaved = save('history', history);
+    if (!historySaved) {
+      showToast('Could not save period history.');
+      return;
+    }
   } catch(e) {
-    showToast('Could not save data. Is localStorage available?');
+    console.error('Error saving onboarding data:', e);
+    showToast('Could not save data. Please try again.');
     return;
   }
 
-  try { checkAndScheduleReminders(); } catch(e) { console.warn('Reminder check failed:', e); }
+  try { 
+    checkAndScheduleReminders(); 
+  } catch(e) { 
+    console.warn('Reminder check failed:', e); 
+  }
 
   showMain();
 }
@@ -651,12 +697,11 @@ function showMain() {
   try {
     const onb = document.getElementById('screen-onboarding');
     if (onb) onb.classList.remove('active');
+    
     const nav = document.getElementById('bottom-nav');
     if (nav) nav.style.display = 'flex';
+    
     goTab('home');
-    try { renderHome(); } catch(e) { console.warn('renderHome error:', e); }
-    try { renderLog(); } catch(e) { console.warn('renderLog error:', e); }
-    try { renderSettings(); } catch(e) { console.warn('renderSettings error:', e); }
   } catch(e) {
     console.error('showMain error:', e);
     showToast('Something went wrong loading the app.');
@@ -664,178 +709,229 @@ function showMain() {
 }
 
 function goTab(tab) {
-  ['home','log','settings'].forEach(t => {
-    document.getElementById('screen-' + t).classList.remove('active');
-    const tabEl = document.getElementById('tab-' + t);
-    if (tabEl) tabEl.classList.remove('active');
-  });
-  document.getElementById('screen-' + tab).classList.add('active');
-  const active = document.getElementById('tab-' + tab);
-  if (active) active.classList.add('active');
+  try {
+    ['home','log','settings'].forEach(t => {
+      const screen = document.getElementById('screen-' + t);
+      if (screen) screen.classList.remove('active');
+      
+      const tabEl = document.getElementById('tab-' + t);
+      if (tabEl) tabEl.classList.remove('active');
+    });
+    
+    const activeScreen = document.getElementById('screen-' + tab);
+    if (activeScreen) activeScreen.classList.add('active');
+    
+    const activeTab = document.getElementById('tab-' + tab);
+    if (activeTab) activeTab.classList.add('active');
 
-  if (tab === 'home') renderHome();
-  if (tab === 'log')  renderLog();
-  if (tab === 'settings') renderSettings();
+    if (tab === 'home') renderHome();
+    if (tab === 'log')  renderLog();
+    if (tab === 'settings') renderSettings();
+  } catch(e) {
+    console.error('goTab error:', e);
+  }
 }
 
 // ══════════════════════════════════
 //  HOME RENDER
 // ══════════════════════════════════
 function renderHome() {
-  const history  = load('history') || [];
-  const cycleLen = load('cycle') || 28;
-  const duration = load('duration') || 5;
-  if (!history.length) return;
+  try {
+    const history  = load('history') || [];
+    const cycleLen = load('cycle') || 28;
+    const duration = load('duration') || 5;
+    
+    if (!history.length) return;
 
-  const lastEntry = history[0];
-  const today = new Date(); today.setHours(0,0,0,0);
-  const nextStart  = computeNext(lastEntry.start, cycleLen);
-  const nextEnd    = addDays(nextStart, duration - 1);
-  const daysUntil  = daysBetween(today, nextStart);
+    const lastEntry = history[0];
+    const today = new Date(); today.setHours(0,0,0,0);
+    const nextStart  = computeNext(lastEntry.start, cycleLen);
+    const nextEnd    = addDays(nextStart, duration - 1);
+    const daysUntil  = daysBetween(today, nextStart);
 
-  // Check if currently in period
-  const lastStart = new Date(lastEntry.start); lastStart.setHours(0,0,0,0);
-  const lastEnd   = lastEntry.end ? new Date(lastEntry.end) : addDays(lastStart, duration-1);
-  lastEnd.setHours(0,0,0,0);
-  const inPeriod  = today >= lastStart && today <= lastEnd;
+    // Check if currently in period
+    const lastStart = new Date(lastEntry.start); lastStart.setHours(0,0,0,0);
+    const lastEnd   = lastEntry.end ? new Date(lastEntry.end) : addDays(lastStart, duration-1);
+    lastEnd.setHours(0,0,0,0);
+    const inPeriod  = today >= lastStart && today <= lastEnd;
 
-  // Ring
-  const progress = Math.max(0, Math.min(1, (cycleLen - daysUntil) / cycleLen));
-  const circumference = 2 * Math.PI * 82;
-  const offset = circumference * (1 - progress);
-  document.getElementById('ring-progress').style.strokeDashoffset = Math.round(offset);
-  document.getElementById('ring-progress').style.strokeDasharray = Math.round(circumference);
+    // Ring
+    const progress = Math.max(0, Math.min(1, (cycleLen - daysUntil) / cycleLen));
+    const circumference = 2 * Math.PI * 82;
+    const offset = circumference * (1 - progress);
+    document.getElementById('ring-progress').style.strokeDashoffset = Math.round(offset);
+    document.getElementById('ring-progress').style.strokeDasharray = Math.round(circumference);
 
-  if (inPeriod) {
-    const dayNum = daysBetween(lastStart, today) + 1;
-    document.getElementById('ring-days').textContent = 'Day ' + dayNum;
-    document.getElementById('ring-label').textContent = 'of your period';
-    document.getElementById('active-banner').style.display = 'flex';
-    const remaining = daysBetween(today, lastEnd);
-    document.getElementById('active-banner-text').textContent =
-      remaining > 0 ? `About ${remaining} more day${remaining>1?'s':''} — take care of yourself 💕` : 'Last day — you're almost through 🌸';
-    document.getElementById('phase-text').textContent = '🌸 Menstrual phase';
-  } else {
-    document.getElementById('ring-days').textContent = Math.max(0, daysUntil);
-    document.getElementById('ring-label').textContent = 'days until period';
-    document.getElementById('active-banner').style.display = 'none';
-    const { phase, emoji } = getPhase(daysUntil, cycleLen, duration);
-    document.getElementById('phase-text').textContent = emoji + ' ' + phase;
+    if (inPeriod) {
+      const dayNum = daysBetween(lastStart, today) + 1;
+      document.getElementById('ring-days').textContent = 'Day ' + dayNum;
+      document.getElementById('ring-label').textContent = 'of your period';
+      document.getElementById('active-banner').style.display = 'flex';
+      const remaining = daysBetween(today, lastEnd);
+      document.getElementById('active-banner-text').textContent =
+        remaining > 0 ? `About ${remaining} more day${remaining>1?'s':''} — take care of yourself 💕` : 'Last day — you\'re almost through 🌸';
+      document.getElementById('phase-text').textContent = '🌸 Menstrual phase';
+    } else {
+      document.getElementById('ring-days').textContent = Math.max(0, daysUntil);
+      document.getElementById('ring-label').textContent = 'days until period';
+      document.getElementById('active-banner').style.display = 'none';
+      const { phase, emoji } = getPhase(daysUntil, cycleLen, duration);
+      document.getElementById('phase-text').textContent = emoji + ' ' + phase;
+    }
+
+    // Stats
+    document.getElementById('stat-next-date').textContent = fmtDate(nextStart);
+    document.getElementById('stat-next-end').textContent  = 'ends ' + fmtDate(nextEnd);
+    document.getElementById('stat-cycle').textContent     = cycleLen + ' days';
+    document.getElementById('stat-duration').textContent  = duration + ' day period';
+    document.getElementById('stat-last-start').textContent = fmtDate(lastStart);
+    document.getElementById('stat-last-end').textContent   = 'ended ' + fmtDate(lastEnd);
+
+    // Ovulation
+    const ovulationDate = addDays(nextStart, -14);
+    document.getElementById('stat-ovulation').textContent = fmtDate(ovulationDate);
+
+    // Quote
+    const q = QUOTES[today.getDate() % QUOTES.length];
+    document.getElementById('daily-quote').textContent  = '" ' + q.text + ' "';
+    document.getElementById('quote-author').textContent = q.author;
+  } catch(e) {
+    console.error('renderHome error:', e);
   }
-
-  // Stats
-  document.getElementById('stat-next-date').textContent = fmtDate(nextStart);
-  document.getElementById('stat-next-end').textContent  = 'ends ' + fmtDate(nextEnd);
-  document.getElementById('stat-cycle').textContent     = cycleLen + ' days';
-  document.getElementById('stat-duration').textContent  = duration + ' day period';
-  document.getElementById('stat-last-start').textContent = fmtDate(lastStart);
-  document.getElementById('stat-last-end').textContent   = 'ended ' + fmtDate(lastEnd);
-
-  // Ovulation
-  const ovulationDate = addDays(nextStart, -14);
-  document.getElementById('stat-ovulation').textContent = fmtDate(ovulationDate);
-
-  // Quote
-  const q = QUOTES[today.getDate() % QUOTES.length];
-  document.getElementById('daily-quote').textContent  = '" ' + q.text + ' "';
-  document.getElementById('quote-author').textContent = q.author;
 }
 
 // ══════════════════════════════════
 //  LOG RENDER
 // ══════════════════════════════════
 function renderLog() {
-  const history  = load('history') || [];
-  const container = document.getElementById('history-list');
+  try {
+    const history  = load('history') || [];
+    const container = document.getElementById('history-list');
 
-  // Set default dates
-  const today = new Date();
-  document.getElementById('log-start').value = toDateInput(today);
-  document.getElementById('log-end').value   = toDateInput(addDays(today, (load('duration')||5)-1));
+    // Set default dates
+    const today = new Date();
+    document.getElementById('log-start').value = toDateInput(today);
+    document.getElementById('log-end').value   = toDateInput(addDays(today, (load('duration')||5)-1));
 
-  if (!history.length) {
-    container.innerHTML = '<p style="color:var(--text-muted);font-size:14px;text-align:center;padding:12px 0">No periods logged yet</p>';
-    return;
+    if (!history.length) {
+      container.innerHTML = '<p style="color:var(--text-muted);font-size:14px;text-align:center;padding:12px 0">No periods logged yet</p>';
+      return;
+    }
+    
+    container.innerHTML = '<p class="card-title">Past entries</p>' + history.slice(0, 12).map((entry, i) => {
+      const s = new Date(entry.start);
+      const e = entry.end ? new Date(entry.end) : null;
+      const dur = e ? daysBetween(s, e) + 1 : '?';
+      return `<div class="history-item">
+        <div>
+          <div class="history-date">${fmtDateFull(s)}</div>
+          <div class="history-dur">to ${e ? fmtDateFull(e) : '—'}</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px">
+          <span class="history-badge">${dur} days</span>
+          <button class="delete-entry-btn" data-index="${i}" style="background:none;border:none;cursor:pointer;color:var(--text-muted);font-size:18px;padding:2px">×</button>
+        </div>
+      </div>`;
+    }).join('');
+    
+    // Add event listeners to delete buttons
+    document.querySelectorAll('.delete-entry-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const index = parseInt(this.getAttribute('data-index'));
+        deleteEntry(index);
+      });
+    });
+  } catch(e) {
+    console.error('renderLog error:', e);
   }
-  container.innerHTML = '<p class="card-title">Past entries</p>' + history.slice(0, 12).map((entry, i) => {
-    const s = new Date(entry.start);
-    const e = entry.end ? new Date(entry.end) : null;
-    const dur = e ? daysBetween(s, e) + 1 : '?';
-    return `<div class="history-item">
-      <div>
-        <div class="history-date">${fmtDateFull(s)}</div>
-        <div class="history-dur">to ${e ? fmtDateFull(e) : '—'}</div>
-      </div>
-      <div style="display:flex;align-items:center;gap:10px">
-        <span class="history-badge">${dur} days</span>
-        <button onclick="deleteEntry(${i})" style="background:none;border:none;cursor:pointer;color:var(--text-muted);font-size:18px;padding:2px">×</button>
-      </div>
-    </div>`;
-  }).join('');
 }
 
 function logPeriod() {
-  const start = document.getElementById('log-start').value;
-  const end   = document.getElementById('log-end').value;
-  if (!start) { showToast('Please enter a start date'); return; }
-  let history = load('history') || [];
-  history.unshift({ start, end });
-  history.sort((a,b) => new Date(b.start) - new Date(a.start));
-  save('history', history);
-  checkAndScheduleReminders();
-  renderLog();
-  renderHome();
-  showToast('Period logged 🌸');
+  try {
+    const start = document.getElementById('log-start').value;
+    const end   = document.getElementById('log-end').value;
+    if (!start) { showToast('Please enter a start date'); return; }
+    let history = load('history') || [];
+    history.unshift({ start, end });
+    history.sort((a,b) => new Date(b.start) - new Date(a.start));
+    save('history', history);
+    checkAndScheduleReminders();
+    renderLog();
+    renderHome();
+    showToast('Period logged 🌸');
+  } catch(e) {
+    console.error('logPeriod error:', e);
+    showToast('Error logging period. Please try again.');
+  }
 }
 
 function deleteEntry(idx) {
-  let history = load('history') || [];
-  history.splice(idx, 1);
-  save('history', history);
-  renderLog();
-  renderHome();
-  showToast('Entry removed');
+  try {
+    let history = load('history') || [];
+    history.splice(idx, 1);
+    save('history', history);
+    renderLog();
+    renderHome();
+    showToast('Entry removed');
+  } catch(e) {
+    console.error('deleteEntry error:', e);
+    showToast('Error deleting entry. Please try again.');
+  }
 }
 
 // ══════════════════════════════════
 //  SETTINGS RENDER
 // ══════════════════════════════════
 function renderSettings() {
-  document.getElementById('set-email').textContent    = load('email') || '—';
-  document.getElementById('set-cycle').textContent    = (load('cycle') || 28) + ' days';
-  document.getElementById('set-duration').textContent = (load('duration') || 5) + ' days';
+  try {
+    document.getElementById('set-email').textContent    = load('email') || '—';
+    document.getElementById('set-cycle').textContent    = (load('cycle') || 28) + ' days';
+    document.getElementById('set-duration').textContent = (load('duration') || 5) + ' days';
 
-  const cfg = load('emailjs') || {};
-  if (cfg.pubKey)   document.getElementById('ejs-pubkey').value   = cfg.pubKey;
-  if (cfg.service)  document.getElementById('ejs-service').value  = cfg.service;
-  if (cfg.template) document.getElementById('ejs-template').value = cfg.template;
+    const cfg = load('emailjs') || {};
+    if (cfg.pubKey)   document.getElementById('ejs-pubkey').value   = cfg.pubKey;
+    if (cfg.service)  document.getElementById('ejs-service').value  = cfg.service;
+    if (cfg.template) document.getElementById('ejs-template').value = cfg.template;
+  } catch(e) {
+    console.error('renderSettings error:', e);
+  }
 }
 
 function editField(field) {
-  const map = { email: 'New email', cycle: 'Cycle length (days)', duration: 'Period duration (days)' };
-  const cur = field === 'email' ? load('email') : load(field);
-  const val = prompt(map[field], cur);
-  if (val === null) return;
-  if (field === 'email') {
-    if (!val.includes('@')) { showToast('Invalid email'); return; }
-    save('email', val);
-  } else {
-    const n = parseInt(val);
-    if (isNaN(n) || n < 1) { showToast('Invalid number'); return; }
-    save(field, n);
+  try {
+    const map = { email: 'New email', cycle: 'Cycle length (days)', duration: 'Period duration (days)' };
+    const cur = field === 'email' ? load('email') : load(field);
+    const val = prompt(map[field], cur);
+    if (val === null) return;
+    if (field === 'email') {
+      if (!val.includes('@')) { showToast('Invalid email'); return; }
+      save('email', val);
+    } else {
+      const n = parseInt(val);
+      if (isNaN(n) || n < 1) { showToast('Invalid number'); return; }
+      save(field, n);
+    }
+    renderSettings();
+    renderHome();
+    showToast('Updated ✓');
+  } catch(e) {
+    console.error('editField error:', e);
+    showToast('Error updating field. Please try again.');
   }
-  renderSettings();
-  renderHome();
-  showToast('Updated ✓');
 }
 
 function saveEmailJS() {
-  const pubKey   = document.getElementById('ejs-pubkey').value.trim();
-  const service  = document.getElementById('ejs-service').value.trim();
-  const template = document.getElementById('ejs-template').value.trim();
-  if (!pubKey || !service || !template) { showToast('Please fill all three fields'); return; }
-  save('emailjs', { pubKey, service, template });
-  showToast('EmailJS config saved ✓');
+  try {
+    const pubKey   = document.getElementById('ejs-pubkey').value.trim();
+    const service  = document.getElementById('ejs-service').value.trim();
+    const template = document.getElementById('ejs-template').value.trim();
+    if (!pubKey || !service || !template) { showToast('Please fill all three fields'); return; }
+    save('emailjs', { pubKey, service, template });
+    showToast('EmailJS config saved ✓');
+  } catch(e) {
+    console.error('saveEmailJS error:', e);
+    showToast('Error saving EmailJS config. Please try again.');
+  }
 }
 
 // ══════════════════════════════════
@@ -869,56 +965,75 @@ function sendEmail(params) {
   try {
     emailjs.init(cfg.pubKey);
     emailjs.send(cfg.service, cfg.template, params);
-  } catch(e) { console.warn('EmailJS error:', e); }
+  } catch(e) { 
+    console.warn('EmailJS error:', e); 
+  }
 }
 
 function checkAndScheduleReminders() {
-  const history  = load('history') || [];
-  const cycleLen = load('cycle') || 28;
-  const duration = load('duration') || 5;
-  if (!history.length) return;
+  try {
+    const history  = load('history') || [];
+    const cycleLen = load('cycle') || 28;
+    const duration = load('duration') || 5;
+    if (!history.length) return;
 
-  const today    = new Date(); today.setHours(0,0,0,0);
-  const nextStart = computeNext(history[0].start, cycleLen);
-  const nextEnd   = addDays(nextStart, duration - 1);
-  const daysUntil = daysBetween(today, nextStart);
-  const lastSent  = load('last_reminder_sent');
-  const todayStr  = toDateInput(today);
+    const today    = new Date(); today.setHours(0,0,0,0);
+    const nextStart = computeNext(history[0].start, cycleLen);
+    const nextEnd   = addDays(nextStart, duration - 1);
+    const daysUntil = daysBetween(today, nextStart);
+    const lastSent  = load('last_reminder_sent');
+    const todayStr  = toDateInput(today);
 
-  if (lastSent === todayStr) return;
+    if (lastSent === todayStr) return;
 
-  if (daysUntil === 1 || daysUntil === 0) {
-    sendEmail(getEmailParams(daysUntil, nextStart, nextEnd));
-    save('last_reminder_sent', todayStr);
+    if (daysUntil === 1 || daysUntil === 0) {
+      sendEmail(getEmailParams(daysUntil, nextStart, nextEnd));
+      save('last_reminder_sent', todayStr);
+    }
+  } catch(e) {
+    console.error('checkAndScheduleReminders error:', e);
   }
 }
 
 function sendTestEmail() {
-  const cfg = load('emailjs');
-  if (!cfg || !cfg.pubKey) { showToast('Save EmailJS config first'); return; }
-  const history  = load('history') || [];
-  const cycleLen = load('cycle') || 28;
-  const duration = load('duration') || 5;
-  if (!history.length) { showToast('Add a period first'); return; }
-  const nextStart = computeNext(history[0].start, cycleLen);
-  const nextEnd   = addDays(nextStart, duration - 1);
-  const params    = getEmailParams(1, nextStart, nextEnd);
-  params.subject  = '🌸 [Test] Her — Period reminder';
   try {
+    const cfg = load('emailjs');
+    if (!cfg || !cfg.pubKey) { showToast('Save EmailJS config first'); return; }
+    const history  = load('history') || [];
+    const cycleLen = load('cycle') || 28;
+    const duration = load('duration') || 5;
+    if (!history.length) { showToast('Add a period first'); return; }
+    const nextStart = computeNext(history[0].start, cycleLen);
+    const nextEnd   = addDays(nextStart, duration - 1);
+    const params    = getEmailParams(1, nextStart, nextEnd);
+    params.subject  = '🌸 [Test] Her — Period reminder';
+    
     emailjs.init(cfg.pubKey);
     emailjs.send(cfg.service, cfg.template, params)
       .then(() => showToast('Test email sent! Check your inbox 📧'))
-      .catch(() => showToast('Email failed — check your EmailJS config'));
-  } catch(e) { showToast('Error: ' + e.message); }
+      .catch((e) => {
+        console.error('EmailJS send error:', e);
+        showToast('Email failed — check your EmailJS config');
+      });
+  } catch(e) {
+    console.error('sendTestEmail error:', e);
+    showToast('Error sending test email: ' + e.message);
+  }
 }
 
 // ══════════════════════════════════
 //  UTILITIES
 // ══════════════════════════════════
 function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg; t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2800);
+  try {
+    const t = document.getElementById('toast');
+    t.textContent = msg; 
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2800);
+  } catch(e) {
+    console.error('showToast error:', e);
+    alert(msg); // Fallback if toast fails
+  }
 }
 
 function resetApp() {
@@ -929,6 +1044,105 @@ function resetApp() {
 }
 
 // ══════════════════════════════════
+//  EVENT LISTENERS
+// ══════════════════════════════════
+document.addEventListener('DOMContentLoaded', function() {
+  // Get started button
+  const getStartedBtn = document.getElementById('get-started-btn');
+  if (getStartedBtn) {
+    getStartedBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      saveOnboarding();
+    });
+  }
+  
+  // Log period button
+  const logPeriodBtn = document.getElementById('log-period-btn');
+  if (logPeriodBtn) {
+    logPeriodBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      logPeriod();
+    });
+  }
+  
+  // Navigation tabs
+  const tabHome = document.getElementById('tab-home');
+  const tabLog = document.getElementById('tab-log');
+  const tabSettings = document.getElementById('tab-settings');
+  
+  if (tabHome) {
+    tabHome.addEventListener('click', function(e) {
+      e.preventDefault();
+      goTab('home');
+    });
+  }
+  
+  if (tabLog) {
+    tabLog.addEventListener('click', function(e) {
+      e.preventDefault();
+      goTab('log');
+    });
+  }
+  
+  if (tabSettings) {
+    tabSettings.addEventListener('click', function(e) {
+      e.preventDefault();
+      goTab('settings');
+    });
+  }
+  
+  // Settings buttons
+  const editEmailBtn = document.getElementById('edit-email-btn');
+  const editCycleBtn = document.getElementById('edit-cycle-btn');
+  const editDurationBtn = document.getElementById('edit-duration-btn');
+  const saveEmailjsBtn = document.getElementById('save-emailjs-btn');
+  const testEmailBtn = document.getElementById('test-email-btn');
+  const resetAppBtn = document.getElementById('reset-app-btn');
+  
+  if (editEmailBtn) {
+    editEmailBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      editField('email');
+    });
+  }
+  
+  if (editCycleBtn) {
+    editCycleBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      editField('cycle');
+    });
+  }
+  
+  if (editDurationBtn) {
+    editDurationBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      editField('duration');
+    });
+  }
+  
+  if (saveEmailjsBtn) {
+    saveEmailjsBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      saveEmailJS();
+    });
+  }
+  
+  if (testEmailBtn) {
+    testEmailBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      sendTestEmail();
+    });
+  }
+  
+  if (resetAppBtn) {
+    resetAppBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      resetApp();
+    });
+  }
+});
+
+// ══════════════════════════════════
 //  INIT
 // ══════════════════════════════════
 (function init() {
@@ -936,7 +1150,11 @@ function resetApp() {
     const email = load('email');
     const history = load('history');
     if (email && history && history.length) {
-      try { checkAndScheduleReminders(); } catch(e) { console.warn('Reminder check failed:', e); }
+      try { 
+        checkAndScheduleReminders(); 
+      } catch(e) { 
+        console.warn('Reminder check failed:', e); 
+      }
       showMain();
     } else {
       document.getElementById('screen-onboarding').classList.add('active');
@@ -945,13 +1163,6 @@ function resetApp() {
     console.error('Init error:', e);
     document.getElementById('screen-onboarding').classList.add('active');
   }
-
-  // Set today's date as defaults in onboarding
-  try {
-    const today = new Date();
-    document.getElementById('ob-start').max = toDateInput(today);
-    document.getElementById('ob-end').max   = toDateInput(today);
-  } catch(e) {}
 })();
 </script>
 </body>
